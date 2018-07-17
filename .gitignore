@@ -13,7 +13,6 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
-*.pyc
 
 # Windows shortcuts
 *.lnk
@@ -42,6 +41,7 @@ $RECYCLE.BIN/
 venv
 __pycache__
 .idea
+*.pyc
 
 
 # Directories potentially created on remote AFP share
