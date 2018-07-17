@@ -4,7 +4,7 @@ import Gui
 import time
 import threading
 
-#Test Issue
+#Test
 
 class MainGuiData:
     def __init__(self):
