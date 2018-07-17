@@ -4,6 +4,7 @@ import Gui
 import time
 import threading
 
+#Test Issue
 
 class MainGuiData:
     def __init__(self):
@@ -12,7 +13,6 @@ class MainGuiData:
 
         self.item = ""
         self.currency = ""
-
         self.current_price = 0
         self.balance = 0
 
