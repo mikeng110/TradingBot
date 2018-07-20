@@ -1,5 +1,5 @@
 import sys
-from Core.MainCore import MainProgram
+from Core.MainCore import StartProgram
 from PyQt5.QtWidgets import QApplication
 
 def main(argv):
@@ -7,7 +7,7 @@ def main(argv):
 
     if graphicMode:
         App = QApplication(sys.argv).instance()
-        mainProgram = MainProgram(App)
+        mainProgram = StartProgram(App)
         ret = App.exec()
         sys.exit(ret)
 
