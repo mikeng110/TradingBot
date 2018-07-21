@@ -5,6 +5,8 @@ class MainModel:
 
         self.logged_in = False
 
+        self.symbol = ""
+
         self.item = ""
         self.currency = ""
         self.current_price = 0
