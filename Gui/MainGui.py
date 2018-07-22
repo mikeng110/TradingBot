@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
 
 from MainWindowGui import Ui_MainWindow
 
@@ -19,6 +20,7 @@ class MainWindow(QMainWindow):
         self.ui.Transaction_Buy_in_tbx.textChanged.connect(self.transaction_change)
         self.ui.Transaction_Target_tbx.textChanged.connect(self.transaction_change)
         self.ui.Transaction_Stop_Limit_tbx.textChanged.connect(self.transaction_change)
+
 
 
     def set_logged_in_mode(self, logged_in):
@@ -53,6 +55,11 @@ class MainWindow(QMainWindow):
         else:
             self.ui.Transaction_Status_Display_lbl.setText( "Status: Item is not on the market in " + self.gui_data.currency)
             self.ui.Transaction_Execute_btn.setEnabled(False)
+
+    def showId(self, current, previous):
+        s = self.gui_data.order_list[current.row()]
+        print(s)
+
 
     def transaction_change(self):
         self.gui_data.transaction_amount = self.str_to_float(self.ui.Transaction_Amount_Procent_Display_hsr.value())
@@ -92,6 +99,9 @@ class MainWindow(QMainWindow):
 
         self.ui.Transaction_Target_tbx.setText(str(new_transaction_target))
         self.ui.Transaction_Stop_Limit_tbx.setText(str(new_transaction_stop_limit))
+
+        #self.gui_data.pending_orders_model.appendRow(QStandardItem("Yay"))
+
 
 
     def str_to_float(self, str):

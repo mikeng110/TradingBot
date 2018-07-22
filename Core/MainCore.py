@@ -1,3 +1,6 @@
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
 from Gui.MainGui import *
 import time
 import threading
@@ -9,6 +12,10 @@ from Data.GuiModel import *
 
 class Order:
     def __init__(self, gui, bot, amount, buy_in, target, stop_loss): #this is really bad design, figure out how to access data between classes, maybe sigelton pattern?
+        self.order_id = 0
+        self.order_info = None
+        self.pending_order_index = None #temp solutions, to find it in the model
+        self.active_order_index = None
 
         self.gui = gui #redesign later
         self.bot = bot
@@ -23,6 +30,22 @@ class Order:
         self.target = target
         self.stop_loss = stop_loss
 
+        self.purchased_at = 0
+
+    def __str__(self):
+        ret_str = ""
+
+        if self.closed and self.quantity == 0:
+            pass
+        elif self.active:
+            ret_str = "\n   Bought At: " + str(self.purchased_at) + " \n   Quantaty: "  + str(self.quantity) + "\n   Target: "+ str(self.target) + " \n   Stop Loss: " + str(self.stop_loss) + "\n"
+        else:
+            ret_str = "\n   Buy In: " + str(self.buy_in) + " \n   Target: " + str(self.target) + " \n   Stop Loss: " + str(self.stop_loss) + "\n"
+
+
+
+        return ret_str
+
     def market_buy(self):
         price = self.gui.gui_data.current_price
 
@@ -30,10 +53,17 @@ class Order:
         print("Atempting to buy: " + str(q))
         if q > 0:
             try:
-                self.bot.client.order_market_buy(symbol=self.symbol, quantity=q)
+                self.order_info = self.bot.client.order_market_buy(symbol=self.symbol, quantity=q)
                 print("Market order placed")
                 self.quantity = q
                 self.active = True
+                self.gui.gui_data.update_order(self.order_id, self)
+                if self.order_info is not None:
+                    fills = self.order_info['fills']
+                    fills = fills[0]
+                    p_price = fills['price']
+                    self.quantity = self.gui.str_to_float(fills['qty'])
+                    self.purchased_at = self.gui.str_to_float(p_price)
             except BinanceAPIException as e:
                 self.quantity = 0
                 self.active = False
@@ -42,6 +72,8 @@ class Order:
                 print(e.message)
         else:
             print("quantity to low: " + str(q))
+            self.active = False
+            self.closed = True
 
     def market_sell(self):
         if not self.active:
@@ -82,19 +114,10 @@ class Order:
         return str_n[::-1].find('.')
 
 
-class OrderList:
-    def __init__(self):
-        self.content = []
-
-    def register_order(self, order):
-        self.content.append(order)
-
-
 class StartProgram:
 
     def __init__(self, app):
         app.aboutToQuit.connect(self.stop_threads)
-        self.order_list = OrderList()
         self.bot = None
         self.t1 = None
         self.t2 = None
@@ -134,6 +157,22 @@ class StartProgram:
         current_price = self.gui.gui_data.get_price(asset + currency)
         self.gui.ui.Transaction_Buy_in_tbx.setText(str(current_price))
 
+        list = self.gui.ui.Pending_Orders_lbx
+        model = QStandardItemModel(list)
+        self.gui.gui_data.pending_orders_model = model
+
+        list.setModel(model)
+
+        list = self.gui.ui.Filed_Orders_lbx
+        model = QStandardItemModel(list)
+        self.gui.gui_data.active_orders_model = model
+        list.setModel(model)
+
+
+        list.selectionModel().currentChanged.connect(self.gui.showId)
+
+
+
         self.threads_running = True
         self.t1 = threading.Thread(target=self.update_stats)
         self.t1.start()
@@ -154,20 +193,22 @@ class StartProgram:
         target = self.gui.gui_data.transaction_target
         stop_loss = self.gui.gui_data.transaction_stop_limit
 
-        print("Amount: " + str(amount) + " buy_in: " + str(buy_in) + " target: " + str(target) + " stop_loss: " + str(stop_loss))
 
         order = Order(self.gui, self.bot, amount, buy_in, target, stop_loss)
         order.symbol = self.gui_data.item + self.gui_data.currency
-        self.order_list.register_order(order)
+
+        self.gui.gui_data.add_order(order)
+
 
         if self.t2 is None:
             self.t2 = threading.Thread(target=self.price_watcher)
             self.t2.start()
 
     def price_watcher(self):
+        order_list = self.gui.gui_data.order_list
 
         while self.threads_running:
-            for order in self.order_list.content:
+            for order in order_list:
                 if order.closed:
                     continue
                 price = self.gui_data.current_price
@@ -183,7 +224,7 @@ class StartProgram:
                 elif price <= order.buy_in and price > order.stop_loss:
                     order.market_buy()
 
-            time.sleep(1)
+            time.sleep(0.5)
 
     def stop_threads(self):
         print("Close threads")
@@ -195,7 +236,7 @@ class StartProgram:
         except Exception as e:
             return None
 
-    def update_stats(self):
+    def update_stats(self): #currently only work with 1 order at a time
 
         while self.threads_running:
             self.lock.acquire()
@@ -209,4 +250,4 @@ class StartProgram:
             self.gui.ui.Transaction_Current_Price_Display_lbl.setText("Asset Price:  " + str(self.gui.gui_data.current_price) + " " + self.gui.gui_data.currency)
             self.gui.ui.Transaction_Account_Balance_Display_lbl.setText("Balance:       " + str(self.gui.gui_data.balance) + " " + self.gui.gui_data.currency)
             self.lock.release()
-            time.sleep(1)
+            time.sleep(0.5)

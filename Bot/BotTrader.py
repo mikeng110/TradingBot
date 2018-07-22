@@ -1,7 +1,6 @@
 from binance.client import Client
 from binance.exceptions import *
 
-
 class Bot:
     def __init__(self, api_key, api_signature):
         self.connected = False
@@ -12,9 +11,9 @@ class Bot:
         if self.connected:
             return None
 
-        self.client = Client(api_key, api_signature)
-
         try:
+            self.client = Client(api_key, api_signature)
+
             self.client.get_account()
             self.connected = True
 
