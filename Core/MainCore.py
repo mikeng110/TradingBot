@@ -13,7 +13,8 @@ from Data.GuiModel import *
 class Order:
     def __init__(self, gui, bot, amount, buy_in, target, stop_loss): #this is really bad design, figure out how to access data between classes, maybe sigelton pattern?
         self.order_id = 0
-        self.order_info = None
+        self.buy_order_info = None
+        self.sell_order_info = None
         self.pending_order_index = None #temp solutions, to find it in the model
         self.active_order_index = None
 
@@ -31,6 +32,7 @@ class Order:
         self.stop_loss = stop_loss
 
         self.purchased_at = 0
+        self.sold_at = 0
 
     def __str__(self):
         ret_str = ""
@@ -38,11 +40,9 @@ class Order:
         if self.closed and self.quantity == 0:
             pass
         elif self.active:
-            ret_str = "\n   Bought At: " + str(self.purchased_at) + " \n   Quantaty: "  + str(self.quantity) + "\n   Target: "+ str(self.target) + " \n   Stop Loss: " + str(self.stop_loss) + "\n"
+            ret_str = "\n   Bought At: " + str(self.purchased_at) + " \n   Quantaty: " + str(self.quantity) + "\n   Target: " + str(self.target) + " \n   Stop Loss: " + str(self.stop_loss) + "\n"
         else:
             ret_str = "\n   Buy In: " + str(self.buy_in) + " \n   Target: " + str(self.target) + " \n   Stop Loss: " + str(self.stop_loss) + "\n"
-
-
 
         return ret_str
 
@@ -53,15 +53,16 @@ class Order:
         print("Atempting to buy: " + str(q))
         if q > 0:
             try:
-                self.order_info = self.bot.client.order_market_buy(symbol=self.symbol, quantity=q)
+                self.buy_order_info = self.bot.client.order_market_buy(symbol=self.symbol, quantity=q)
                 print("Market order placed")
                 self.quantity = q
                 self.active = True
                 self.gui.gui_data.update_order(self.order_id, self)
-                if self.order_info is not None:
-                    fills = self.order_info['fills']
+                if self.buy_order_info is not None:
+                    fills = self.buy_order_info['fills']
                     fills = fills[0]
                     p_price = fills['price']
+                    print("price sold: " + p_price)
                     self.quantity = self.gui.str_to_float(fills['qty'])
                     self.purchased_at = self.gui.str_to_float(p_price)
             except BinanceAPIException as e:
@@ -83,10 +84,17 @@ class Order:
         print("Atempting to sell: " + str(self.quantity))
         if self.quantity > 0:
             try:
-                self.bot.client.order_market_sell(symbol=self.symbol, quantity=self.quantity)
+                self.sell_order_info = self.bot.client.order_market_sell(symbol=self.symbol, quantity=self.quantity)
                 print("Market sell order placed")
                 self.active = False
                 self.closed = True
+                if self.sell_order_info is not None:
+                    fills = self.sell_order_info['fills']
+                    fills = fills[0]
+                    p_price = fills['price']
+                    print("price sold: " + p_price)
+                    self.sold_at = self.gui.str_to_float(p_price)
+                self.show_statistics()
             except BinanceAPIException as e:
                 print("Market sell order Fail")
                 print(e.status_code)
@@ -94,6 +102,9 @@ class Order:
                 self.active = True
         else:
             print("quantity to low: " + str(self.quantity))
+
+    def show_statistics(self):
+        print("Buying Price: " + str(self.purchased_at) + "\nSold at: " + str(self.sold_at) + "\n Gain: " + str((self.gui.str_to_float(self.sold_at / self.purchased_at) - 1 ) * 100.0 ))
 
     def calculate_quantity(self, price, amount):
         buy_fee = 0.1
