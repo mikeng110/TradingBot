@@ -23,7 +23,7 @@ class Order:
         self.active = False
         self.closed = False
 
-        self.symbol = None
+        self.symbol = ""
         self.quantity = 0
 
         self.amount = amount
@@ -35,14 +35,16 @@ class Order:
         self.sold_at = 0
 
     def __str__(self):
-        ret_str = ""
+        ret_str = self.symbol + "\n"
 
         if self.closed and self.quantity == 0:
             pass
+        if self.closed:
+            ret_str += "Closed   Bought At: " + str(self.purchased_at) + " Sold At: " + str(self.sold_at) + " \n   Quantaty: " + str(self.quantity) + "\n"
         elif self.active:
-            ret_str = "\n   Bought At: " + str(self.purchased_at) + " \n   Quantaty: " + str(self.quantity) + "\n   Target: " + str(self.target) + " \n   Stop Loss: " + str(self.stop_loss) + "\n"
+            ret_str += "   Bought At: " + str(self.purchased_at) + " \n   Quantaty: " + str(self.quantity) + "\n   Target: " + str(self.target) + " \n   Stop Loss: " + str(self.stop_loss) + "\n"
         else:
-            ret_str = "\n   Buy In: " + str(self.buy_in) + " \n   Target: " + str(self.target) + " \n   Stop Loss: " + str(self.stop_loss) + "\n"
+            ret_str += "   Buy In: " + str(self.buy_in) + " \n   Target: " + str(self.target) + " \n   Stop Loss: " + str(self.stop_loss) + "\n"
 
         return ret_str
 
@@ -95,6 +97,7 @@ class Order:
                     print("price sold: " + p_price)
                     self.sold_at = self.gui.str_to_float(p_price)
                 self.show_statistics()
+                self.gui.gui_data.update_order(self.order_id, self)
             except BinanceAPIException as e:
                 print("Market sell order Fail")
                 print(e.status_code)
@@ -104,7 +107,15 @@ class Order:
             print("quantity to low: " + str(self.quantity))
 
     def show_statistics(self):
-        print("Buying Price: " + str(self.purchased_at) + "\nSold at: " + str(self.sold_at) + "\n Gain: " + str((self.gui.str_to_float(self.sold_at / self.purchased_at) - 1 ) * 100.0 ))
+        sold_at = self.gui.str_to_float(self.sold_at)
+        purchased_at = self.gui.str_to_float(self.purchased_at)
+
+        print("Buying Price: " + str(self.purchased_at) + "\nSold at: " + str(self.sold_at) + "\n Gain: " + str(self.calc_gain(sold_at, purchased_at)))
+
+    def calc_gain(self, sold_at, purchased_at):
+        if purchased_at == 0:
+            return 0.0
+        return ((self.sold_at / self.purchased_at) - 1) * 100.0
 
     def calculate_quantity(self, price, amount):
         buy_fee = 0.1
@@ -222,7 +233,7 @@ class StartProgram:
             for order in order_list:
                 if order.closed:
                     continue
-                price = self.gui_data.current_price
+                price = self.gui.str_to_float(self.gui_data.get_price(order.symbol))
                 if order.active:
                     if price >= order.target:
                         print("Sell at target: " + str(price))
@@ -261,4 +272,4 @@ class StartProgram:
             self.gui.ui.Transaction_Current_Price_Display_lbl.setText("Asset Price:  " + str(self.gui.gui_data.current_price) + " " + self.gui.gui_data.currency)
             self.gui.ui.Transaction_Account_Balance_Display_lbl.setText("Balance:       " + str(self.gui.gui_data.balance) + " " + self.gui.gui_data.currency)
             self.lock.release()
-            time.sleep(0.5)
+            time.sleep(0.2)

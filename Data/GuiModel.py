@@ -39,6 +39,7 @@ class MainModel:
     def add_pending_order(self, order): #think of a better way to generate unique id
         item = QStandardItem(order.__str__())
         model = self.pending_orders_model
+
         model.appendRow(item)
         order.pending_order_index = model.indexFromItem(item)
         self.pending_orders[order.order_id] = order
@@ -46,25 +47,40 @@ class MainModel:
     def add_active_order(self, order):
         item = QStandardItem(order.__str__())
         model = self.active_orders_model
+
         model.appendRow(item)
         order.active_order_index = model.indexFromItem(item)
         self.active_orders[order.order_id] = order
 
         self.remove_pending_order(order)
 
+    def close_order(self, order):
+        self.remove_active_order(order)
+        self.active_orders_model.appendRow(QStandardItem(order.__str__()))
+
+
     def remove_pending_order(self, order):
         print("Remove pending order!")
 
         model = self.pending_orders_model
-        model.removeRow(order.pending_order_index.row())
+        row = order.pending_order_index.row()
+        model.removeRow(row)
+
+    def remove_active_order(self, order):
+        model = self.active_orders_model
+        row = order.active_order_index.row()
+        model.removeRow(row)
 
     def update_order(self, order_id, order):
         if len(self.order_list) <= order_id:
             return
 
         self.order_list[order_id] = order
+
         if order.active:
             self.add_active_order(order)
+        elif not order.active and order.closed:
+            self.close_order(order)
         else:
             self.add_pending_order(order)
 

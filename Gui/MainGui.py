@@ -22,7 +22,6 @@ class MainWindow(QMainWindow):
         self.ui.Transaction_Stop_Limit_tbx.textChanged.connect(self.transaction_change)
 
 
-
     def set_logged_in_mode(self, logged_in):
         self.ui.Strategy_gbx.setEnabled(logged_in)
         self.ui.Transaction_gbx.setEnabled(logged_in)
@@ -106,7 +105,7 @@ class MainWindow(QMainWindow):
 
     def str_to_float(self, str):
         precision = 10
-        if str == "":
+        if str == "" or str is None:
             return round(0.0, precision)
         try:
             return round(float(str), precision)
