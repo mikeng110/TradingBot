@@ -53,3 +53,7 @@ venv
 Network Trash Folder
 Temporary Items
 .apdisk
+*.toc
+build/Main/xref-Main.html
+*.exe
+Main.spec
