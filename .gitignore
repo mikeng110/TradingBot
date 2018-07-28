@@ -53,3 +53,8 @@ venv
 Network Trash Folder
 Temporary Items
 .apdisk
+*.spec
+dist/Main.exe
+*.html
+build/Main/out00-PYZ.toc
+*.toc
