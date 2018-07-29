@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
 from Views.gen.MainWindowGui import Ui_MainWindow
 
 
@@ -137,7 +138,7 @@ class MainView(QMainWindow):
         pass
 
     @target_currency_data.setter
-    def target_currency_data(self, value):  #sokmethingv wrong
+    def target_currency_data(self, value):
         self.ui.Transaction_Symbol_cbx.clear()
         self.ui.Transaction_Symbol_cbx.addItems(value)
 
@@ -169,6 +170,7 @@ class MainView(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.set_logged_in_mode(False)
+        self.init_order_views()
         self.connect_signals()
 
     def connect_signals(self):
@@ -189,6 +191,14 @@ class MainView(QMainWindow):
         self.ui.Transaction_Currency_cbx.currentIndexChanged.connect(self.on_base_currency)
         self.ui.Transaction_Symbol_cbx.currentIndexChanged.connect(self.on_target_currency)
         self.ui.Transaction_Execute_btn.clicked.connect(self.on_execute_btn)
+
+    def init_order_views(self):
+        self.model.pending_order_model = QStandardItemModel()
+        self.model.active_order_model = QStandardItemModel()
+        self.ui.Pending_Orders_lbx.setModel(self.model.pending_order_model)
+        self.ui.Filed_Orders_lbx.setModel(self.model.active_order_model)
+
+
 
     def set_logged_in_mode(self, logged_in):
         self.ui.Strategy_gbx.setEnabled(logged_in)
@@ -270,7 +280,6 @@ class MainView(QMainWindow):
 
     def update_target_price(self):
         self.target_price = self.model.target_price
-
 
     def update_base_currency_options(self):
         self.base_currency_data = self.model.base_currency_data

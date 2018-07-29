@@ -2,6 +2,7 @@ from API.trading_broker import *
 from Bot.fetcher_bot import *
 from Bot.transaction_bot import *
 from Model.transaction import *
+from Controllers.transaction_ctrl import *
 
 
 class MainController(object):
@@ -12,6 +13,7 @@ class MainController(object):
         self.fetcher_bot = None
         self.transaction_bot = None
         self.app = app
+        self.tc = TransactionCtrl(model)
 
     def change_login_api_key(self, value):
         self.model.login_api_key = value
@@ -110,6 +112,7 @@ class MainController(object):
         #add check if all fields are entered
 
         item = TransactionItem(self.model.transaction_amount, self.model.transaction_buy_in, self.model.transaction_target, self.model.transaction_stop_limit, self.model.base_currency, self.model.target_currency)
-        self.model.transactions.append(item)
+        self.tc.make_pending_transaction(item)
+
         print("Item added")
 

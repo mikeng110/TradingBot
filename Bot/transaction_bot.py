@@ -1,5 +1,6 @@
 import time
 import threading
+from Controllers.transaction_ctrl import *
 
 
 class TransactionBot:
@@ -10,6 +11,7 @@ class TransactionBot:
         self.frequency = 0.5
         self.thread = None
         self.lock = threading.Lock()
+        self.tc = TransactionCtrl(model)
 
     def start(self):
         self.running = True
@@ -47,6 +49,8 @@ class TransactionBot:
             if price <= item.buy_in:
                 print("Buy Item")
                 item.active = True
+                self.tc.rem_from_pending_list(item)
+                self.tc.add_to_active_list(item)
         else:
             if price >= item.target or price <= item.stop_limit: #to do implement trailing target, and trailing stop loss.
                 print("Sell")

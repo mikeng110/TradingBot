@@ -4,6 +4,10 @@ class Model(object):
         self._update_funcs = []
         self._update_func_seperate = {}
 
+        self.active_order_model = None
+        self.pending_order_model = None
+
+
         # --- Data ----
         self.base_currency_data = ["BTC", "BNB", "ETH", "USDT"]
         self.target_currency_data = []
