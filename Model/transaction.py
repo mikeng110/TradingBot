@@ -5,6 +5,8 @@ class TransactionItem:
         self.active_list_row = None
         self.closed_list_row = None
 
+        self.paper_trade = True
+
         self.active = False
         self.closed = False
         self.amount = amount
@@ -16,9 +18,14 @@ class TransactionItem:
 
         self.bought_at = 0
         self.sold_at = 0
+        self.quantity = 0
 
     def __str__(self):
-        ret_str = self.target_currency + self.base_currency + "\n|->"
+        ret_str = ""
+        if self.paper_trade:
+            ret_str = "Paper Trade -> "
+
+        ret_str += self.target_currency + self.base_currency + "\n |_"
 
         if self.active:
             ret_str += "Bought At: " + str(self.bought_at) + ", Target: " + str(self.target) + ", Stop Limit: " + str(self.stop_limit)
@@ -32,6 +39,9 @@ class TransactionItem:
         return ret_str
 
     def profit(self):
-        return 0
+        if self.buy_in == 0:
+            return 0
+
+        return ((self.sold_at / self.buy_in) - 1) * 100
 
 

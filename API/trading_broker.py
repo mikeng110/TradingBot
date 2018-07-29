@@ -6,6 +6,7 @@ class Exchange:
 
     def __init__(self, model):
         self.client = None
+        self.acountless_client = Client("","")
         self.connection_active = False
         self.model = model
 
@@ -27,6 +28,8 @@ class Exchange:
         if self.connection_active:
             self.model.account_info = self.client.get_account()
             self.model.ticker_stats = self.client.get_all_tickers()
+        else:
+            self.model.ticker_stats = self.acountless_client.get_all_tickers()
 
     def get_price(self, symbol):  # remove later
         result = None
@@ -52,15 +55,52 @@ class Exchange:
         #        result.append(ai['asset'])
        # return result
 
-    def get_balance(self, currency):
+    def add_to_paper_balance(self, currency, amount):
+        if not self.connection_active:
+            balance = self.str_to_float(self.get_balance(currency))
+            balance += amount
+
+            list = self.model.paper_account_balance['balances']
+            for i, element in enumerate(list):
+                if element['asset'] == currency:
+                    list[i]['free'] = str(balance)
+                    break
+
+    def get_paper_balance(self, currency):
+
         result = None
 
-        if self.model.account_info is None:
-            return result
+        data = self.model.paper_account_balance
 
-        for ai in self.model.account_info['balances']:
+        for ai in data['balances']:
             if ai['asset'] == currency:
                 result = ai['free']
                 break
 
         return result
+
+    def get_balance(self, currency):
+        result = None
+        if not self.connection_active:
+            data = self.model.paper_account_balance
+        else:
+            data = self.model.account_info
+
+        if data is None:
+            return result
+
+        for ai in data['balances']:
+            if ai['asset'] == currency:
+                result = ai['free']
+                break
+
+        return result
+
+    def str_to_float(self, str):  # move this to proper place.
+        precision = 10
+        if str == "" or str is None or str == "None":
+            return round(0.0, precision)
+        try:
+            return round(float(str), precision)
+        except ValueError:
+            print("invalid format, expected decimal.")

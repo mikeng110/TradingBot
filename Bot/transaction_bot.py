@@ -11,7 +11,7 @@ class TransactionBot:
         self.frequency = 0.5
         self.thread = None
         self.lock = threading.Lock()
-        self.tc = TransactionCtrl(model)
+        self.tc = TransactionCtrl(model, exchange)
 
     def start(self):
         self.running = True
@@ -47,16 +47,23 @@ class TransactionBot:
 
         if not item.active:
             if price <= item.buy_in:
-                print("Buy Item")
-                item.active = True
-                self.tc.rem_from_pending_list(item)
-                self.tc.add_to_active_list(item)
+                self.buy(item)
+
         else:
             if price >= item.target or price <= item.stop_limit: #to do implement trailing target, and trailing stop loss.
-                print("Sell")
-                item.closed = True
-                item.active = False
-                self.tc.rem_from_active_list(item)
-                self.tc.add_to_closed_list(item)
+                self.sell(item)
+
+
+    def buy(self, item):
+        if item.paper_trade:
+            self.tc.paper_buy(item)
+        else:
+            print("Real Buy")
+
+    def sell(self, item):
+        if item.paper_trade:
+            self.tc.paper_sell(item)
+        else:
+            print("Real Sell")
 
 

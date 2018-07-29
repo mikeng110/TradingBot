@@ -8,6 +8,8 @@ class Model(object):
         self.pending_order_model = None
         self.closed_order_model = None
 
+        self.paper_trade_status = False
+
 
         # --- Data ----
         self.base_currency_data = ["BTC", "BNB", "ETH", "USDT"]
@@ -20,6 +22,7 @@ class Model(object):
         self.target_currency = ""
 
         self.account_balance = 0
+        self.paper_account_balance = {}
         self.target_price = 0
 
         # --- Login Properties ---

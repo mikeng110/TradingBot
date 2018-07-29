@@ -13,7 +13,7 @@ class MainController(object):
         self.fetcher_bot = None
         self.transaction_bot = None
         self.app = app
-        self.tc = TransactionCtrl(model)
+        self.tc = TransactionCtrl(model, self.exchange)
 
     def change_login_api_key(self, value):
         self.model.login_api_key = value
@@ -29,6 +29,11 @@ class MainController(object):
         self.model.strategy_target = value
         self.model.update_func("strategy_target")
         print("Updated strategy_target " + str(value))
+
+    def change_paper_trade_status(self, value):
+        self.model.paper_trade_status = value
+        if value:
+            self.paper_login()
 
     def change_strategy_stop_limit(self, value):
         self.model.strategy_stop_limit = value
@@ -67,6 +72,10 @@ class MainController(object):
         self.model.account_balance = value
         self.model.update_func("account_balance")
         print("account_balance " + str(value))
+
+    def paper_login(self):
+        self.model.paper_account_balance = {'balances' : [{'asset' : 'BTC', 'free' : '10'}, {'asset' : 'ETH', 'free' : '15'}, {'asset' : 'BNB', 'free' : '500'}, {'asset' : 'USDT', 'free' : '12'}]}
+        self.login_procedure()
 
     def login(self):
         key = self.model.login_api_key
@@ -109,9 +118,9 @@ class MainController(object):
         print("Strategy applied")
 
     def execute_order(self): #change name to transaction
-        #add check if all fields are entered
 
         item = TransactionItem(self.model.transaction_amount, self.model.transaction_buy_in, self.model.transaction_target, self.model.transaction_stop_limit, self.model.base_currency, self.model.target_currency)
+        item.paper_trade = self.model.paper_trade_status
         self.tc.make_pending_transaction(item)
 
         print("Item added")

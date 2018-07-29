@@ -38,6 +38,14 @@ class MainView(QMainWindow):
     def logged_in(self, value):
         self.set_logged_in_mode(value)
 
+    @property
+    def paper_trade_status(self):
+        return self.ui.Paper_trade_chbx.isChecked()
+
+    @paper_trade_status.setter
+    def paper_trade_status(self, value):
+        pass
+
     # ---  Strategy Properties ----
 
     @property
@@ -179,6 +187,8 @@ class MainView(QMainWindow):
         self.ui.Api_Signature_tbx.textChanged.connect(self.on_login_api_sign)
         self.ui.Login_Connect_btn.clicked.connect(self.on_login_btn)
 
+        self.ui.Paper_trade_chbx.stateChanged.connect(self.on_paper_trade)
+
         self.ui.Strategy_Target_Procent_hsr.valueChanged.connect(self.on_strategy_target)
         self.ui.Strategy_Stop_Limit_Procent_hsr.valueChanged.connect(self.on_strategy_stop_limit)
         self.ui.Strategy_Apply_btn.clicked.connect(self.on_strategy_apply_btn)
@@ -220,6 +230,10 @@ class MainView(QMainWindow):
 
     def on_login_api_sign(self):
         self.main_ctrl.change_login_api_sign(self.login_api_sign)
+
+    def on_paper_trade(self):
+        self.main_ctrl.change_paper_trade_status(self.paper_trade_status)
+        self.set_logged_in_mode(self.paper_trade_status)
 
     def on_strategy_target(self):
         self.main_ctrl.change_strategy_target(self.strategy_target)

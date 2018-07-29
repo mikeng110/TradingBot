@@ -379,7 +379,7 @@
    <widget class="QCommandLinkButton" name="Clear_Pending_Orders_btn">
     <property name="geometry">
      <rect>
-      <x>630</x>
+      <x>620</x>
       <y>490</y>
       <width>191</width>
       <height>41</height>
@@ -392,7 +392,7 @@
    <widget class="QCommandLinkButton" name="Force_Sell_btn">
     <property name="geometry">
      <rect>
-      <x>1030</x>
+      <x>1020</x>
       <y>490</y>
       <width>191</width>
       <height>41</height>
@@ -406,7 +406,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>160</y>
+      <y>180</y>
       <width>471</width>
       <height>141</height>
      </rect>
@@ -560,12 +560,25 @@
       <string>Apply</string>
      </property>
     </widget>
+    <widget class="QCheckBox" name="Market_Buy_chbx">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>80</y>
+       <width>101</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Market Buy</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QCheckBox" name="Paper_trade_chbx">
     <property name="geometry">
      <rect>
       <x>400</x>
-      <y>310</y>
+      <y>160</y>
       <width>101</width>
       <height>17</height>
      </rect>
