@@ -26,6 +26,16 @@ class TransactionCtrl:
             self.model.active_order_model.removeRow(item.active_list_row)
             item.active_list_row = None
 
+    def add_to_closed_list(self, item):
+        index = self.model.closed_order_model.rowCount()
+        item.closed_list_row = index
+        self.model.closed_order_model.appendRow(QStandardItem(item.__str__()))
+
+    def rem_from_closed_list(self, item):
+        if item.closed_list_row is not None:
+            self.model.closed_order_model.removeRow(item.closed_list_row)
+            item.closed_list_row = None
+
     def make_pending_transaction(self, item):
         self.model.transactions.append(item)
 

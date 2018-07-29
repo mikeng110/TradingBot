@@ -3,6 +3,7 @@ class TransactionItem:
     def __init__(self, amount, buy_in, target, stop_limit, base_currancy, target_currency):
         self.pending_list_row = None
         self.active_list_row = None
+        self.closed_list_row = None
 
         self.active = False
         self.closed = False
@@ -17,10 +18,20 @@ class TransactionItem:
         self.sold_at = 0
 
     def __str__(self):
-        return "Buy in: " + str(self.buy_in)
+        ret_str = self.target_currency + self.base_currency + "\n|->"
 
-    @staticmethod
-    def statistic(self):
-        return "statistic about the transaction"
+        if self.active:
+            ret_str += "Bought At: " + str(self.bought_at) + ", Target: " + str(self.target) + ", Stop Limit: " + str(self.stop_limit)
+
+        elif self.closed:
+            ret_str += "Bought At: " + str(self.bought_at) + ", Sold At: " + str(self.sold_at) + ", Profit: " + str(self.profit()) + "%"
+
+        else:
+            ret_str += "Buy In: " + str(self.bought_at) + ", Target: " + str(self.target) + ", Stop Limit: " + str(self.stop_limit)
+
+        return ret_str
+
+    def profit(self):
+        return 0
 
 

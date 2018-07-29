@@ -55,5 +55,8 @@ class TransactionBot:
             if price >= item.target or price <= item.stop_limit: #to do implement trailing target, and trailing stop loss.
                 print("Sell")
                 item.closed = True
+                item.active = False
+                self.tc.rem_from_active_list(item)
+                self.tc.add_to_closed_list(item)
 
 

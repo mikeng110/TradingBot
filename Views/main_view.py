@@ -81,7 +81,7 @@ class MainView(QMainWindow):
 
     @transaction_target.setter
     def transaction_target(self, value):
-        self.ui.Transaction_Target_tbx.setText(str(value))
+        pass
 
     @property
     def transaction_stop_limit(self):
@@ -90,7 +90,7 @@ class MainView(QMainWindow):
 
     @transaction_stop_limit.setter
     def transaction_stop_limit(self, value):
-        self.ui.Transaction_Stop_Limit_tbx.setText(str(value))
+        pass
 
     @property
     def base_currency(self):
@@ -195,8 +195,12 @@ class MainView(QMainWindow):
     def init_order_views(self):
         self.model.pending_order_model = QStandardItemModel()
         self.model.active_order_model = QStandardItemModel()
+        self.model.closed_order_model = QStandardItemModel()
+
         self.ui.Pending_Orders_lbx.setModel(self.model.pending_order_model)
         self.ui.Filed_Orders_lbx.setModel(self.model.active_order_model)
+        self.ui.Closed_Orders_lbx.setModel(self.model.closed_order_model)
+
 
 
 

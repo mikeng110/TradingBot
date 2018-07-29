@@ -6,6 +6,7 @@ class Model(object):
 
         self.active_order_model = None
         self.pending_order_model = None
+        self.closed_order_model = None
 
 
         # --- Data ----
