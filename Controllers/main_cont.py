@@ -134,8 +134,10 @@ class MainController(object):
         item.paper_trade = self.model.paper_trade_status
         self.tc.make_pending_transaction(item)
 
-        io = IoTransactions([item, item])
-        io.export_t("Exported.txt")
+        if not self.model.graphics_mode:
+            io = IoTransactions([item, item])
+            t_list = io.import_file("Exported.txt")
+            self.tc.load_transactions(t_list)
 
         print("Item added")
 

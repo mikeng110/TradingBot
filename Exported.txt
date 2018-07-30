@@ -1,7 +1,7 @@
 paper_trade:True
 active:False
 amount:100
-buy_in:0.056504
+buy_in:0.056544
 target:0.056593
 stop_limit:0.056439
 base_currency:BTC

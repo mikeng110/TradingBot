@@ -1,3 +1,6 @@
+from Model.transaction import *
+import fractions
+
 
 class IoTransactions:
     def __init__(self, transactions):
@@ -6,30 +9,7 @@ class IoTransactions:
         self.transactions = transactions
         pass
 
-    '''
-      self.pending_list_row = None
-        self.active_list_row = None
-        self.closed_list_row = None
-
-        self.paper_trade = True
-
-        self.active = False
-        self.closed = False
-        self.amount = amount
-        self.buy_in = buy_in
-        self.target = target
-        self.stop_limit = stop_limit
-        self.base_currency = base_currancy
-        self.target_currency = target_currency
-
-        self.bought_at = 0
-        self.sold_at = 0
-        self.quantity = 0
-    
-    '''
-
     def transaction_item_format(self, item):
-
         ret_str = ""
 
         ret_str += "paper_trade" + self.delimiter + str(item.paper_trade) + "\n"
@@ -44,9 +24,36 @@ class IoTransactions:
         ret_str += "sold_at" + self.delimiter + str(item.sold_at) + "\n"
         ret_str += "quantity" + self.delimiter + str(item.quantity) + "\n"
         ret_str += self.item_delimiter + "\n"
+
         return ret_str
 
-    def export_t(self, file_name):
+    def convert_to_item(self, item_str):
+        tokenzied = {}
+
+        for str_line in item_str.split('\n'):
+            tokenzied.update(self.tokenize(str_line))
+
+        item = TransactionItem(tokenzied['amount'], tokenzied['buy_in'], tokenzied['target'], tokenzied['stop_limit'],
+                               tokenzied['base_currency'], tokenzied['target_currency'])
+        item.paper_trade = tokenzied['paper_trade']
+
+        return item
+
+    def tokenize(self, str_line):
+        index = str_line.find(self.delimiter)
+        key = str_line[:index]
+        value = str_line[index+1:]
+
+        if value == "True":
+            value = True
+        elif value == "False":
+            value = False
+        elif self.isnumber(value):
+            value = float(value)
+
+        return {key: value}
+
+    def export_file(self, file_name):
         file = open(file_name, 'w')
         data_str = ""
         for item in self.transactions:
@@ -55,5 +62,29 @@ class IoTransactions:
         file.write(data_str)
         file.close()
 
-    def import_t(self, file_name):
-        pass
+    def import_file(self, file_name):
+        transaction = []
+        file = open(file_name, 'r')
+        data_str = file.read()
+        index = data_str.find(self.item_delimiter)
+
+        while index != -1:
+            index = data_str.find(self.item_delimiter)
+            item = self.convert_to_item(data_str[:index])
+            data_str = data_str[:index]
+            transaction.append(item)
+        file.close()
+
+        return transaction
+
+    def isnumber(self, s):
+        try:
+            float(s)
+            return True
+        except ValueError:
+            try:
+                fractions.Fraction(s)
+                return True
+            except ValueError:
+                return False
+

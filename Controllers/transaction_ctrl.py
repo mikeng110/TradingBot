@@ -79,5 +79,18 @@ class TransactionCtrl:
 
         return (amount * balance) / price
 
+    def load_transactions(self, transaction_list):
+        for item in transaction_list: #todo: add logic to check previous version of transaction is already loaded.
+            self.model.transactions.append(item)
+            if self.model.graphics_mode:
+                if item.closed:
+                    continue
+                elif item.active:
+                    self.add_to_active_list(item)
+                else:
+                    self.add_to_pending_list(item)
+
+
+
 
 
