@@ -16,7 +16,7 @@ class App(QApplication):
 
 
 def main(argv):
-    graphics = False
+    graphics = True
 
     if graphics:
         graphic_mode()

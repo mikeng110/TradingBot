@@ -56,7 +56,7 @@ class IoTransactions:
         return {key: value}
 
     def export_file(self, file_name):
-        file = open(file_name, 'w')
+        file = open(file_name, 'a')
         data_str = ""
         for item in self.transactions:
             if not item.closed:

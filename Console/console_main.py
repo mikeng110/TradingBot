@@ -35,7 +35,7 @@ class ConsoleMain:
 
         while self.running:
             self.lock.acquire()
-            print(self.model.target_price)
+          #  print(self.model.target_price)
             self.lock.release()
             time.sleep(self.frequency)
 

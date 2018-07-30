@@ -1,0 +1,2 @@
+Paper Buy -> Paper Trade -> EOSBTC
+ |_Bought At: 0.0009615, Target: 0.0009962, Stop Limit: 0.0009602
