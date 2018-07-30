@@ -418,20 +418,20 @@
      <property name="geometry">
       <rect>
        <x>230</x>
-       <y>70</y>
+       <y>80</y>
        <width>61</width>
        <height>16</height>
       </rect>
      </property>
      <property name="text">
-      <string>0%</string>
+      <string>0.0%</string>
      </property>
     </widget>
     <widget class="QSlider" name="Strategy_Target_Procent_hsr">
      <property name="geometry">
       <rect>
        <x>90</x>
-       <y>70</y>
+       <y>80</y>
        <width>131</width>
        <height>22</height>
       </rect>
@@ -450,7 +450,7 @@
      <property name="geometry">
       <rect>
        <x>90</x>
-       <y>100</y>
+       <y>110</y>
        <width>131</width>
        <height>22</height>
       </rect>
@@ -466,20 +466,20 @@
      <property name="geometry">
       <rect>
        <x>230</x>
-       <y>100</y>
+       <y>110</y>
        <width>61</width>
        <height>16</height>
       </rect>
      </property>
      <property name="text">
-      <string>0%</string>
+      <string>0.0%</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_18">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>70</y>
+       <y>80</y>
        <width>61</width>
        <height>16</height>
       </rect>
@@ -492,7 +492,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>100</y>
+       <y>110</y>
        <width>61</width>
        <height>16</height>
       </rect>
@@ -571,6 +571,45 @@
      </property>
      <property name="text">
       <string>Market Buy</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="Procent_Range_100_rbtn">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>80</y>
+       <width>51</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>1</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="Procent_Range_50_rbtn">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>100</y>
+       <width>51</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>0.5</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="Procent_Range_10_rbtn">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>120</y>
+       <width>51</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>0.1</string>
      </property>
     </widget>
    </widget>

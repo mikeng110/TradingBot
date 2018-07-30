@@ -53,7 +53,6 @@ class TransactionBot:
             if price >= item.target or price <= item.stop_limit: #to do implement trailing target, and trailing stop loss.
                 self.sell(item)
 
-
     def buy(self, item):
         if item.paper_trade:
             self.tc.paper_buy(item)

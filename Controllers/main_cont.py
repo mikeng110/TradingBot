@@ -26,19 +26,23 @@ class MainController(object):
         print("Updated login_login_api_sign " + str(value))
 
     def change_strategy_target(self, value):
-        self.model.strategy_target = value
+
+        self.model.strategy_target = value / self.model.strategy_slider_weight
         self.model.update_func("strategy_target")
-        print("Updated strategy_target " + str(value))
+        print("Updated strategy_target " + str(self.model.strategy_target))
+
+    def change_strategy_stop_limit(self, value):
+        self.model.strategy_stop_limit = value / self.model.strategy_slider_weight
+        self.model.update_func("strategy_stop_limit")
+        print("Updated strategy_stop_limit " + str(self.model.strategy_target))
+
+    def change_strategy_sliders_weight(self, value):
+        self.model.strategy_slider_weight = value
 
     def change_paper_trade_status(self, value):
         self.model.paper_trade_status = value
         if value:
             self.paper_login()
-
-    def change_strategy_stop_limit(self, value):
-        self.model.strategy_stop_limit = value
-        self.model.update_func("strategy_stop_limit")
-        print("Updated strategy_stop_limit " + str(value))
 
     def change_transaction_amount(self, value):
         self.model.transaction_amount = value

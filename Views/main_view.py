@@ -179,6 +179,7 @@ class MainView(QMainWindow):
         self.ui.setupUi(self)
         self.set_logged_in_mode(False)
         self.init_order_views()
+        self.init_strategy_view()
         self.connect_signals()
 
     def connect_signals(self):
@@ -192,6 +193,10 @@ class MainView(QMainWindow):
         self.ui.Strategy_Target_Procent_hsr.valueChanged.connect(self.on_strategy_target)
         self.ui.Strategy_Stop_Limit_Procent_hsr.valueChanged.connect(self.on_strategy_stop_limit)
         self.ui.Strategy_Apply_btn.clicked.connect(self.on_strategy_apply_btn)
+
+        self.ui.Procent_Range_100_rbtn.toggled.connect(self.on_procent_range_100)
+        self.ui.Procent_Range_50_rbtn.toggled.connect(self.on_procent_range_50)
+        self.ui.Procent_Range_10_rbtn.toggled.connect(self.on_procent_range_10)
 
         self.ui.Transaction_Amount_Procent_Display_hsr.valueChanged.connect(self.on_transaction_amount)
         self.ui.Transaction_Buy_in_tbx.textChanged.connect(self.on_transaction_buy_in)
@@ -211,8 +216,8 @@ class MainView(QMainWindow):
         self.ui.Filed_Orders_lbx.setModel(self.model.active_order_model)
         self.ui.Closed_Orders_lbx.setModel(self.model.closed_order_model)
 
-
-
+    def init_strategy_view(self):
+        self.ui.Procent_Range_100_rbtn.setChecked(True)
 
     def set_logged_in_mode(self, logged_in):
         self.ui.Strategy_gbx.setEnabled(logged_in)
@@ -241,6 +246,18 @@ class MainView(QMainWindow):
     def on_strategy_stop_limit(self):
         self.main_ctrl.change_strategy_stop_limit(self.strategy_stop_limit)
 
+    def on_procent_range_100(self, enabled):
+        if enabled:
+            self.main_ctrl.change_strategy_sliders_weight(1)
+
+    def on_procent_range_50(self, enabled):
+        if enabled:
+            self.main_ctrl.change_strategy_sliders_weight(2)
+
+    def on_procent_range_10(self, enabled):
+        if enabled:
+            self.main_ctrl.change_strategy_sliders_weight(10)
+
     def on_strategy_apply_btn(self):
         self.main_ctrl.apply_strategy()
         self.transaction_target = self.model.transaction_target
@@ -266,6 +283,7 @@ class MainView(QMainWindow):
 
     def on_execute_btn(self):
         self.main_ctrl.execute_order()
+
 
     #
 

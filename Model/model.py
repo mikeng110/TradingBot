@@ -34,6 +34,7 @@ class Model(object):
         # ---  Strategy Properties ----
         self.strategy_target = 0
         self.strategy_stop_limit = 0
+        self.strategy_slider_weight = 1
 
         # --- Transaction Properties ---
         self.transaction_amount = 0
