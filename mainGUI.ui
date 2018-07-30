@@ -576,7 +576,7 @@
     <widget class="QRadioButton" name="Procent_Range_100_rbtn">
      <property name="geometry">
       <rect>
-       <x>260</x>
+       <x>270</x>
        <y>80</y>
        <width>51</width>
        <height>17</height>
@@ -589,7 +589,7 @@
     <widget class="QRadioButton" name="Procent_Range_50_rbtn">
      <property name="geometry">
       <rect>
-       <x>260</x>
+       <x>270</x>
        <y>100</y>
        <width>51</width>
        <height>17</height>
@@ -602,7 +602,7 @@
     <widget class="QRadioButton" name="Procent_Range_10_rbtn">
      <property name="geometry">
       <rect>
-       <x>260</x>
+       <x>270</x>
        <y>120</y>
        <width>51</width>
        <height>17</height>

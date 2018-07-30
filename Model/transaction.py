@@ -34,7 +34,7 @@ class TransactionItem:
             ret_str += "Bought At: " + str(self.bought_at) + ", Sold At: " + str(self.sold_at) + ", Profit: " + str(self.profit()) + "%"
 
         else:
-            ret_str += "Buy In: " + str(self.bought_at) + ", Target: " + str(self.target) + ", Stop Limit: " + str(self.stop_limit)
+            ret_str += "Buy In: " + str(self.buy_in) + ", Target: " + str(self.target) + ", Stop Limit: " + str(self.stop_limit)
 
         return ret_str
 

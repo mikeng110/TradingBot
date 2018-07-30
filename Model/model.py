@@ -3,6 +3,7 @@ class Model(object):
     def __init__(self):
         self._update_funcs = []
         self._update_func_seperate = {}
+        self.graphics_mode = True
 
         self.active_order_model = None
         self.pending_order_model = None

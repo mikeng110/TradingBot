@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'mainGui.ui'
+# Form implementation generated from reading ui file 'mainGUI.ui'
 #
 # Created by: PyQt5 UI code generator 5.6
 #
@@ -157,13 +157,13 @@ class Ui_MainWindow(object):
         self.Market_Buy_chbx.setGeometry(QtCore.QRect(380, 80, 101, 17))
         self.Market_Buy_chbx.setObjectName("Market_Buy_chbx")
         self.Procent_Range_100_rbtn = QtWidgets.QRadioButton(self.Strategy_gbx)
-        self.Procent_Range_100_rbtn.setGeometry(QtCore.QRect(260, 80, 51, 17))
+        self.Procent_Range_100_rbtn.setGeometry(QtCore.QRect(270, 80, 51, 17))
         self.Procent_Range_100_rbtn.setObjectName("Procent_Range_100_rbtn")
         self.Procent_Range_50_rbtn = QtWidgets.QRadioButton(self.Strategy_gbx)
-        self.Procent_Range_50_rbtn.setGeometry(QtCore.QRect(260, 100, 51, 17))
+        self.Procent_Range_50_rbtn.setGeometry(QtCore.QRect(270, 100, 51, 17))
         self.Procent_Range_50_rbtn.setObjectName("Procent_Range_50_rbtn")
         self.Procent_Range_10_rbtn = QtWidgets.QRadioButton(self.Strategy_gbx)
-        self.Procent_Range_10_rbtn.setGeometry(QtCore.QRect(260, 120, 51, 17))
+        self.Procent_Range_10_rbtn.setGeometry(QtCore.QRect(270, 120, 51, 17))
         self.Procent_Range_10_rbtn.setObjectName("Procent_Range_10_rbtn")
         self.Paper_trade_chbx = QtWidgets.QCheckBox(self.centralwidget)
         self.Paper_trade_chbx.setGeometry(QtCore.QRect(400, 160, 101, 17))

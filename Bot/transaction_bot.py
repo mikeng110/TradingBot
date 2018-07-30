@@ -57,12 +57,12 @@ class TransactionBot:
         if item.paper_trade:
             self.tc.paper_buy(item)
         else:
-            print("Real Buy")
+            print("Real Buy: -> " + item.__str__())
 
     def sell(self, item):
         if item.paper_trade:
             self.tc.paper_sell(item)
         else:
-            print("Real Sell")
+            print("Real Sell -> " + item.__str__())
 
 

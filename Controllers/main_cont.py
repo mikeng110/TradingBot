@@ -3,17 +3,23 @@ from Bot.fetcher_bot import *
 from Bot.transaction_bot import *
 from Model.transaction import *
 from Controllers.transaction_ctrl import *
+from Model.io_transactions import *
 
 
 class MainController(object):
 
-    def __init__(self, app, model):
+    def __init__(self, model, app=None):
         self.model = model
         self.exchange = Exchange(model)
         self.fetcher_bot = None
         self.transaction_bot = None
         self.app = app
+        if self.app is not None:
+            self.model.graphics_mode = True
+        else:
+            self.model.graphics_mode = False
         self.tc = TransactionCtrl(model, self.exchange)
+        print("Success")
 
     def change_login_api_key(self, value):
         self.model.login_api_key = value
@@ -112,7 +118,8 @@ class MainController(object):
         self.fetcher_bot.start()
         self.transaction_bot.start()
 
-        self.app.aboutToQuit.connect(self.stop_bots)
+        if self.app is not None:
+            self.app.aboutToQuit.connect(self.stop_bots)
 
     def stop_bots(self):
         self.fetcher_bot.stop()
@@ -126,6 +133,9 @@ class MainController(object):
         item = TransactionItem(self.model.transaction_amount, self.model.transaction_buy_in, self.model.transaction_target, self.model.transaction_stop_limit, self.model.base_currency, self.model.target_currency)
         item.paper_trade = self.model.paper_trade_status
         self.tc.make_pending_transaction(item)
+
+        io = IoTransactions([item, item])
+        io.export_t("Exported.txt")
 
         print("Item added")
 
