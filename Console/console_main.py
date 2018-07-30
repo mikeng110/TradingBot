@@ -31,16 +31,7 @@ class ConsoleMain:
             return None
 
     def update(self):
-        #item = TransactionItem(self.model.transaction_amount, self.model.transaction_buy_in,
-                               #self.model.transaction_target, self.model.transaction_stop_limit,
-                             # self.model.base_currency, self.model.target_currency)
-        #item.paper_trade = self.model.paper_trade_status
-        self.model.transaction_amount = 100
-        self.model.transaction_buy_in = 0.056504
-        self.model.transaction_target = 0.056593
-        self.model.transaction_stop_limit = 0.056439
-        self.model.paper_trade_status = True
-        self.main_ctrl.execute_order()
+        self.main_ctrl.import_transactions()
 
         while self.running:
             self.lock.acquire()

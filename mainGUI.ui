@@ -659,6 +659,15 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuTransactions">
+    <property name="title">
+     <string>Transactions</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="Menu_Transactions_Import"/>
+    <addaction name="Menu_Transactions_Export"/>
+   </widget>
+   <addaction name="menuTransactions"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionImport">
@@ -674,6 +683,16 @@
   <action name="actionView">
    <property name="text">
     <string>View</string>
+   </property>
+  </action>
+  <action name="Menu_Transactions_Import">
+   <property name="text">
+    <string>Import</string>
+   </property>
+  </action>
+  <action name="Menu_Transactions_Export">
+   <property name="text">
+    <string>Export</string>
    </property>
   </action>
  </widget>

@@ -61,6 +61,9 @@ class TransactionCtrl:
         self.add_to_active_list(item)
 
         print("Paper Buy -> " + item.__str__())
+        file = open("Output.txt", "a")
+        file.write("Paper Buy -> " + item.__str__() + "\n")
+        file.close()
 
     def paper_sell(self, item):
         price = self.exchange.get_price(item.target_currency + item.base_currency)
@@ -72,6 +75,9 @@ class TransactionCtrl:
         self.add_to_closed_list(item)
 
         print("Paper Sell -> " + item.__str__())
+        file = open("Output.txt", "a")
+        file.write("Paper Sell -> " + item.__str__() + "\n")
+        file.close()
 
     def calc_quantity(self, price, item):
         amount = item.amount / 100.0
@@ -82,9 +88,10 @@ class TransactionCtrl:
     def load_transactions(self, transaction_list):
         for item in transaction_list: #todo: add logic to check previous version of transaction is already loaded.
             self.model.transactions.append(item)
+
             if self.model.graphics_mode:
                 if item.closed:
-                    continue
+                    self.add_to_closed_list(item)
                 elif item.active:
                     self.add_to_active_list(item)
                 else:

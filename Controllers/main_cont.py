@@ -83,6 +83,15 @@ class MainController(object):
         self.model.update_func("account_balance")
         print("account_balance " + str(value))
 
+    def import_transactions(self):
+        io = IoTransactions(self.model.transactions)
+        t_list = io.import_file("Exported.txt")
+        self.tc.load_transactions(t_list)
+
+    def export_transactions(self):
+        io = IoTransactions(self.model.transactions)
+        io.export_file("Exported.txt")
+
     def paper_login(self):
         self.model.paper_account_balance = {'balances' : [{'asset' : 'BTC', 'free' : '10'}, {'asset' : 'ETH', 'free' : '15'}, {'asset' : 'BNB', 'free' : '500'}, {'asset' : 'USDT', 'free' : '12'}]}
         self.login_procedure()
@@ -129,15 +138,10 @@ class MainController(object):
         print("Strategy applied")
 
     def execute_order(self): #change name to transaction
-
         item = TransactionItem(self.model.transaction_amount, self.model.transaction_buy_in, self.model.transaction_target, self.model.transaction_stop_limit, self.model.base_currency, self.model.target_currency)
-        item.paper_trade = self.model.paper_trade_status
+        item.active = False
+        item.closed = False
         self.tc.make_pending_transaction(item)
-
-        if not self.model.graphics_mode:
-            io = IoTransactions([item, item])
-            t_list = io.import_file("Exported.txt")
-            self.tc.load_transactions(t_list)
 
         print("Item added")
 

@@ -178,6 +178,8 @@ class Ui_MainWindow(object):
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1153, 21))
         self.menubar.setObjectName("menubar")
+        self.menuTransactions = QtWidgets.QMenu(self.menubar)
+        self.menuTransactions.setObjectName("menuTransactions")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -188,6 +190,14 @@ class Ui_MainWindow(object):
         self.actionExport.setObjectName("actionExport")
         self.actionView = QtWidgets.QAction(MainWindow)
         self.actionView.setObjectName("actionView")
+        self.Menu_Transactions_Import = QtWidgets.QAction(MainWindow)
+        self.Menu_Transactions_Import.setObjectName("Menu_Transactions_Import")
+        self.Menu_Transactions_Export = QtWidgets.QAction(MainWindow)
+        self.Menu_Transactions_Export.setObjectName("Menu_Transactions_Export")
+        self.menuTransactions.addSeparator()
+        self.menuTransactions.addAction(self.Menu_Transactions_Import)
+        self.menuTransactions.addAction(self.Menu_Transactions_Export)
+        self.menubar.addAction(self.menuTransactions.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -230,9 +240,12 @@ class Ui_MainWindow(object):
         self.Procent_Range_10_rbtn.setText(_translate("MainWindow", "0.1"))
         self.Paper_trade_chbx.setText(_translate("MainWindow", "Paper Trade"))
         self.label_7.setText(_translate("MainWindow", "Closed Transactions"))
+        self.menuTransactions.setTitle(_translate("MainWindow", "Transactions"))
         self.actionImport.setText(_translate("MainWindow", "Import"))
         self.actionExport.setText(_translate("MainWindow", "Export"))
         self.actionView.setText(_translate("MainWindow", "View"))
+        self.Menu_Transactions_Import.setText(_translate("MainWindow", "Import"))
+        self.Menu_Transactions_Export.setText(_translate("MainWindow", "Export"))
 
 
 if __name__ == "__main__":

@@ -207,6 +207,9 @@ class MainView(QMainWindow):
         self.ui.Transaction_Symbol_cbx.currentIndexChanged.connect(self.on_target_currency)
         self.ui.Transaction_Execute_btn.clicked.connect(self.on_execute_btn)
 
+        self.ui.Menu_Transactions_Import.triggered.connect(self.on_menu_transactions_import)
+        self.ui.Menu_Transactions_Export.triggered.connect(self.on_menu_transactions_export)
+
     def init_order_views(self):
         self.model.pending_order_model = QStandardItemModel()
         self.model.active_order_model = QStandardItemModel()
@@ -284,6 +287,11 @@ class MainView(QMainWindow):
     def on_execute_btn(self):
         self.main_ctrl.execute_order()
 
+    def on_menu_transactions_import(self):
+        self.main_ctrl.import_transactions()
+
+    def on_menu_transactions_export(self):
+        self.main_ctrl.export_transactions()
 
     #
 

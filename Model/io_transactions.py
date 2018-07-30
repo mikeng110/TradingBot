@@ -7,12 +7,12 @@ class IoTransactions:
         self.delimiter = ":"
         self.item_delimiter = "#"
         self.transactions = transactions
-        pass
 
     def transaction_item_format(self, item):
         ret_str = ""
 
         ret_str += "paper_trade" + self.delimiter + str(item.paper_trade) + "\n"
+        ret_str += "closed" + self.delimiter + str(item.closed) + "\n"
         ret_str += "active" + self.delimiter + str(item.active) + "\n"
         ret_str += "amount" + self.delimiter + str(item.amount) + "\n"
         ret_str += "buy_in" + self.delimiter + str(item.buy_in) + "\n"
@@ -36,6 +36,8 @@ class IoTransactions:
         item = TransactionItem(tokenzied['amount'], tokenzied['buy_in'], tokenzied['target'], tokenzied['stop_limit'],
                                tokenzied['base_currency'], tokenzied['target_currency'])
         item.paper_trade = tokenzied['paper_trade']
+        item.closed = tokenzied['closed']
+        item.active = tokenzied['active']
 
         return item
 
@@ -69,10 +71,11 @@ class IoTransactions:
         index = data_str.find(self.item_delimiter)
 
         while index != -1:
-            index = data_str.find(self.item_delimiter)
             item = self.convert_to_item(data_str[:index])
             data_str = data_str[:index]
             transaction.append(item)
+            index = data_str.find(self.item_delimiter)
+
         file.close()
 
         return transaction
