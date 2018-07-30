@@ -38,6 +38,9 @@ class IoTransactions:
         item.paper_trade = tokenzied['paper_trade']
         item.closed = tokenzied['closed']
         item.active = tokenzied['active']
+        item.bought_at = tokenzied['bought_at']
+        item.sold_at = tokenzied['sold_at']
+        item.quantity = tokenzied['quantity']
 
         return item
 

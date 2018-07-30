@@ -4,10 +4,10 @@ active:True
 amount:100
 buy_in:0.0009618
 target:0.0009962
-stop_limit:0.0009602
+stop_limit:0.000952
 base_currency:BTC
 target_currency:EOS
-bought_at:0.0009615
+bought_at:0.0009598
 sold_at:0
-quantity:10400.416016640665
+quantity:10418.837257762034
 #
