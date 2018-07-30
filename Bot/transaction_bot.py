@@ -12,6 +12,7 @@ class TransactionBot:
         self.thread = None
         self.lock = threading.Lock()
         self.tc = TransactionCtrl(model, exchange)
+        self.margin_of_error = 0.0001
 
     def start(self):
         self.running = True
@@ -46,7 +47,7 @@ class TransactionBot:
         price = float(price)
 
         if not item.active:
-            if price <= item.buy_in:
+            if price >= (item.buy_in - item.buy_in * self.margin_of_error) and price <= (item.buy_in + item.buy_in * self.margin_of_error) :
                 self.buy(item)
 
         else:
