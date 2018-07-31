@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from Views.gen.MainWindowGui import Ui_MainWindow
+from Views.portfolio_manager_view import *
 
 
 class MainView(QMainWindow):
@@ -152,10 +153,11 @@ class MainView(QMainWindow):
 
 
     def __init__(self, model, main_ctrl):
+        super(MainView, self).__init__()
         self.ui = None
         self.model = model
         self.main_ctrl = main_ctrl
-        super(MainView, self).__init__()
+        self.pm_ui = PortfolioManagerView()
         self.build_ui()
         self.reg_func()
 
@@ -209,6 +211,8 @@ class MainView(QMainWindow):
 
         self.ui.Menu_Transactions_Import.triggered.connect(self.on_menu_transactions_import)
         self.ui.Menu_Transactions_Export.triggered.connect(self.on_menu_transactions_export)
+
+        self.ui.Menu_Portfolio_View.triggered.connect(self.on_portfolio_manager_view)
 
     def init_order_views(self):
         self.model.pending_order_model = QStandardItemModel()
@@ -292,6 +296,9 @@ class MainView(QMainWindow):
 
     def on_menu_transactions_export(self):
         self.main_ctrl.export_transactions()
+
+    def on_portfolio_manager_view(self):
+        self.pm_ui.exec_()
 
     #
 

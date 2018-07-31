@@ -92,6 +92,7 @@ class MainController(object):
         io = IoTransactions(self.model.transactions)
         io.export_file("Exported.txt")
 
+
     def paper_login(self):
         self.model.paper_account_balance = {'balances' : [{'asset' : 'BTC', 'free' : '10'}, {'asset' : 'ETH', 'free' : '15'}, {'asset' : 'BNB', 'free' : '500'}, {'asset' : 'USDT', 'free' : '12'}]}
         self.login_procedure()

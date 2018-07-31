@@ -180,6 +180,8 @@ class Ui_MainWindow(object):
         self.menubar.setObjectName("menubar")
         self.menuTransactions = QtWidgets.QMenu(self.menubar)
         self.menuTransactions.setObjectName("menuTransactions")
+        self.menuPortfolio = QtWidgets.QMenu(self.menubar)
+        self.menuPortfolio.setObjectName("menuPortfolio")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -194,10 +196,14 @@ class Ui_MainWindow(object):
         self.Menu_Transactions_Import.setObjectName("Menu_Transactions_Import")
         self.Menu_Transactions_Export = QtWidgets.QAction(MainWindow)
         self.Menu_Transactions_Export.setObjectName("Menu_Transactions_Export")
+        self.Menu_Portfolio_View = QtWidgets.QAction(MainWindow)
+        self.Menu_Portfolio_View.setObjectName("Menu_Portfolio_View")
         self.menuTransactions.addSeparator()
         self.menuTransactions.addAction(self.Menu_Transactions_Import)
         self.menuTransactions.addAction(self.Menu_Transactions_Export)
+        self.menuPortfolio.addAction(self.Menu_Portfolio_View)
         self.menubar.addAction(self.menuTransactions.menuAction())
+        self.menubar.addAction(self.menuPortfolio.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -241,11 +247,13 @@ class Ui_MainWindow(object):
         self.Paper_trade_chbx.setText(_translate("MainWindow", "Paper Trade"))
         self.label_7.setText(_translate("MainWindow", "Closed Transactions"))
         self.menuTransactions.setTitle(_translate("MainWindow", "Transactions"))
+        self.menuPortfolio.setTitle(_translate("MainWindow", "Portfolio"))
         self.actionImport.setText(_translate("MainWindow", "Import"))
         self.actionExport.setText(_translate("MainWindow", "Export"))
         self.actionView.setText(_translate("MainWindow", "View"))
         self.Menu_Transactions_Import.setText(_translate("MainWindow", "Import"))
         self.Menu_Transactions_Export.setText(_translate("MainWindow", "Export"))
+        self.Menu_Portfolio_View.setText(_translate("MainWindow", "View"))
 
 
 if __name__ == "__main__":

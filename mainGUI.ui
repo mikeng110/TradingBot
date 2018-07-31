@@ -667,7 +667,14 @@
     <addaction name="Menu_Transactions_Import"/>
     <addaction name="Menu_Transactions_Export"/>
    </widget>
+   <widget class="QMenu" name="menuPortfolio">
+    <property name="title">
+     <string>Portfolio</string>
+    </property>
+    <addaction name="Menu_Portfolio_View"/>
+   </widget>
    <addaction name="menuTransactions"/>
+   <addaction name="menuPortfolio"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionImport">
@@ -693,6 +700,11 @@
   <action name="Menu_Transactions_Export">
    <property name="text">
     <string>Export</string>
+   </property>
+  </action>
+  <action name="Menu_Portfolio_View">
+   <property name="text">
+    <string>View</string>
    </property>
   </action>
  </widget>
