@@ -72,6 +72,8 @@ class MainController(object):
 
     def change_base_currency(self, value):
         self.model.base_currency = value
+        self.model.target_currency_data = self.model.currency_data[value]
+        self.model.update_func("target_currency_options")
         print("Updated base currency: " + str(value))
 
     def change_target_currency(self, value):
@@ -111,6 +113,7 @@ class MainController(object):
 
     def login_procedure(self):
         self.model.logged_in = True
+        self.model.init_data()
         self.load_currencies()
         self.init_bots()
 

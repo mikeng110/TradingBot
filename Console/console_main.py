@@ -1,6 +1,8 @@
 import time
 import threading
-
+from Model.Account.transactions import *
+from Model.Account.account import *
+from Model.Exchange.tradeable_assets import *
 
 class ConsoleMain:
     def __init__(self, model, main_ctrl):
@@ -31,7 +33,16 @@ class ConsoleMain:
             return None
 
     def update(self):
-        self.main_ctrl.import_transactions()
+        #self.main_ctrl.import_transactions()
+
+        transaction = Transactions()
+        account = Account()
+        account.insert_balance('BTC', '', 0, 0, 0, 0)
+        account.update_balance('BTA', 5)
+
+        tradeable = TradeableAsset()
+
+
 
         while self.running:
             self.lock.acquire()

@@ -6,3 +6,11 @@ Paper Buy -> Paper Trade -> ETHBTC
  |_Bought At: 0.05634, Target: 0.05696, Stop Limit: 0.056502
 Paper Sell -> Paper Trade -> ETHBTC
  |_Bought At: 0.05634, Sold At: 0.056374, Profit: -0.5521548150369537%
+Paper Buy -> Paper Trade -> EOSBTC
+ |_Bought At: 0.0009592, Target: 0.00096, Stop Limit: 0.00094
+Paper Sell -> Paper Trade -> EOSBTC
+ |_Bought At: 0.0009592, Sold At: 0.0009601, Profit: 0.09382819015846255%
+Paper Buy -> Paper Trade -> EOSBTC
+ |_Bought At: 0.0009565, Target: 0.0009635, Stop Limit: 0.00094
+Paper Sell -> Paper Trade -> EOSBTC
+ |_Bought At: 0.0009565, Sold At: 0.00094, Profit: -1.725039205436485%

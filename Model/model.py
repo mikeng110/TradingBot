@@ -1,6 +1,10 @@
+from Model.Exchange.tradeable_assets import *
 
 class Model(object):
     def __init__(self):
+
+        self.ta = TradeableAsset()
+
         self._update_funcs = []
         self._update_func_seperate = {}
         self.graphics_mode = True
@@ -15,6 +19,8 @@ class Model(object):
         # --- Data ----
         self.base_currency_data = ["BTC", "BNB", "ETH", "USDT"]
         self.target_currency_data = []
+        self.currency_data = {}
+
         self.ticker_stats = []
         self.account_info = []
         self.transactions = []
@@ -43,6 +49,9 @@ class Model(object):
         self.transaction_target = 0
         self.transaction_stop_limit = 0
 
+
+    def init_data(self):
+        self.currency_data = self.ta.fetch('binance')
 
 
     # subscribe a view method for updating

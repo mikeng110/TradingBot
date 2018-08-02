@@ -28,7 +28,9 @@ class PortfolioManagerCtrl:
         # ax.hold(False) # deprecated, see above
 
         # plot data
+
         ax.plot(data, '*-')
+    # plt.plot([1,2],[1,2])
 
         # refresh canvas
         self.canvas.draw()
