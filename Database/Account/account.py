@@ -14,6 +14,7 @@ class Account:
     def close(self):
         self.c.close()
         self.connection.close()
+        print("Closed Balance TradingBot.db")
 
     def insert_balance(self, coin, name, total_balance, available_balance, locked_balance, btc_value):
         self.c.execute("INSERT INTO Balance (coin, name, total_balance, available_balance, locked_balance, btc_value) VALUES (?, ?, ?, ?, ?, ?)",

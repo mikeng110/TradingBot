@@ -81,7 +81,8 @@ class TransactionItem:
         ret_item.date_time_closed = data['date_time_closed']
         ret_item.paper_trade = bool(data['paper_trade'])
         ret_item.status = data['status']
-        if ret_item.status == "Pending":
+
+        if ret_item.status == "Pending": #sepeate this segment into its own private function
             ret_item.active = False
             ret_item.closed = False
         elif ret_item.status == "Active":

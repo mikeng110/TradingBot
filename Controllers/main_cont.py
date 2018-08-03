@@ -134,7 +134,12 @@ class MainController(object):
         self.transaction_bot.start()
 
         if self.app is not None:
-            self.app.aboutToQuit.connect(self.stop_bots)
+            self.app.aboutToQuit.connect(self.on_exit)
+
+    def on_exit(self):
+        self.stop_bots()
+        self.model.transaction_table.close()
+        self.model.ta.close()
 
     def stop_bots(self):
         self.fetcher_bot.stop()

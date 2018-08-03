@@ -14,6 +14,7 @@ class Orders:
     def close(self):
         self.c.close()
         self.connection.close()
+        print("Closed Orders TradingBot.db")
 
     def insert_order(self, date, pair, type, filled, fee, total):
         self.c.execute("INSERT INTO Orders (date, pair, type, filled, fee, total) VALUES (?, ?, ?, ?, ?, ?)",

@@ -35,13 +35,14 @@ class Transactions: #rewrite to fit my transaction items, pending, active and cl
     def close(self):
         self.c.close()
         self.connection.close()
+        print("Closed Transaction TradingBot.db")
 
     def destroy(self):
         print("Destroy all")
         self.c.execute("DROP TABLE IF EXISTS Transactions")
         self.connection.commit()
 
-    def insert_transaction(self, transaction): #rewrite to reconize if entry already exist.
+    def insert_transaction(self, transaction):
         paper_trade = self.bool_to_int(transaction.paper_trade)
         sql = """
         INSERT 
