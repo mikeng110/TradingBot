@@ -1,9 +1,12 @@
-from Model.Exchange.tradeable_assets import *
+from Database.Exchange.tradeable_assets import *
+from Database.Account.transactions import *
+
 
 class Model(object):
     def __init__(self):
 
         self.ta = TradeableAsset()
+        self.transaction_table = Transactions()
 
         self._update_funcs = []
         self._update_func_seperate = {}
@@ -49,9 +52,17 @@ class Model(object):
         self.transaction_target = 0
         self.transaction_stop_limit = 0
 
+    def close_transaction(self, transaction):
+        transaction.closed = True
 
-    def init_data(self):
+
+    def init_data(self): #move to controller
         self.currency_data = self.ta.fetch('binance')
+
+    def save_transactions(self):
+        print("Update database")
+        for transaction in self.transactions:
+            pass
 
 
     # subscribe a view method for updating

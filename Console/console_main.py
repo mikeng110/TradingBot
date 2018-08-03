@@ -1,8 +1,8 @@
 import time
 import threading
-from Model.Account.transactions import *
-from Model.Account.account import *
-from Model.Exchange.tradeable_assets import *
+from Database.Account.transactions import *
+from Database.Account.account import *
+from Database.Exchange.tradeable_assets import *
 
 class ConsoleMain:
     def __init__(self, model, main_ctrl):

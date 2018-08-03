@@ -19,28 +19,28 @@ class MainController(object):
         else:
             self.model.graphics_mode = False
         self.tc = TransactionCtrl(model, self.exchange)
-        print("Success")
+       # print("Success")
 
     def change_login_api_key(self, value):
         self.model.login_api_key = value
         self.model.update_func("login_api_key")
-        print("Updated login_api_key " + str(value))
+       # print("Updated login_api_key " + str(value))
 
     def change_login_api_sign(self, value):
         self.model.login_api_sign = value
         self.model.update_func("login_api_sign")
-        print("Updated login_login_api_sign " + str(value))
+       # print("Updated login_login_api_sign " + str(value))
 
     def change_strategy_target(self, value):
 
         self.model.strategy_target = value / self.model.strategy_slider_weight
         self.model.update_func("strategy_target")
-        print("Updated strategy_target " + str(self.model.strategy_target))
+      #  print("Updated strategy_target " + str(self.model.strategy_target))
 
     def change_strategy_stop_limit(self, value):
         self.model.strategy_stop_limit = value / self.model.strategy_slider_weight
         self.model.update_func("strategy_stop_limit")
-        print("Updated strategy_stop_limit " + str(self.model.strategy_target))
+     #   print("Updated strategy_stop_limit " + str(self.model.strategy_target))
 
     def change_strategy_sliders_weight(self, value):
         self.model.strategy_slider_weight = value
@@ -53,42 +53,42 @@ class MainController(object):
     def change_transaction_amount(self, value):
         self.model.transaction_amount = value
         self.model.update_func("transaction_amount")
-        print("transaction_amount " + str(value))
+     #   print("transaction_amount " + str(value))
 
     def change_transaction_buy_in(self, value):
         self.model.transaction_buy_in = value
         self.model.update_func("transaction_buy_in")
-        print("Updated transaction buy in " + str(value))
+     #   print("Updated transaction buy in " + str(value))
 
     def change_transaction_target(self, value):
         self.model.transaction_target = value
         self.model.update_func("transaction_target")
-        print("Updated transaction target " + str(value))
+     #   print("Updated transaction target " + str(value))
 
     def change_transaction_stop_limit(self, value):
         self.model.transaction_stop_limit = value
         self.model.update_func("transaction_stop_limit")
-        print("Updated transaction_stop_limit " + str(value))
+     #   print("Updated transaction_stop_limit " + str(value))
 
     def change_base_currency(self, value):
         self.model.base_currency = value
         self.model.target_currency_data = self.model.currency_data[value]
         self.model.update_func("target_currency_options")
-        print("Updated base currency: " + str(value))
+     #   print("Updated base currency: " + str(value))
 
     def change_target_currency(self, value):
         self.model.target_currency = value
-        print("Updated target currency: " + str(value))
+     #   print("Updated target currency: " + str(value))
 
     def change_account_balance(self, value):
         self.model.account_balance = value
         self.model.update_func("account_balance")
-        print("account_balance " + str(value))
+    #    print("account_balance " + str(value))
 
     def import_transactions(self):
         io = IoTransactions(self.model.transactions)
         t_list = io.import_file("Exported.txt")
-        self.tc.load_transactions(t_list)
+        #self.tc.load_transactions(t_list)
 
     def export_transactions(self):
         io = IoTransactions(self.model.transactions)
@@ -114,6 +114,8 @@ class MainController(object):
     def login_procedure(self):
         self.model.logged_in = True
         self.model.init_data()
+       # self.model.transaction_table.destroy()
+        self.tc.load_transactions()
         self.load_currencies()
         self.init_bots()
 
@@ -147,5 +149,5 @@ class MainController(object):
         item.closed = False
         self.tc.make_pending_transaction(item)
 
-        print("Item added")
+        #print("Item added")
 

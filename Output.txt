@@ -14,3 +14,667 @@ Paper Buy -> Paper Trade -> EOSBTC
  |_Bought At: 0.0009565, Target: 0.0009635, Stop Limit: 0.00094
 Paper Sell -> Paper Trade -> EOSBTC
  |_Bought At: 0.0009565, Sold At: 0.00094, Profit: -1.725039205436485%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: NoneBought At: 1.771e-05, Target: 1.771e-05, Stop Limit: 1.771e-05
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: NoneBought At: 1.771e-05, Sold At: 1.771e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: NoneBought At: 1.771e-05, Target: 1.771e-05, Stop Limit: 1.771e-05
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: NoneBought At: 1.771e-05, Sold At: 1.771e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: NoneBought At: 1.769e-05, Target: 1.769e-05, Stop Limit: 1.769e-05
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: NoneBought At: 1.769e-05, Sold At: 1.769e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: NoneBought At: 1.77e-05, Target: 1.769e-05, Stop Limit: 1.769e-05
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: NoneBought At: 1.77e-05, Sold At: 1.77e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: NoneBought At: 1.765e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: NoneBought At: 1.765e-05, Sold At: 1.765e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: NoneBought At: 1.759e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: NoneBought At: 1.759e-05, Sold At: 1.76e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Buy In: 1.759e-05, Target: 0, Stop Limit: 0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Buy In: 1.759e-05, Target: 0, Stop Limit: 0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Buy In: 1.755e-05, Target: 1.755e-05, Stop Limit: 1.755e-05
+Paper Buy -> Paper Trade -> ADABTC
+ |_Buy In: 1.755e-05, Target: 1.755e-05, Stop Limit: 1.755e-05
+Paper Buy -> Paper Trade -> ADABTC
+ |_Buy In: 1.755e-05, Target: 1.755e-05, Stop Limit: 1.755e-05
+Paper Buy -> Paper Trade -> ADABTC
+ |_Buy In: 1.755e-05, Target: 1.755e-05, Stop Limit: 1.755e-05
+Paper Buy -> Paper Trade -> ADABTC
+ |_Buy In: 1.755e-05, Target: 1.755e-05, Stop Limit: 1.755e-05
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 14:38:52Bought At: 1.754e-05, Target: 1.76e-05, Stop Limit: 1.6e-05
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 16:21:07, Bought At: 1.74e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 16:21:07, Bought At: 1.74e-05, Sold At: 1.74e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 16:24:41, Bought At: 1.742e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 16:24:41, Bought At: 1.742e-05, Sold At: 1.742e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 16:33:07, Bought At: 1.738e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 16:33:08, Bought At: 1.738e-05, Sold At: 1.738e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 16:42:04, Bought At: 1.745e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 16:42:04, Bought At: 1.745e-05, Sold At: 1.746e-05, Profit: 0.05730659025786622%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 16:43:42, Bought At: 1.747e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 16:43:42, Bought At: 1.747e-05, Sold At: 1.747e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 16:44:37, Bought At: 1.747e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 16:44:37, Bought At: 1.747e-05, Sold At: 1.747e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 16:46:47, Bought At: 1.747e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 16:46:48, Bought At: 1.747e-05, Sold At: 1.747e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 16:48:25, Bought At: 1.743e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 16:48:26, Bought At: 1.743e-05, Sold At: 1.743e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 16:49:54, Bought At: 1.745e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 16:49:55, Bought At: 1.745e-05, Sold At: 1.745e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 16:53:44, Bought At: 1.745e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 16:53:45, Bought At: 1.745e-05, Sold At: 1.745e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:01:33, Bought At: 1.746e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:01:34, Bought At: 1.746e-05, Sold At: 1.746e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:03:50, Bought At: 1.746e-05, Target: 0, Stop Limit: 0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:04:36, Bought At: 1.746e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:04:37, Bought At: 1.746e-05, Sold At: 1.746e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:05:02, Bought At: 1.745e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:05:03, Bought At: 1.745e-05, Sold At: 1.745e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:11:51, Bought At: 1.749e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:11:51, Bought At: 1.749e-05, Sold At: 1.749e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:12:21, Bought At: 1.75e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:12:21, Bought At: 1.75e-05, Sold At: 1.75e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:13:26, Bought At: 1.749e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:13:26, Bought At: 1.749e-05, Sold At: 1.749e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:17:11, Bought At: 1.751e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:17:11, Bought At: 1.751e-05, Sold At: 1.751e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:17:31, Bought At: 1.751e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:17:31, Bought At: 1.751e-05, Sold At: 1.751e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:17:31, Bought At: 1.751e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:17:32, Bought At: 1.751e-05, Sold At: 1.75e-05, Profit: -0.05711022272987254%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:17:52, Bought At: 1.751e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:17:52, Bought At: 1.751e-05, Sold At: 1.751e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:18:41, Bought At: 1.749e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:18:42, Bought At: 1.749e-05, Sold At: 1.749e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:19:01, Bought At: 1.749e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:19:02, Bought At: 1.749e-05, Sold At: 1.749e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:31:18, Bought At: 1.745e-05, Target: 0, Stop Limit: 0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:34:13, Bought At: 1.741e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:34:13, Bought At: 1.741e-05, Sold At: 1.741e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:40:29, Bought At: 1.74e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:40:29, Bought At: 1.74e-05, Sold At: 1.74e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:40:48, Bought At: 1.74e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:40:49, Bought At: 1.74e-05, Sold At: 1.74e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:42:50, Bought At: 1.738e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:42:50, Bought At: 1.738e-05, Sold At: 1.738e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:43:37, Bought At: 1.738e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:43:37, Bought At: 1.738e-05, Sold At: 1.738e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:44:54, Bought At: 1.738e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:44:54, Bought At: 1.738e-05, Sold At: 1.738e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:45:47, Bought At: 1.737e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:45:48, Bought At: 1.737e-05, Sold At: 1.737e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:46:29, Bought At: 1.739e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:46:29, Bought At: 1.739e-05, Sold At: 1.739e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:49:33, Bought At: 1.736e-05, Target: 0, Stop Limit: 0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:50:13, Bought At: 1.736e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:50:13, Bought At: 1.736e-05, Sold At: 1.736e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:50:38, Bought At: 1.737e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:50:39, Bought At: 1.737e-05, Sold At: 1.737e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:51:35, Bought At: 1.737e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:51:35, Bought At: 1.737e-05, Sold At: 1.737e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:53:01, Bought At: 1.735e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:53:02, Bought At: 1.735e-05, Sold At: 1.735e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:53:20, Bought At: 1.734e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:53:20, Bought At: 1.734e-05, Sold At: 1.734e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:54:04, Bought At: 1.735e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 17:54:04, Bought At: 1.735e-05, Sold At: 1.735e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 18:06:17, Bought At: 1.733e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 18:06:18, Bought At: 1.733e-05, Sold At: 1.733e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 18:09:51, Bought At: 1.736e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 18:09:51, Bought At: 1.736e-05, Sold At: 1.736e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 18:10:32, Bought At: 1.736e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 18:10:32, Bought At: 1.736e-05, Sold At: 1.736e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 18:10:36, Bought At: 1.735e-05, Target: 0, Stop Limit: 0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 18:12:19, Bought At: 1.736e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 18:12:19, Bought At: 1.736e-05, Sold At: 1.735e-05, Profit: -0.05760368663593196%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 18:19:03, Bought At: 1.725e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 18:19:03, Bought At: 1.725e-05, Sold At: 1.725e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 23:19:38, Bought At: 1.722e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 23:19:39, Bought At: 1.722e-05, Sold At: 1.722e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 23:21:41, Bought At: 1.72e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 23:21:42, Bought At: 1.72e-05, Sold At: 1.72e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 23:23:15, Bought At: 1.72e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 23:23:16, Bought At: 1.72e-05, Sold At: 1.72e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 23:30:39, Bought At: 1.716e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 23:30:39, Bought At: 1.716e-05, Sold At: 1.716e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 23:31:00, Bought At: 1.717e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-02 23:31:01, Bought At: 1.717e-05, Sold At: 1.717e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:03:44, Bought At: 1.735e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:03:45, Bought At: 1.735e-05, Sold At: 1.735e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:05:36, Bought At: 1.735e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:05:37, Bought At: 1.735e-05, Sold At: 1.735e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:06:06, Bought At: 1.735e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:06:07, Bought At: 1.735e-05, Sold At: 1.735e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:07:01, Bought At: 1.736e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:07:01, Bought At: 1.736e-05, Sold At: 1.736e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:07:30, Bought At: 1.735e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:07:30, Bought At: 1.735e-05, Sold At: 1.735e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:10:06, Bought At: 1.733e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:10:07, Bought At: 1.733e-05, Sold At: 1.733e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:10:50, Bought At: 1.732e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:10:51, Bought At: 1.732e-05, Sold At: 1.732e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:11:49, Bought At: 1.731e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:11:49, Bought At: 1.731e-05, Sold At: 1.731e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:12:35, Bought At: 1.733e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:12:36, Bought At: 1.733e-05, Sold At: 1.733e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:13:06, Bought At: 1.731e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:13:06, Bought At: 1.731e-05, Sold At: 1.731e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:14:39, Bought At: 1.732e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:14:40, Bought At: 1.732e-05, Sold At: 1.732e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:22:20, Bought At: 1.732e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:22:21, Bought At: 1.732e-05, Sold At: 1.732e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:23:51, Bought At: 1.731e-05, Target: 0, Stop Limit: 0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:24:33, Bought At: 1.731e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:24:33, Bought At: 1.731e-05, Sold At: 1.731e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:32:15, Bought At: 1.732e-05, Target: 0, Stop Limit: 0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:36:11, Bought At: 1.731e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:36:12, Bought At: 1.731e-05, Sold At: 1.731e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:36:45, Bought At: 1.733e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:36:46, Bought At: 1.733e-05, Sold At: 1.733e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:37:13, Bought At: 1.734e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:37:13, Bought At: 1.734e-05, Sold At: 1.734e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:38:52, Bought At: 1.734e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:38:52, Bought At: 1.734e-05, Sold At: 1.734e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:41:48, Bought At: 1.735e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:41:49, Bought At: 1.735e-05, Sold At: 1.735e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:45:35, Bought At: 1.735e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:45:35, Bought At: 1.735e-05, Sold At: 1.735e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:54:56, Bought At: 1.733e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:54:56, Bought At: 1.733e-05, Sold At: 1.733e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:55:41, Bought At: 1.733e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:55:42, Bought At: 1.733e-05, Sold At: 1.733e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:57:18, Bought At: 1.733e-05, Target: 0.01, Stop Limit: 0.01
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:57:18, Bought At: 1.733e-05, Sold At: 1.733e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:58:17, Bought At: 1.735e-05, Target: 0.1, Stop Limit: 0.1
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 11:58:17, Bought At: 1.735e-05, Sold At: 1.735e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 12:01:16, Bought At: 1.735e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 12:01:16, Bought At: 1.735e-05, Sold At: 1.735e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 12:04:04, Bought At: 1.735e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 12:04:04, Bought At: 1.735e-05, Sold At: 1.735e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 12:04:53, Bought At: 1.733e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 12:04:54, Bought At: 1.733e-05, Sold At: 1.733e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 12:06:32, Bought At: 1.731e-05, Target: 0, Stop Limit: 0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 12:10:46, Bought At: 1.736e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 12:10:47, Bought At: 1.736e-05, Sold At: 1.736e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 12:12:00, Bought At: 1.735e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 12:12:01, Bought At: 1.735e-05, Sold At: 1.735e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 12:13:03, Bought At: 1.735e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 12:13:03, Bought At: 1.735e-05, Sold At: 1.735e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 12:17:09, Bought At: 1.737e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 12:17:09, Bought At: 1.737e-05, Sold At: 1.736e-05, Profit: -0.05757052389178119%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 12:59:29, Bought At: 1.746e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 12:59:29, Bought At: 1.746e-05, Sold At: 1.746e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 15:50:43, Bought At: 1.766e-05, Target: 0, Stop Limit: 0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 15:53:06, Bought At: 1.772e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 15:53:06, Bought At: 1.772e-05, Sold At: 1.772e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:04:45, Bought At: 1.775e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:04:46, Bought At: 1.775e-05, Sold At: 1.775e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:22:53, Bought At: 1.778e-05, Target: 0, Stop Limit: 0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:23:07, Bought At: 1.778e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:23:08, Bought At: 1.778e-05, Sold At: 1.778e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:24:17, Bought At: 1.778e-05, Target: 0.0, Stop Limit: 0.0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:24:17, Bought At: 1.778e-05, Target: 0.0, Stop Limit: 0.0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:24:17, Bought At: 1.778e-05, Target: 0.0, Stop Limit: 0.0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:24:17, Bought At: 1.778e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:24:17, Bought At: 1.778e-05, Sold At: 1.778e-05, Profit: 0.0%
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:24:17, Bought At: 1.778e-05, Sold At: 1.778e-05, Profit: 0.0%
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:24:17, Bought At: 1.778e-05, Sold At: 1.778e-05, Profit: 0.0%
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:24:17, Bought At: 1.778e-05, Sold At: 1.778e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:25:01, Bought At: 1.778e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:25:01, Bought At: 1.778e-05, Sold At: 1.778e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:25:08, Bought At: 1.778e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:25:09, Bought At: 1.778e-05, Sold At: 1.778e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:25:26, Bought At: 1.778e-05, Target: 0.0, Stop Limit: 0.0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:25:26, Bought At: 1.778e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:25:26, Bought At: 1.778e-05, Sold At: 1.778e-05, Profit: 0.0%
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:25:26, Bought At: 1.778e-05, Sold At: 1.778e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:26:36, Bought At: 1.78e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:26:36, Bought At: 1.78e-05, Sold At: 1.78e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:26:50, Bought At: 1.78e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:26:51, Bought At: 1.78e-05, Sold At: 1.78e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:28:43, Bought At: 1.78e-05, Target: 0.0, Stop Limit: 0.0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:28:43, Bought At: 1.78e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:28:44, Bought At: 1.78e-05, Sold At: 1.78e-05, Profit: 0.0%
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:28:44, Bought At: 1.78e-05, Sold At: 1.78e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:28:51, Bought At: 1.78e-05, Target: 0.0, Stop Limit: 0.0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:28:51, Bought At: 1.78e-05, Target: 0.0, Stop Limit: 0.0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:28:51, Bought At: 1.78e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:28:52, Bought At: 1.78e-05, Sold At: 1.78e-05, Profit: 0.0%
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:28:52, Bought At: 1.78e-05, Sold At: 1.78e-05, Profit: 0.0%
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:28:52, Bought At: 1.78e-05, Sold At: 1.78e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:40:01, Bought At: 1.778e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:40:01, Bought At: 1.778e-05, Sold At: 1.778e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:40:14, Bought At: 1.778e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:40:15, Bought At: 1.778e-05, Sold At: 1.778e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:48:25, Bought At: 1.763e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:48:25, Bought At: 1.763e-05, Sold At: 1.763e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:50:38, Bought At: 1.765e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:50:38, Bought At: 1.765e-05, Sold At: 1.765e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:53:35, Bought At: 1.758e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:53:35, Bought At: 1.758e-05, Sold At: 1.758e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:53:45, Bought At: 1.758e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 16:53:46, Bought At: 1.758e-05, Sold At: 1.758e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:05:54, Bought At: 1.763e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:05:54, Bought At: 1.763e-05, Sold At: 1.763e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:17:41, Bought At: 1.747e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:17:42, Bought At: 1.747e-05, Sold At: 1.747e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:21:51, Bought At: 1.743e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:21:52, Bought At: 1.743e-05, Sold At: 1.743e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:30:14, Bought At: 1.76e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:30:14, Bought At: 1.76e-05, Sold At: 1.76e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:30:24, Bought At: 1.76e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:30:24, Bought At: 1.76e-05, Sold At: 1.76e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:34:49, Bought At: 1.762e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:34:50, Bought At: 1.762e-05, Sold At: 1.762e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:36:18, Bought At: 1.762e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:36:19, Bought At: 1.762e-05, Sold At: 1.762e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:38:33, Bought At: 1.762e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:38:33, Bought At: 1.762e-05, Sold At: 1.761e-05, Profit: -0.056753688989796824%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:48:47, Bought At: 1.761e-05, Target: 0, Stop Limit: 0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:51:12, Bought At: 1.76e-05, Target: 0, Stop Limit: 0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:53:57, Bought At: 1.763e-05, Target: 0, Stop Limit: 0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:56:35, Bought At: 1.761e-05, Target: 0.0, Stop Limit: 0.0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:58:36, Bought At: 1.764e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:58:37, Bought At: 1.764e-05, Sold At: 1.764e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:58:48, Bought At: 1.764e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:58:49, Bought At: 1.764e-05, Sold At: 1.764e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:58:53, Bought At: 1.763e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 17:58:54, Bought At: 1.763e-05, Sold At: 1.763e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 18:03:06, Bought At: 1.774e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 18:03:06, Bought At: 1.774e-05, Sold At: 1.774e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 18:06:01, Bought At: 1.766e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 18:06:02, Bought At: 1.766e-05, Sold At: 1.766e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 18:11:20, Bought At: 1.76e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 18:11:21, Bought At: 1.76e-05, Sold At: 1.76e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 18:12:15, Bought At: 1.756e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 18:12:15, Bought At: 1.756e-05, Sold At: 1.756e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 18:15:09, Bought At: 1.758e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 18:15:09, Bought At: 1.758e-05, Sold At: 1.758e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 18:15:17, Bought At: 1.761e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 18:15:17, Bought At: 1.761e-05, Sold At: 1.761e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 18:21:16, Bought At: 1.752e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 18:21:17, Bought At: 1.752e-05, Sold At: 1.752e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 18:21:25, Bought At: 1.752e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 18:21:25, Bought At: 1.752e-05, Sold At: 1.752e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:39:28, Bought At: 1.778e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:39:28, Bought At: 1.778e-05, Sold At: 1.778e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:39:37, Bought At: 1.778e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:39:37, Bought At: 1.778e-05, Sold At: 1.778e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:40:57, Bought At: 1.78e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:40:58, Bought At: 1.78e-05, Sold At: 1.78e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:42:57, Bought At: 1.78e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:42:57, Bought At: 1.78e-05, Sold At: 1.78e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:43:10, Bought At: 1.778e-05, Target: 0.0, Stop Limit: 0.0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:43:10, Bought At: 1.778e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:43:10, Bought At: 1.778e-05, Sold At: 1.778e-05, Profit: 0.0%
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:43:10, Bought At: 1.778e-05, Sold At: 1.778e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:44:30, Bought At: 1.78e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:44:31, Bought At: 1.78e-05, Sold At: 1.78e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:46:54, Bought At: 1.78e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:46:55, Bought At: 1.78e-05, Sold At: 1.78e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:49:13, Bought At: 1.782e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:49:13, Bought At: 1.782e-05, Sold At: 1.782e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:50:54, Bought At: 1.761e-05, Target: 0, Stop Limit: 0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:51:12, Bought At: 1.758e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:51:12, Bought At: 1.758e-05, Sold At: 1.76e-05, Profit: 0.11376564277587597%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:53:14, Bought At: 1.758e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:53:14, Bought At: 1.758e-05, Sold At: 1.758e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:53:25, Bought At: 1.761e-05, Target: 0.0, Stop Limit: 0.0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:53:25, Bought At: 1.761e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:53:26, Bought At: 1.761e-05, Sold At: 1.761e-05, Profit: 0.0%
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:53:26, Bought At: 1.761e-05, Sold At: 1.761e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:59:02, Bought At: 1.759e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 20:59:02, Bought At: 1.759e-05, Sold At: 1.759e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 21:02:39, Bought At: 1.758e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 21:02:40, Bought At: 1.758e-05, Sold At: 1.758e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 21:02:59, Bought At: 1.758e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 21:02:59, Bought At: 1.758e-05, Sold At: 1.758e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 21:08:00, Bought At: 1.753e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 21:08:00, Bought At: 1.753e-05, Sold At: 1.753e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 21:08:38, Bought At: 1.753e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 21:08:38, Bought At: 1.753e-05, Sold At: 1.753e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 21:11:38, Bought At: 1.754e-05, Target: 0, Stop Limit: 0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 21:13:42, Bought At: 1.752e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 21:13:42, Bought At: 1.752e-05, Sold At: 1.752e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 21:13:50, Bought At: 1.752e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 21:13:50, Bought At: 1.752e-05, Sold At: 1.752e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 21:14:09, Bought At: 1.752e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 21:14:10, Bought At: 1.752e-05, Sold At: 1.752e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 21:16:27, Bought At: 1.754e-05, Target: 0.0, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 21:16:27, Bought At: 1.754e-05, Sold At: 1.755e-05, Profit: 0.057012542759404816%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 21:45:59, Bought At: 1.758e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 21:45:59, Bought At: 1.758e-05, Sold At: 1.758e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 21:48:39, Bought At: 1.759e-05, Target: 0, Stop Limit: 0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 21:48:40, Bought At: 1.759e-05, Sold At: 1.759e-05, Profit: 0.0%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 22:07:32, Bought At: 1.756e-05, Target: 1.77e-05, Stop Limit: 1.71e-05
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 22:10:03, Bought At: 1.755e-05, Target: 1.759e-05, Stop Limit: 1.75e-05
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 22:22:31, Bought At: 1.756e-05, Target: 1.76e-05, Stop Limit: 0.0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 22:25:29, Bought At: 1.755e-05, Target: 1.758e-05, Stop Limit: 0.0
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 22:27:23, Bought At: 1.755e-05, Sold At: 1.758e-05, Profit: 0.17094017094017033%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 22:30:16, Bought At: 1.753e-05, Target: 0.1, Stop Limit: 0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 22:37:06, Bought At: 1.75e-05, Target: 0.1, Stop Limit: 0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 22:39:24, Bought At: 1.75e-05, Target: 1.754e-05, Stop Limit: 1.748e-05
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-03 22:39:35, Bought At: 1.75e-05, Sold At: 1.748e-05, Profit: -0.11428571428571122%

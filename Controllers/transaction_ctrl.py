@@ -1,5 +1,5 @@
 from PyQt5.QtGui import *
-
+from Model.transaction import *
 
 class TransactionCtrl:
     def __init__(self, model, exchange):
@@ -11,6 +11,8 @@ class TransactionCtrl:
             index = self.model.pending_order_model.rowCount()
             item.pending_list_row = index
             self.model.pending_order_model.appendRow(QStandardItem(item.__str__()))
+            item.status = "Pending"#Bad code, redesign!
+            self.model.transaction_table.update_transaction(item)
 
     def rem_from_pending_list(self, item):
         if self.model.graphics_mode:
@@ -23,6 +25,9 @@ class TransactionCtrl:
             index = self.model.active_order_model.rowCount()
             item.active_list_row = index
             self.model.active_order_model.appendRow(QStandardItem(item.__str__()))
+            item.status = "Active" #Bad code, redesign!
+            self.model.transaction_table.update_transaction(item)
+
 
     def rem_from_active_list(self, item):
         if self.model.graphics_mode:
@@ -35,6 +40,8 @@ class TransactionCtrl:
             index = self.model.closed_order_model.rowCount()
             item.closed_list_row = index
             self.model.closed_order_model.appendRow(QStandardItem(item.__str__()))
+            item.status = "Closed" #Bad code, redesign!
+            self.model.transaction_table.update_transaction(item) #Move later to better palce.
 
     def rem_from_closed_list(self, item):
         if self.model.graphics_mode:
@@ -43,7 +50,8 @@ class TransactionCtrl:
                 item.closed_list_row = None
 
     def make_pending_transaction(self, item):
-        self.model.transactions.append(item)
+        item.status = "Pending"
+        self.add_transaction(item)
 
         if self.model.graphics_mode:
             index = self.model.pending_order_model.rowCount()
@@ -57,6 +65,7 @@ class TransactionCtrl:
         self.exchange.add_to_paper_balance(item.base_currency, -1 * (item.quantity * price))
         item.bought_at = float(price)
         item.active = True
+        item.closed = False
         self.rem_from_pending_list(item)
         self.add_to_active_list(item)
 
@@ -69,8 +78,9 @@ class TransactionCtrl:
         price = self.exchange.get_price(item.target_currency + item.base_currency)
         item.sold_at = float(price)
         self.exchange.add_to_paper_balance(item.base_currency, item.quantity * item.sold_at)
-        item.closed = True
+        self.model.close_transaction(item)
         item.active = False
+        item.closed = True
         self.rem_from_active_list(item)
         self.add_to_closed_list(item)
 
@@ -85,9 +95,32 @@ class TransactionCtrl:
 
         return (amount * balance) / price
 
-    def load_transactions(self, transaction_list):
+    def load_transactions(self):
+        print("Load Transactions")
+        pending = self.model.transaction_table.get_all_transactions("Pending")
+        active = self.model.transaction_table.get_all_transactions("Active")
+        for p in pending:
+            t_item = TransactionItem.gen_from_dict(p)
+            self.model.transactions.append(t_item)
+            self.add_to_correct_view(t_item)
+
+        for a in active:
+            t_item = TransactionItem.gen_from_dict(a)
+            self.model.transactions.append(t_item)
+            self.add_to_correct_view(t_item)
+
+    def add_to_correct_view(self, t_item):
+        if self.model.graphics_mode:
+            if t_item.closed:
+                self.add_to_closed_list(t_item)
+            elif t_item.active:
+                self.add_to_active_list(t_item)
+            else:
+                self.add_to_pending_list(t_item)
+
+    def load_transactions2(self, transaction_list):
         for item in transaction_list: #todo: add logic to check previous version of transaction is already loaded.
-            self.model.transactions.append(item)
+            self.add_transaction(item)
 
             if self.model.graphics_mode:
                 if item.closed:
@@ -96,6 +129,10 @@ class TransactionCtrl:
                     self.add_to_active_list(item)
                 else:
                     self.add_to_pending_list(item)
+
+    def add_transaction(self, transaction):
+        self.model.transactions.append(transaction)
+        self.model.transaction_table.insert_transaction(transaction) #database
 
 
 
