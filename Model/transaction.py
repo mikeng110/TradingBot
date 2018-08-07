@@ -1,6 +1,7 @@
 import datetime
 import time
 import uuid
+from Model.asset_info import *
 
 
 class TransactionItem:
@@ -23,7 +24,7 @@ class TransactionItem:
         self.__active = value
         self.date_time_active = self.date_time_stamp()
 
-    def __init__(self, amount, buy_in, target, stop_limit, base_currancy, target_currency):
+    def __init__(self, amount, buy_in, target, stop_limit, base_currancy, target_currency): #todo: Add exchnage
         self.uid = str(uuid.uuid1())     #used in database
         self.pending_list_row = None
         self.active_list_row = None
@@ -31,6 +32,8 @@ class TransactionItem:
 
         self.date_time_active = None
         self.date_time_closed = None
+
+        self.asset_info = None #add better implementation later
 
         self.paper_trade = True
 
@@ -61,7 +64,7 @@ class TransactionItem:
         ret_str += self.target_currency + self.base_currency + "\n |_"
 
         if self.active:
-            ret_str += "Timestamp: " + str(self.date_time_active) + ", Bought At: " + str(self.bought_at) + ", Target: " + str(self.target) + ", Stop Limit: " + str(self.stop_limit)
+            ret_str += "Timestamp: " + str(self.date_time_active) + ", Bought At: " + str(self.bought_at) + ", Target: " + str(self.target) + ", Stop Limit: " + str(self.stop_limit) + ", Quantaty: " + str(self.quantity)
 
         elif self.closed:
             ret_str += "Timestamp: " + str(self.date_time_closed) + ", Bought At: " + str(self.bought_at) + ", Sold At: " + str(self.sold_at) + ", Profit: " + str(self.profit()) + "%"
@@ -104,10 +107,10 @@ class TransactionItem:
         ret_item.quantity = data['quantity']
         return ret_item
 
-    def profit(self):
+    def profit(self): #todo:add precision
         if self.buy_in == 0:
             return 0
 
-        return ((self.sold_at / self.buy_in) - 1) * 100
+        return round(((self.sold_at / self.buy_in) - 1) * 100, 2)
 
 

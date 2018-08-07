@@ -1,5 +1,7 @@
 from Database.Exchange.tradeable_assets import *
 from Database.Account.transactions import *
+from Database.Exchange.asset_info import *
+from Database.Account.orders import *
 
 
 class Model(object):
@@ -7,6 +9,10 @@ class Model(object):
 
         self.ta = TradeableAsset()
         self.transaction_table = Transactions()
+        self.asset_info = AssetInfo()
+        self.orders = Orders()
+
+
 
         self._update_funcs = []
         self._update_func_seperate = {}
@@ -20,6 +26,7 @@ class Model(object):
 
 
         # --- Data ----
+        self.current_asset_info = None
         self.base_currency_data = ["BTC", "BNB", "ETH", "USDT"]
         self.target_currency_data = []
         self.currency_data = {}

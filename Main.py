@@ -21,7 +21,8 @@ def main(argv):
     if graphics:
         graphic_mode()
     else:
-        console_mode()
+        pass
+       # console_mode()
 
 
 def graphic_mode():

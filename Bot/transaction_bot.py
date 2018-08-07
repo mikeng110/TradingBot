@@ -46,6 +46,8 @@ class TransactionBot:
         price = self.exchange.get_price(item.target_currency + item.base_currency)
         price = float(price)
 
+        #print("This item is an " + item.asset_info.exchange + " item")
+
         if not item.active:
             if price >= (item.buy_in - item.buy_in * self.margin_of_error) and price <= (item.buy_in + item.buy_in * self.margin_of_error) :
                 self.buy(item)

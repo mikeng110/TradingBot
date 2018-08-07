@@ -267,8 +267,13 @@ class MainView(QMainWindow):
 
     def on_strategy_apply_btn(self):
         self.main_ctrl.apply_strategy()
-        self.transaction_target = self.model.transaction_target
-        self.transaction_stop_limit = self.model.transaction_stop_limit
+
+        target = str(self.model.transaction_target)
+        self.ui.Transaction_Target_tbx.setText(target)
+
+        stop_limit = str(self.model.transaction_stop_limit)
+        self.ui.Transaction_Stop_Limit_tbx.setText(stop_limit)
+
 
     def on_transaction_amount(self):
         self.main_ctrl.change_transaction_amount(self.transaction_amount)

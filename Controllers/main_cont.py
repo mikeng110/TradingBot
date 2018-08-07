@@ -4,6 +4,9 @@ from Bot.transaction_bot import *
 from Model.transaction import *
 from Controllers.transaction_ctrl import *
 from Model.io_transactions import *
+from Model.asset_info import *
+from Database.database_update import *
+import time
 
 
 class MainController(object):
@@ -73,11 +76,25 @@ class MainController(object):
     def change_base_currency(self, value):
         self.model.base_currency = value
         self.model.target_currency_data = self.model.currency_data[value]
+
+        if self.model.base_currency != '' and self.model.target_currency != '':  # rewrite so this is not needed
+            d_data = self.model.asset_info.fetch_item("Binance", self.model.base_currency, self.model.target_currency)
+            self.model.current_asset_info = AssetInfo("Binance", d_data)
+            time.sleep(0.5)
+
         self.model.update_func("target_currency_options")
+
+
      #   print("Updated base currency: " + str(value))
 
     def change_target_currency(self, value):
         self.model.target_currency = value
+
+        if self.model.base_currency != '' and self.model.target_currency != '': #rewrite so this is not needed
+            d_data = self.model.asset_info.fetch_item("Binance", self.model.base_currency, self.model.target_currency)
+            self.model.current_asset_info = AssetInfo("Binance", d_data)
+            time.sleep(0.5)
+
      #   print("Updated target currency: " + str(value))
 
     def change_account_balance(self, value):
@@ -96,7 +113,7 @@ class MainController(object):
 
 
     def paper_login(self):
-        self.model.paper_account_balance = {'balances' : [{'asset' : 'BTC', 'free' : '10'}, {'asset' : 'ETH', 'free' : '15'}, {'asset' : 'BNB', 'free' : '500'}, {'asset' : 'USDT', 'free' : '12'}]}
+        self.model.paper_account_balance = {'balances' : [{'asset' : 'BTC', 'free' : '10'}, {'asset' : 'ETH', 'free' : '15'}, {'asset' : 'BNB', 'free' : '500'}, {'asset' : 'USDT', 'free' : '120'}]}
         self.login_procedure()
 
     def login(self):
@@ -114,7 +131,8 @@ class MainController(object):
     def login_procedure(self):
         self.model.logged_in = True
         self.model.init_data()
-       # self.model.transaction_table.destroy()
+        #self.model.transaction_table.destroy()
+        self.update_data("Binance")
         self.tc.load_transactions()
         self.load_currencies()
         self.init_bots()
@@ -123,9 +141,33 @@ class MainController(object):
         self.model.base_currency = "BTC"
         self.model.target_currency = "ETH"
         self.exchange.load_data_to_model()
+
         self.model.target_currency_data = self.exchange.get_all_asset_names()
         self.model.update_func("base_currency_options")
         self.model.update_func("target_currency_options")
+
+        print(self.model.asset_info.fetch_item("Binance", "BTC", "ETH"))
+        print("")
+
+    def update_data(self, exchange):#temp palcement
+        dupdate = DatabaseUpdate()
+        if dupdate.updated(exchange):
+            print("Already updated")
+            return
+        d = self.exchange.prepare_binance_asset_for_db()
+        for i, e in enumerate(d):
+            ai = AssetInfo(exchange, e)
+            self.model.asset_info.insert(ai)
+            print(i)
+
+
+        dupdate.set_updated(exchange="Binance", updated=True)
+
+
+       # self.model.asset_info.destroy()
+
+
+        #print(self.exchange.acountless_client.get_exchange_info())
 
     def init_bots(self):
         self.fetcher_bot = FetcherBot(self.model, self.exchange)
@@ -146,13 +188,41 @@ class MainController(object):
         self.transaction_bot.stop()
 
     def apply_strategy(self):
+        target_procentage = self.model.strategy_target / 100.0
+        stop_limit_procentage = self.model.strategy_stop_limit / 100.0
+
+        self.model.transaction_target = self.model.transaction_buy_in * (1 + target_procentage)
+        self.model.transaction_stop_limit =self.model.transaction_buy_in * (1 - stop_limit_procentage)
+
+        d_data = self.model.asset_info.fetch_item("Binance", self.model.base_currency, self.model.target_currency)
+        asset_info = AssetInfo("Binance", d_data)
+
+        precision = asset_info.precision_price
+        format_str = "{0:." + str(int(precision)) + "f}"
+
+        self.model.transaction_target = float(format_str.format(self.model.transaction_target))
+        self.model.transaction_stop_limit = float(format_str.format(self.model.transaction_stop_limit))
+        self.model.update_func("transaction_target")
+        self.model.update_func("transaction_stop_limit")
+
         print("Strategy applied")
+
 
     def execute_order(self): #change name to transaction
         item = TransactionItem(self.model.transaction_amount, self.model.transaction_buy_in, self.model.transaction_target, self.model.transaction_stop_limit, self.model.base_currency, self.model.target_currency)
         item.active = False
         item.closed = False
-        self.tc.make_pending_transaction(item)
+        print("Evaluating executing order from exchnage " + self.model.current_asset_info.exchange)
+        d_data = self.model.asset_info.fetch_item("Binance", item.base_currency, item.target_currency)
+        asset_info = AssetInfo("Binance", d_data)
+        item.asset_info = asset_info
+        if self.tc.legal_transaction(item):
+            print("Legal Transaction")
+            self.tc.make_pending_transaction(item)
+        else:
+            print("Not Legal transaction")
+
 
         #print("Item added")
+
 

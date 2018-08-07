@@ -43,6 +43,10 @@ class Transactions: #rewrite to fit my transaction items, pending, active and cl
         self.connection.commit()
 
     def insert_transaction(self, transaction):
+        if self.transaction_exist(transaction):
+            self.update_transaction(transaction)
+            return
+
         paper_trade = self.bool_to_int(transaction.paper_trade)
         sql = """
         INSERT 

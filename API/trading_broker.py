@@ -1,10 +1,14 @@
 from binance.client import Client
 from binance.exceptions import *
 
+import ccxt
+
+
 
 class Exchange:
 
     def __init__(self, model):
+        self.clients = {}
         self.client = None
         self.acountless_client = Client("","")
         self.connection_active = False
@@ -45,26 +49,20 @@ class Exchange:
 
     def get_all_asset_names(self):
         return ["EOS", "ETH", "XLM", "ADA"]
-      #  result = []
 
-       # if self.model.account_info is None:
-       #     return result
-
-       # for ai in self.model.account_info['balances']:
-        #    if not ai['asset'].isdigit():
-        #        result.append(ai['asset'])
-       # return result
 
     def add_to_paper_balance(self, currency, amount):
         if not self.connection_active:
             balance = self.str_to_float(self.get_balance(currency))
             balance += amount
 
+           # balance = float("{0:.6f}".format(balance))
+
             list = self.model.paper_account_balance['balances']
             for i, element in enumerate(list):
                 if element['asset'] == currency:
                     list[i]['free'] = str(balance)
-                    break
+                    return
 
     def get_paper_balance(self, currency):
 
@@ -95,6 +93,38 @@ class Exchange:
                 break
 
         return result
+
+    def get_all_asset_info(self, exchange):
+        self.load_exchange(exchange)
+        return self.clients[exchange].load_markets()
+
+    def prepare_binance_asset_for_db(self): #horrible name, chnage it and chnage implementation
+        data = self.get_all_asset_info("Binance")
+        ret_data = []
+        for key, value in data.items():
+            entry_data = {}
+            entry_data["base_currency"] = value["quote"]
+            entry_data["target_currency"] = value['base']
+            entry_data["amount_min"] = value['limits']['amount']['min']
+            entry_data["amount_max"] = value['limits']['amount']['max']
+            entry_data["precision_price"] = value['precision']['price']
+            entry_data["precision_amount"] = value['precision']['amount']
+            entry_data["precision_base_currency"] = value['precision']['quote']
+            entry_data["precision_target_currency"] = value['precision']['base']
+
+            ret_data.append(entry_data)
+
+        return ret_data
+
+
+    def load_exchange(self, exchange):
+        if exchange in self.clients and self.clients[exchange] is not None:
+            return
+        key = "Binance"
+        if exchange == key:
+            self.clients[key] = ccxt.binance()
+
+
 
     def str_to_float(self, str):  # move this to proper place.
         precision = 10
