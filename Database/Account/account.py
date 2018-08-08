@@ -1,16 +1,16 @@
 import sqlite3
+from Utils_Library.database_util import *
 
-class Account:
+class AccountBalance:
     def __init__(self):
-        self.connection = sqlite3.connect('TradingBot.db')
+        self.connection = sqlite3.connect('TradingBot.db', check_same_thread=False)
         self.c = self.connection.cursor()
+        self.database_util = DatabaseUtil("Balance", self.connection, self.c)
         sql = """
         CREATE TABLE IF NOT EXISTS
             Balance
             (
                 coin text,
-                name text,
-                total_balance real,
                 available_balance real,
                 locked_balance real,
                 btc_value real
@@ -23,44 +23,44 @@ class Account:
         self.connection.close()
         print("Closed Balance TradingBot.db")
 
-    def insert_balance(self, coin, name, total_balance, available_balance, locked_balance, btc_value):
-        sql = """
-        INSERT INTO 
-            Balance
-            (
-                coin,
-                name,
-                total_balance,
-                available_balance,
-                locked_balance,
-                btc_value
-            ) 
-            VALUES
-            (
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?
-            )
+    def update(self, coin, available_balance, locked_balance, btc_value):
+
+        if not self.database_util.item_exist("coin", coin):
+            sql = """
+            INSERT INTO 
+                Balance
+                (
+                    coin,
+                    available_balance,
+                    locked_balance,
+                    btc_value
+                ) 
+                VALUES
+                (
+                    ?,
+                    ?,
+                    ?,
+                    ?
+                )
+                """
+            self.c.execute(sql, (coin, available_balance, locked_balance, btc_value))
+        else:
+            sql = """
+                UPDATE 
+                    Balance 
+                SET 
+                    available_balance = ?,
+                    locked_balance = ?,
+                    btc_value = ?
+                WHERE 
+                    coin=?
             """
-        self.c.execute(sql,
-                       (coin, name, total_balance, available_balance, locked_balance, btc_value))
+            self.c.execute(sql, (available_balance, locked_balance, btc_value, coin))
+
         self.connection.commit()
 
-    def update_balance(self, coin, balance):
-        sql = """
-        UPDATE
-            Balance
-                SET
-                    available_balance = ?
-                WHERE coin = ?
-            """
-        self.c.execute(sql, (balance, coin))
-        self.connection.commit()
-
-    def read_from_db(self):
-        self.c.execute('Select * From Balance')
-        for row in self.c.fetchall():
-            print(row)
+    def get_balance(self, coin):
+        if self.database_util.item_exist("coin", coin):
+            self.c.execute("SELECT available_balance, locked_balance FROM Balance WHERE coin=?", (coin,))
+            data = self.c.fetchall()
+            return data[0]  #return a tuple of (available, locked)

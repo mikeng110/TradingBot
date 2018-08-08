@@ -900,3 +900,57 @@ Paper Buy -> Paper Trade -> ADABTC
  |_Timestamp: 2018-08-06 23:46:55, Bought At: 1.851e-05, Target: 2.036e-05, Stop Limit: 1.758e-05, Quantaty: 540248.4
 Paper Buy -> Paper Trade -> ADABTC
  |_Timestamp: 2018-08-06 23:51:58, Bought At: 1.852e-05, Target: 1.871e-05, Stop Limit: 1.843e-05, Quantaty: 539956.7000000001
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-07 09:56:26, Bought At: 1.828e-05, Target: 1.877e-05, Stop Limit: 1.722e-05, Quantaty: 547045.9
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-07 12:46:46, Bought At: 1.84e-05, Target: 0.1, Stop Limit: 0, Quantaty: 543478.2000000001
+Paper Buy -> Paper Trade -> BTCUSDT
+ |_Timestamp: 2018-08-07 12:48:24, Bought At: 7046.56, Target: 8000.0, Stop Limit: 0, Quantaty: 0.017029
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-07 21:13:11, Bought At: 1.855e-05, Target: 1.874e-05, Stop Limit: 1.846e-05, Quantaty: 1778975.5999999999
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-07 21:39:10, Bought At: 1.855e-05, Target: 1.874e-05, Stop Limit: 1.846e-05, Quantaty: -0.1
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-07 21:39:19, Bought At: 1.855e-05, Target: 1.864e-05, Stop Limit: 1.846e-05, Quantaty: -0.1
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-07 21:43:28, Bought At: 1.855e-05, Target: 1.866e-05, Stop Limit: 1.848e-05, Quantaty: -0.1
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-07 21:45:48, Bought At: 1.855e-05, Target: 1.866e-05, Stop Limit: 1.846e-05, Quantaty: -0.1
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-07 21:46:45, Bought At: 1.855e-05, Target: 1.861e-05, Stop Limit: 1.849e-05, Quantaty: 5390835.5
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-07 22:03:11, Bought At: 1.844e-05, Target: 1.85e-05, Stop Limit: 1.837e-05, Quantaty: -0.1
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-07 22:03:23, Bought At: 1.844e-05, Sold At: 1.85e-05, Profit: 0.33%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-07 22:16:02, Bought At: 1.846e-05, Target: 1.861e-05, Stop Limit: 1.829e-05, Quantaty: 5417118.0
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-07 22:17:43, Bought At: 1.849e-05, Target: 1.856e-05, Stop Limit: 1.836e-05, Quantaty: 5408328.7
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-07 22:24:06, Bought At: 1.843e-05, Target: 1.856e-05, Stop Limit: 1.821e-05, Quantaty: -0.1
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-07 22:31:25, Bought At: 1.847e-05, Target: 1.869e-05, Stop Limit: 1.838e-05, Quantaty: -0.1
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-07 22:31:39, Bought At: 1.841e-05, Target: 1.862e-05, Stop Limit: 1.827e-05, Quantaty: 5431830.5
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-07 22:31:48, Bought At: 1.844e-05, Target: 1.85e-05, Stop Limit: 1.838e-05, Quantaty: -0.1
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-08 09:20:50, Bought At: 1.843e-05, Sold At: 1.78e-05, Profit: -3.42%
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-08 09:20:50, Bought At: 1.846e-05, Sold At: 1.782e-05, Profit: -3.47%
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-08 09:20:51, Bought At: 1.849e-05, Sold At: 1.782e-05, Profit: -3.62%
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-08 09:20:52, Bought At: 1.844e-05, Sold At: 1.782e-05, Profit: -3.36%
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-08 09:20:52, Bought At: 1.847e-05, Sold At: 1.782e-05, Profit: -3.52%
+Paper Sell -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-08 09:20:53, Bought At: 1.841e-05, Sold At: 1.782e-05, Profit: -3.2%
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-08 10:55:56, Bought At: 1.797e-05, Target: 1.923e-05, Stop Limit: 1.617e-05, Quantaty: 21686403.599999998
+Paper Buy -> Paper Trade -> ADABTC
+ |_Timestamp: 2018-08-08 11:25:46, Bought At: 1.797e-05, Target: 1.923e-05, Stop Limit: 1.617e-05, Quantaty: -0.1
+Paper Buy -> Paper Trade -> ADAETH
+ |_Timestamp: 2018-08-08 11:31:51, Bought At: 0.00031669, Target: 0, Stop Limit: 0, Quantaty: 315766.10000000003
+Paper Sell -> Paper Trade -> ADAETH
+ |_Timestamp: 2018-08-08 11:32:09, Bought At: 0.00031669, Sold At: 0.00031669, Profit: 0.0%

@@ -2,6 +2,11 @@ from Database.Exchange.tradeable_assets import *
 from Database.Account.transactions import *
 from Database.Exchange.asset_info import *
 from Database.Account.orders import *
+from Database.Account.funds_history import *
+from Database.Account.account import *
+
+from Model.asset_info import *
+from Utils_Library.utils import *
 
 
 class Model(object):
@@ -9,8 +14,11 @@ class Model(object):
 
         self.ta = TradeableAsset()
         self.transaction_table = Transactions()
-        self.asset_info = AssetInfo()
+        self.asset_info = AssetInfoDB()
         self.orders = Orders()
+        self.utils = Utils()
+        self.funds_history = FundsHistoryDB()
+        self.account_balance_db = AccountBalance()
 
 
 

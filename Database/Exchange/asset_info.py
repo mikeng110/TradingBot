@@ -1,10 +1,11 @@
 import sqlite3
+from Utils_Library.database_util import *
 
-
-class AssetInfo:
+class AssetInfoDB:
     def __init__(self):
         self.connection = sqlite3.connect('Database/Exchange.db',check_same_thread=False)
         self.c = self.connection.cursor()
+        self.database_util = DatabaseUtil("Asset_Info", self.connection, self.c)
 
         sql = """
         CREATE TABLE IF NOT EXISTS
@@ -22,7 +23,6 @@ class AssetInfo:
             )
             """
         self.c.execute(sql)
-        #self.insert()
 
     def destroy(self):
         print("Destroy all")
@@ -63,37 +63,16 @@ class AssetInfo:
             )
             """
 
-
-
         self.c.execute(sql, (asset_info.exchange, asset_info.base_currency, asset_info.target_currency, asset_info.amount_min,
                              asset_info.amount_max, asset_info.precision_price, asset_info.precision_amount,
                              asset_info.precision_base_currency, asset_info.precision_target_currency))
         self.connection.commit()
 
-    def data_row_to_dict(self, data):
-        ret_data = {}
-        col_names = self.get_column_names()
-
-        if len(col_names) != len(data):
-            return []
-        for i, cn in enumerate(col_names):
-            ret_data[cn] = data[i]
-
-        return ret_data
-
-    def get_column_names(self):
-        data = []
-        self.c.execute('select * from Asset_Info')
-        for e in self.c.description:
-            data.append(e[0])
-
-        return data
-
     def fetch_item(self, exchange, base_currency, target_currency):
         self.c.execute("Select * From Asset_Info WHERE exchange=? AND base_currency=? AND target_currency=?", (exchange, base_currency, target_currency))
         data = self.c.fetchall()[0]
 
-        return self.data_row_to_dict(data)
+        return self.database_util.data_row_to_dict(data)
 
     def fetch(self, exchange):
         data = {}
@@ -102,8 +81,3 @@ class AssetInfo:
             pass
 
         return data
-
-    def read_from_db(self):
-        self.c.execute('Select * From Asset_Info')
-        for row in self.c.fetchall():
-            print(row)

@@ -77,7 +77,7 @@ class MainView(QMainWindow):
     @property
     def transaction_buy_in(self):
         val_str = self.ui.Transaction_Buy_in_tbx.text()
-        return self.str_to_float(val_str)
+        return self.model.utils.str_to_float(val_str)
 
     @transaction_buy_in.setter
     def transaction_buy_in(self, value):
@@ -86,7 +86,7 @@ class MainView(QMainWindow):
     @property
     def transaction_target(self):
         val_str = self.ui.Transaction_Target_tbx.text()
-        return self.str_to_float(val_str)
+        return self.model.utils.str_to_float(val_str)
 
     @transaction_target.setter
     def transaction_target(self, value):
@@ -95,7 +95,7 @@ class MainView(QMainWindow):
     @property
     def transaction_stop_limit(self):
         val_str = self.ui.Transaction_Stop_Limit_tbx.text()
-        return self.str_to_float(val_str)
+        return self.model.utils.str_to_float(val_str)
 
     @transaction_stop_limit.setter
     def transaction_stop_limit(self, value):
@@ -123,7 +123,9 @@ class MainView(QMainWindow):
 
     @account_balance.setter
     def account_balance(self, value):
-        self.ui.Transaction_Account_Balance_Display_lbl.setText("Balance: " + str(value) + " " + self.model.base_currency)
+        precision = int(self.model.current_asset_info.precision_amount)
+        value = self.model.utils.format_float(value, precision)
+        self.ui.Transaction_Account_Balance_Display_lbl.setText("Balance: " + value + " " + self.model.base_currency)
 
     @property
     def target_price(self):
@@ -279,7 +281,8 @@ class MainView(QMainWindow):
         self.main_ctrl.change_transaction_amount(self.transaction_amount)
 
     def on_transaction_buy_in(self):
-        self.main_ctrl.change_transaction_buy_in(self.transaction_buy_in)
+        value = self.transaction_buy_in
+        self.main_ctrl.change_transaction_buy_in(value)
 
     def on_transaction_target(self):
         self.main_ctrl.change_transaction_target(self.transaction_target)
@@ -342,16 +345,3 @@ class MainView(QMainWindow):
 
     def update_target_currency_options(self):
         self.target_currency_data = self.model.target_currency_data
-
-    #
-    #
-    #
-
-    def str_to_float(self, str): #move this to proper place.
-        precision = 10
-        if str == "" or str is None or str == "None":
-            return round(0.0, precision)
-        try:
-            return round(float(str), precision)
-        except ValueError:
-            print("invalid format, expected decimal.")

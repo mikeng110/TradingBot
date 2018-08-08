@@ -1,44 +1,37 @@
 import sqlite3
 
-class Orders:
+
+class FundsHistoryDB:
     def __init__(self):
         self.connection = sqlite3.connect('TradingBot.db', check_same_thread=False)
         self.c = self.connection.cursor()
         sql = """CREATE TABLE IF NOT EXISTS
-            Orders
+            Funds_History
             (
-                Date TEXT,
-                Pair TEXT,
-                Type TEXT,
-                Filled TEXT,
-                Fee REAL,
-                total REAL
+                date TEXT,
+                coin TEXT,
+                amount REAL,
+                information REAL
             )
         """
         self.c.execute(sql)
-
-      #  self.close()
 
     def close(self):
         self.c.close()
         self.connection.close()
         print("Closed Orders TradingBot.db")
 
-    def insert_order(self, date, pair, type, filled, fee, total):
+    def insert(self, date, coin, amount, information):
         sql = """INSERT INTO 
-            Orders
+            Funds_History
             (
                 date,
-                pair,
-                type,
-                filled,
-                fee,
-                total
+                coin,
+                amount,
+                information
             ) 
             VALUES 
             (
-                ?,
-                ?,
                 ?,
                 ?,
                 ?,
@@ -46,5 +39,5 @@ class Orders:
             )
         """
         self.c.execute(sql,
-                       (date, pair, type, filled, fee, total))
+                       (date, coin, amount, information))
         self.connection.commit()

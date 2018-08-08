@@ -33,7 +33,7 @@ class FetcherBot:
             self.exchange.load_data_to_model()
 
             self.model.target_price = self.exchange.get_price(self.model.target_currency + self.model.base_currency)
-            self.model.account_balance = self.exchange.get_balance(self.model.base_currency)
+           # self.model.account_balance = self.exchange.get_balance(self.model.base_currency)
 
             self.model.update_func("account_balance")
             self.model.update_func("target_price")

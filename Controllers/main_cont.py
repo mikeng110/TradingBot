@@ -113,7 +113,10 @@ class MainController(object):
 
 
     def paper_login(self):
-        self.model.paper_account_balance = {'balances' : [{'asset' : 'BTC', 'free' : '10'}, {'asset' : 'ETH', 'free' : '15'}, {'asset' : 'BNB', 'free' : '500'}, {'asset' : 'USDT', 'free' : '120'}]}
+        self.model.base_currency = "BTC"
+        self.model.target_currency = "ETH"
+        (free, locked) = self.model.account_balance_db.get_balance(self.model.base_currency)
+        self.model.paper_account_balance = free
         self.login_procedure()
 
     def login(self):
@@ -132,6 +135,7 @@ class MainController(object):
         self.model.logged_in = True
         self.model.init_data()
         #self.model.transaction_table.destroy()
+        self.model.account_balance_db.get_balance("BTC")
         self.update_data("Binance")
         self.tc.load_transactions()
         self.load_currencies()
@@ -212,10 +216,8 @@ class MainController(object):
         item = TransactionItem(self.model.transaction_amount, self.model.transaction_buy_in, self.model.transaction_target, self.model.transaction_stop_limit, self.model.base_currency, self.model.target_currency)
         item.active = False
         item.closed = False
-        print("Evaluating executing order from exchnage " + self.model.current_asset_info.exchange)
-        d_data = self.model.asset_info.fetch_item("Binance", item.base_currency, item.target_currency)
-        asset_info = AssetInfo("Binance", d_data)
-        item.asset_info = asset_info
+
+        item.asset_info = self.model.current_asset_info
         if self.tc.legal_transaction(item):
             print("Legal Transaction")
             self.tc.make_pending_transaction(item)

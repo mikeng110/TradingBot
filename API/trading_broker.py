@@ -53,29 +53,38 @@ class Exchange:
 
     def add_to_paper_balance(self, currency, amount):
         if not self.connection_active:
-            balance = self.str_to_float(self.get_balance(currency))
+            balance = self.model.utils.str_to_float(self.get_balance(currency))
             balance += amount
+
+            locked = 0
+
+            self.model.account_balance_db.update(currency, balance, locked, 0)
 
            # balance = float("{0:.6f}".format(balance))
 
-            list = self.model.paper_account_balance['balances']
-            for i, element in enumerate(list):
-                if element['asset'] == currency:
-                    list[i]['free'] = str(balance)
-                    return
+
+
+
+            #list = self.model.paper_account_balance['balances']
+            #for i, element in enumerate(list):
+             #   if element['asset'] == currency:
+              #      list[i]['free'] = str(balance)
+               #     return
 
     def get_paper_balance(self, currency):
+        (free, locked) = self.model.account_balance_db.get_balance(currency)
+        return free
 
-        result = None
+        #result = None
 
-        data = self.model.paper_account_balance
+        #data = self.model.paper_account_balance
 
-        for ai in data['balances']:
-            if ai['asset'] == currency:
-                result = ai['free']
-                break
+       # for ai in data['balances']:
+         #   if ai['asset'] == currency:
+       #         result = ai['free']
+         #       break
 
-        return result
+       # return result
 
     def get_balance(self, currency):
         result = None
@@ -83,6 +92,9 @@ class Exchange:
             data = self.model.paper_account_balance
         else:
             data = self.model.account_info
+
+        if self.model.paper_trade_status:
+            return self.get_paper_balance(currency)
 
         if data is None:
             return result
@@ -123,14 +135,3 @@ class Exchange:
         key = "Binance"
         if exchange == key:
             self.clients[key] = ccxt.binance()
-
-
-
-    def str_to_float(self, str):  # move this to proper place.
-        precision = 10
-        if str == "" or str is None or str == "None":
-            return round(0.0, precision)
-        try:
-            return round(float(str), precision)
-        except ValueError:
-            print("invalid format, expected decimal.")
