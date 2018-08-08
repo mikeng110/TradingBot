@@ -1,6 +1,6 @@
 from binance.client import Client
 from binance.exceptions import *
-
+from Model.account_model import *
 import ccxt
 
 
@@ -50,51 +50,26 @@ class Exchange:
     def get_all_asset_names(self):
         return ["EOS", "ETH", "XLM", "ADA"]
 
-
     def add_to_paper_balance(self, currency, amount):
         if not self.connection_active:
-            balance = self.model.utils.str_to_float(self.get_balance(currency))
+            balance = self.model.paper_account_balance.balances[currency].available_balance
             balance += amount
 
             locked = 0
 
             self.model.account_balance_db.update(currency, balance, locked, 0)
-
-           # balance = float("{0:.6f}".format(balance))
-
-
-
-
-            #list = self.model.paper_account_balance['balances']
-            #for i, element in enumerate(list):
-             #   if element['asset'] == currency:
-              #      list[i]['free'] = str(balance)
-               #     return
+            d = self.model.account_balance_db.get_all_balances()
+            self.model.paper_account_balance = Balance(d)
 
     def get_paper_balance(self, currency):
-        (free, locked) = self.model.account_balance_db.get_balance(currency)
-        return free
-
-        #result = None
-
-        #data = self.model.paper_account_balance
-
-       # for ai in data['balances']:
-         #   if ai['asset'] == currency:
-       #         result = ai['free']
-         #       break
-
-       # return result
+        return self.model.paper_account_balance.balances[currency].available_balance
 
     def get_balance(self, currency):
         result = None
-        if not self.connection_active:
-            data = self.model.paper_account_balance
+        if self.model.paper_trade_status:
+            return self.model.paper_account_balance.balances[currency].available_balance
         else:
             data = self.model.account_info
-
-        if self.model.paper_trade_status:
-            return self.get_paper_balance(currency)
 
         if data is None:
             return result

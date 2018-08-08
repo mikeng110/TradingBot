@@ -123,7 +123,7 @@ class MainView(QMainWindow):
 
     @account_balance.setter
     def account_balance(self, value):
-        precision = int(self.model.current_asset_info.precision_amount)
+        precision = 4#int(self.model.current_asset_info.precision_amount)
         value = self.model.utils.format_float(value, precision)
         self.ui.Transaction_Account_Balance_Display_lbl.setText("Balance: " + value + " " + self.model.base_currency)
 

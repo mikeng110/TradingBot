@@ -66,7 +66,6 @@ class TransactionCtrl:
         price = float(price)
         item.quantity = self.calc_quantity(price, item)
 
-
         self.exchange.add_to_paper_balance(item.base_currency, -1 * (item.quantity * price))
         item.bought_at = float(price)
         item.active = True

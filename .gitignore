@@ -58,3 +58,4 @@ dist/Main.exe
 *.html
 build/Main/out00-PYZ.toc
 *.toc
+*.db

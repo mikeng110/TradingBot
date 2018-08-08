@@ -1,6 +1,7 @@
 import sqlite3
 from Utils_Library.database_util import *
 
+
 class AccountBalance:
     def __init__(self):
         self.connection = sqlite3.connect('TradingBot.db', check_same_thread=False)
@@ -59,8 +60,11 @@ class AccountBalance:
 
         self.connection.commit()
 
-    def get_balance(self, coin):
-        if self.database_util.item_exist("coin", coin):
-            self.c.execute("SELECT available_balance, locked_balance FROM Balance WHERE coin=?", (coin,))
-            data = self.c.fetchall()
-            return data[0]  #return a tuple of (available, locked)
+    def get_all_balances(self):
+        ret_data = []
+        sql = """SELECT * FROM Balance"""
+        self.c.execute(sql)
+        for data in self.c.fetchall():
+            ret_data.append(self.database_util.data_row_to_dict(data))
+
+        return ret_data

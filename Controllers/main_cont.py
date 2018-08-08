@@ -6,6 +6,8 @@ from Controllers.transaction_ctrl import *
 from Model.io_transactions import *
 from Model.asset_info import *
 from Database.database_update import *
+
+from Model.account_model import *
 import time
 
 
@@ -115,8 +117,8 @@ class MainController(object):
     def paper_login(self):
         self.model.base_currency = "BTC"
         self.model.target_currency = "ETH"
-        (free, locked) = self.model.account_balance_db.get_balance(self.model.base_currency)
-        self.model.paper_account_balance = free
+        d = self.model.account_balance_db.get_all_balances()
+        self.model.paper_account_balance = Balance(d)
         self.login_procedure()
 
     def login(self):
@@ -134,8 +136,7 @@ class MainController(object):
     def login_procedure(self):
         self.model.logged_in = True
         self.model.init_data()
-        #self.model.transaction_table.destroy()
-        self.model.account_balance_db.get_balance("BTC")
+
         self.update_data("Binance")
         self.tc.load_transactions()
         self.load_currencies()
@@ -167,12 +168,6 @@ class MainController(object):
 
         dupdate.set_updated(exchange="Binance", updated=True)
 
-
-       # self.model.asset_info.destroy()
-
-
-        #print(self.exchange.acountless_client.get_exchange_info())
-
     def init_bots(self):
         self.fetcher_bot = FetcherBot(self.model, self.exchange)
         self.transaction_bot = TransactionBot(self.model, self.exchange)
@@ -186,6 +181,8 @@ class MainController(object):
         self.stop_bots()
         self.model.transaction_table.close()
         self.model.ta.close()
+        self.model.account_balance_db.close()
+        self.model.transaction_table.close()
 
     def stop_bots(self):
         self.fetcher_bot.stop()
