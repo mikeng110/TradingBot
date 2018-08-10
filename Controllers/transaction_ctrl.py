@@ -3,11 +3,16 @@ from Model.transaction import *
 from Model.asset_info import *
 import math
 import decimal
+from Model.account_model import *
+from Database.Account.transactions import *
+
 
 class TransactionCtrl:
     def __init__(self, model, exchange):
         self.model = model
         self.exchange = exchange
+        self.transactions = Transactions()
+
 
     def add_to_pending_list(self, item):
         if self.model.graphics_mode:
@@ -15,7 +20,8 @@ class TransactionCtrl:
             item.pending_list_row = index
             self.model.pending_order_model.appendRow(QStandardItem(item.__str__()))
             item.status = "Pending"#Bad code, redesign!
-            self.model.transaction_table.update_transaction(item)
+           # self.transactions.update_transaction(item)
+
 
     def rem_from_pending_list(self, item):
         if self.model.graphics_mode:
@@ -29,7 +35,9 @@ class TransactionCtrl:
             item.active_list_row = index
             self.model.active_order_model.appendRow(QStandardItem(item.__str__()))
             item.status = "Active" #Bad code, redesign!
-            self.model.transaction_table.update_transaction(item)
+           # self.transactions.update_transaction(item)
+        self.model.data_writer_handler.ping()  # update_transaction(transaction=item)
+
 
 
     def rem_from_active_list(self, item):
@@ -44,7 +52,7 @@ class TransactionCtrl:
             item.closed_list_row = index
             self.model.closed_order_model.appendRow(QStandardItem(item.__str__()))
             item.status = "Closed" #Bad code, redesign!
-            self.model.transaction_table.update_transaction(item) #Move later to better palce.
+           # self.transactions.update_transaction(item) #Move later to better palce.
 
     def rem_from_closed_list(self, item):
         if self.model.graphics_mode:
@@ -67,6 +75,8 @@ class TransactionCtrl:
         item.quantity = self.calc_quantity(price, item)
 
         self.exchange.add_to_paper_balance(item.base_currency, -1 * (item.quantity * price))
+        #balance = self.exchange.get_paper_balance(item.base_currency, -1 * (item.quantity * price))
+
         item.bought_at = float(price)
         item.active = True
         item.closed = False
@@ -76,7 +86,7 @@ class TransactionCtrl:
         print("Paper Buy -> " + item.__str__())
         ts = time.time()
         dateTime = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-        self.model.orders.insert_order(dateTime, item.target_currency + item.base_currency, "BUY", "", 0, item.quantity * price)
+        #self.model.orders.insert_order(dateTime, item.target_currency + item.base_currency, "BUY", "", 0, item.quantity * price)
         file = open("Output.txt", "a")
         file.write("Paper Buy -> " + item.__str__() + "\n")
         file.close()
@@ -103,7 +113,7 @@ class TransactionCtrl:
 
     def calc_quantity(self, price, item):
         amount = item.amount / 100.0
-        balance = float(self.exchange.get_paper_balance(item.base_currency))
+        balance = float(self.exchange.get_paper_balance(item.base_currency, amount))
         q = (amount * balance) / price
 
         precision = item.asset_info.amount_min
@@ -120,8 +130,8 @@ class TransactionCtrl:
 
     def load_transactions(self):
         print("Load Transactions")
-        pending = self.model.transaction_table.get_all_transactions("Pending")
-        active = self.model.transaction_table.get_all_transactions("Active")
+        pending = self.transactions.get_all_transactions("Pending")
+        active = self.transactions.get_all_transactions("Active")
         for p in pending:
             t_item = TransactionItem.gen_from_dict(p)
             d_data = self.model.asset_info.fetch_item("Binance", t_item.base_currency, t_item.target_currency)
@@ -162,12 +172,12 @@ class TransactionCtrl:
 
     def add_transaction(self, transaction):
         self.model.transactions.append(transaction)
-        self.model.transaction_table.insert_transaction(transaction) #database
+      #  self.transactions.insert_transaction(transaction) #database
 
     def legal_transaction(self, transaction):
         price_precision = transaction.asset_info.precision_price
         price = round(transaction.buy_in, int(price_precision))
-        balance = float(self.exchange.get_paper_balance(transaction.base_currency))
+        balance = float(self.exchange.get_paper_balance(transaction.base_currency, 0))
 
         quantity = self.calc_quantity(price, transaction)
 

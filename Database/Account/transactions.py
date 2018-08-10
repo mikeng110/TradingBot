@@ -44,7 +44,6 @@ class Transactions: #rewrite to fit my transaction items, pending, active and cl
 
     def insert_transaction(self, transaction):
         if self.database_util.item_exist("uid", transaction.uid):
-            self.update_transaction(transaction)
             return
 
         paper_trade = self.utils.bool_to_int(transaction.paper_trade)

@@ -1,14 +1,15 @@
 from API.trading_broker import *
 from Bot.fetcher_bot import *
 from Bot.transaction_bot import *
-from Model.transaction import *
 from Controllers.transaction_ctrl import *
 from Model.io_transactions import *
 from Model.asset_info import *
 from Database.database_update import *
-
+from Model.database_handler import *
 from Model.account_model import *
+from Bot.database_writer import *
 import time
+from multiprocessing import Process, Queue
 
 
 class MainController(object):
@@ -18,7 +19,10 @@ class MainController(object):
         self.exchange = Exchange(model)
         self.fetcher_bot = None
         self.transaction_bot = None
+        self.db_writer_bot = None
+        self.req_queue = Queue()
         self.app = app
+
         if self.app is not None:
             self.model.graphics_mode = True
         else:
@@ -117,8 +121,6 @@ class MainController(object):
     def paper_login(self):
         self.model.base_currency = "BTC"
         self.model.target_currency = "ETH"
-        d = self.model.account_balance_db.get_all_balances()
-        self.model.paper_account_balance = Balance(d)
         self.login_procedure()
 
     def login(self):
@@ -136,7 +138,6 @@ class MainController(object):
     def login_procedure(self):
         self.model.logged_in = True
         self.model.init_data()
-
         self.update_data("Binance")
         self.tc.load_transactions()
         self.load_currencies()
@@ -151,10 +152,17 @@ class MainController(object):
         self.model.update_func("base_currency_options")
         self.model.update_func("target_currency_options")
 
-        print(self.model.asset_info.fetch_item("Binance", "BTC", "ETH"))
+        #print(self.model.asset_info.fetch_item("Binance", "BTC", "ETH"))
         print("")
 
     def update_data(self, exchange):#temp palcement
+
+        #balance = Balance(self.data_handler.get_all_balances())
+        #self.model.paper_account_balance = balance
+        #self.data_handler.close()
+
+        self.model.data_writer_handler = DatabaseHandlerModel(self.req_queue)
+
         dupdate = DatabaseUpdate()
         if dupdate.updated(exchange):
             print("Already updated")
@@ -169,10 +177,13 @@ class MainController(object):
         dupdate.set_updated(exchange="Binance", updated=True)
 
     def init_bots(self):
+
         self.fetcher_bot = FetcherBot(self.model, self.exchange)
         self.transaction_bot = TransactionBot(self.model, self.exchange)
+        self.db_writer_bot = DataWriterBot(self.req_queue)
         self.fetcher_bot.start()
         self.transaction_bot.start()
+        self.db_writer_bot.start()
 
         if self.app is not None:
             self.app.aboutToQuit.connect(self.on_exit)
@@ -181,12 +192,15 @@ class MainController(object):
         self.stop_bots()
         self.model.transaction_table.close()
         self.model.ta.close()
-        self.model.account_balance_db.close()
-        self.model.transaction_table.close()
+       # self.model.account_balance_db.close()
+       # self.model.transaction_table.close()
 
     def stop_bots(self):
         self.fetcher_bot.stop()
         self.transaction_bot.stop()
+        self.req_queue.put("Bu")
+
+        self.db_writer_bot.stop()
 
     def apply_strategy(self):
         target_procentage = self.model.strategy_target / 100.0
@@ -209,19 +223,22 @@ class MainController(object):
         print("Strategy applied")
 
 
-    def execute_order(self): #change name to transaction
-        item = TransactionItem(self.model.transaction_amount, self.model.transaction_buy_in, self.model.transaction_target, self.model.transaction_stop_limit, self.model.base_currency, self.model.target_currency)
-        item.active = False
-        item.closed = False
+    def execute_order(self): #change name to transaction, dont work debug
+        self.model.data_writer_handler.ping()
+        #item = TransactionItem(self.model.transaction_amount, self.model.transaction_buy_in, self.model.transaction_target, self.model.transaction_stop_limit, self.model.base_currency, self.model.target_currency)
+        #item.active = False
+        #item.closed = False
 
-        item.asset_info = self.model.current_asset_info
-        if self.tc.legal_transaction(item):
-            print("Legal Transaction")
-            self.tc.make_pending_transaction(item)
-        else:
-            print("Not Legal transaction")
+        #item.asset_info = self.model.current_asset_info
+        #if self.tc.legal_transaction(item):
+         #   print("Legal Transaction")
+         #   self.tc.make_pending_transaction(item)
+        #else:
+         #   print("Not Legal transaction")
 
 
         #print("Item added")
+
+
 
 

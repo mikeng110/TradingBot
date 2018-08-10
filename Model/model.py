@@ -5,7 +5,7 @@ from Database.Account.orders import *
 from Database.Account.funds_history import *
 from Database.Account.account import *
 
-from Model.asset_info import *
+from Model.database_handler import *
 from Utils_Library.utils import *
 
 
@@ -20,6 +20,7 @@ class Model(object):
         self.funds_history = FundsHistoryDB()
         self.account_balance_db = AccountBalance()
 
+        self.data_writer_handler = None
 
 
         self._update_funcs = []
@@ -47,7 +48,7 @@ class Model(object):
         self.target_currency = ""
 
         self.account_balance = 0
-        self.paper_account_balance = None
+        self.paper_account_balance = 10# None
         self.target_price = 0
 
         # --- Login Properties ---

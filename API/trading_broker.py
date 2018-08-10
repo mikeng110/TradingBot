@@ -50,24 +50,33 @@ class Exchange:
     def get_all_asset_names(self):
         return ["EOS", "ETH", "XLM", "ADA"]
 
+    def calc_paper_balance(self, currency, amount):
+        balance = self.model.paper_account_balance.balances[currency].available_balance
+        balance += amount
+
+        return balance
+
     def add_to_paper_balance(self, currency, amount):
         if not self.connection_active:
-            balance = self.model.paper_account_balance.balances[currency].available_balance
-            balance += amount
+           # balance = self.model.paper_account_balance.balances[currency].available_balance
+           # balance = self.model.paper_account_balance
+          #  balance += amount
 
             locked = 0
 
-            self.model.account_balance_db.update(currency, balance, locked, 0)
-            d = self.model.account_balance_db.get_all_balances()
-            self.model.paper_account_balance = Balance(d)
+            self.model.paper_account_balance += amount
 
-    def get_paper_balance(self, currency):
-        return self.model.paper_account_balance.balances[currency].available_balance
+            #self.model.account_balance_db.update(currency, balance, locked, 0)
+            #d = self.model.account_balance_db.get_all_balances()
+            #self.model.paper_account_balance = Balance(d)
+
+    def get_paper_balance(self, currency, amount):
+        return self.model.paper_account_balance  #self.model.paper_account_balance.balances[currency].available_balance
 
     def get_balance(self, currency):
         result = None
         if self.model.paper_trade_status:
-            return self.model.paper_account_balance.balances[currency].available_balance
+            return 10#self.model.paper_account_balance.balances[currency].available_balance
         else:
             data = self.model.account_info
 

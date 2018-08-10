@@ -17,8 +17,6 @@ class Orders:
         """
         self.c.execute(sql)
 
-      #  self.close()
-
     def close(self):
         self.c.close()
         self.connection.close()

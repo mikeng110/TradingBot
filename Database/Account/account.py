@@ -45,6 +45,7 @@ class AccountBalance:
                 )
                 """
             self.c.execute(sql, (coin, available_balance, locked_balance, btc_value))
+            self.connection.commit()
         else:
             sql = """
                 UPDATE 
@@ -57,8 +58,8 @@ class AccountBalance:
                     coin=?
             """
             self.c.execute(sql, (available_balance, locked_balance, btc_value, coin))
+            self.connection.commit()
 
-        self.connection.commit()
 
     def get_all_balances(self):
         ret_data = []
