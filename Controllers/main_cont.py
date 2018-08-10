@@ -10,7 +10,7 @@ from Model.account_model import *
 from Bot.database_writer import *
 import time
 from multiprocessing import Process, Queue
-
+#import queue
 
 class MainController(object):
 
@@ -198,8 +198,6 @@ class MainController(object):
     def stop_bots(self):
         self.fetcher_bot.stop()
         self.transaction_bot.stop()
-        self.req_queue.put("Bu")
-
         self.db_writer_bot.stop()
 
     def apply_strategy(self):
@@ -224,20 +222,20 @@ class MainController(object):
 
 
     def execute_order(self): #change name to transaction, dont work debug
-        self.model.data_writer_handler.ping()
-        #item = TransactionItem(self.model.transaction_amount, self.model.transaction_buy_in, self.model.transaction_target, self.model.transaction_stop_limit, self.model.base_currency, self.model.target_currency)
-        #item.active = False
-        #item.closed = False
+        #self.model.data_writer_handler.ping()
+        item = TransactionItem(self.model.transaction_amount, self.model.transaction_buy_in, self.model.transaction_target, self.model.transaction_stop_limit, self.model.base_currency, self.model.target_currency)
+        item.active = False
+        item.closed = False
 
-        #item.asset_info = self.model.current_asset_info
-        #if self.tc.legal_transaction(item):
-         #   print("Legal Transaction")
-         #   self.tc.make_pending_transaction(item)
-        #else:
-         #   print("Not Legal transaction")
+        item.asset_info = self.model.current_asset_info
+        if self.tc.legal_transaction(item):
+            print("Legal Transaction")
+            self.tc.make_pending_transaction(item)
+        else:
+            print("Not Legal transaction")
 
 
-        #print("Item added")
+        print("Item added")
 
 
 

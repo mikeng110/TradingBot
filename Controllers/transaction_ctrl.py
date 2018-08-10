@@ -35,8 +35,10 @@ class TransactionCtrl:
             item.active_list_row = index
             self.model.active_order_model.appendRow(QStandardItem(item.__str__()))
             item.status = "Active" #Bad code, redesign!
-           # self.transactions.update_transaction(item)
-        self.model.data_writer_handler.ping()  # update_transaction(transaction=item)
+            self.transactions.update_transaction(item)
+
+        self.model.data_writer_handler.update_transaction(transaction=item)  # update_transaction(transaction=item)
+        #self.model.data_writer_handler.ping()
 
 
 

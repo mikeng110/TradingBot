@@ -13,12 +13,12 @@ class DatabaseHandlerModel:
 
     def ping(self):
         print("Ping")
-        self.data_queue.put({'func': 0, 'data': 0})
-        self.data_queue.put({'func': 1, 'data': 0})
-        self.data_queue.put({'func': 2, 'data': 0})
-        self.data_queue.put({'func': 3, 'data': 0})
-        self.data_queue.put({'func': 4, 'data': 0})
-        self.data_queue.put({'func': 5, 'data': 0})
+        self.data_queue.put({'func': "update_transaction", 'data': 0})
+        self.data_queue.put({'func': "update_transaction", 'data': 0})
+        self.data_queue.put({'func': "update_transaction", 'data': 0})
+        self.data_queue.put({'func': "update_transaction", 'data': 0})
+        self.data_queue.put({'func': "update_transaction", 'data': 0})
+        self.data_queue.put({'func': "update_transaction", 'data': 0})
 
 
 

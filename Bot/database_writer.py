@@ -3,6 +3,7 @@ import threading
 
 from Database.Account.transactions import *
 
+
 class DataWriterBot:
     def __init__(self, req_queue):
         self.req_queue = req_queue
@@ -23,12 +24,15 @@ class DataWriterBot:
         time.sleep(.5)
         item = self.req_queue.get()
         while (item is not None):
+            print("Execute All")
             self.process_data(item)
             item = self.req_queue.get()
 
     def stop(self):
         self.running = False
+        self.req_queue.put(None) #require 2 cause the first get ignored, look into it.
         self.req_queue.put(None)
+        time.sleep(0.1)
         self.execute_all()
         try:
             self.thread.join()
@@ -54,9 +58,11 @@ class DataWriterBot:
         if data_to_process is None or data_to_process == "STOP":
             print("No data to process")
             return
-        print(data_to_process)
-       # if data_to_process['func'] == "update_transaction":
-           # print("Process transaction")
-           # self.transactions_db.insert_transaction(data_to_process['data']) #temprorary solution to make sure data exist.
-          #  self.transactions_db.update_transaction(data_to_process['data'])
+
+        if data_to_process['func'] == "update_transaction":
+            print("Process transaction")
+            print("Writing tom db")
+            self.transactions_db.insert_transaction(data_to_process['data']) #temprorary solution to make sure data exist.
+            self.transactions_db.update_transaction(data_to_process['data'])
+            print("Finish writing to db")
 
