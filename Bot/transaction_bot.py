@@ -8,7 +8,7 @@ class TransactionBot:
         self.model = model
         self.exchange = exchange
         self.running = False
-        self.frequency = 0.5
+        self.frequency = 0.1
         self.thread = None
         self.lock = threading.Lock()
         self.tc = TransactionCtrl(model, exchange)
@@ -40,10 +40,8 @@ class TransactionBot:
             time.sleep(self.frequency)
 
     def process_item(self, item):
-        price = self.exchange.get_price(item.target_currency + item.base_currency)
+        price = 0 #self.exchange.get_price("Binance", item.target_currency, item.base_currency)
         price = float(price)
-
-        #print("This item is an " + item.asset_info.exchange + " item")
 
         if not item.active:
             if price >= (item.buy_in - item.buy_in * self.margin_of_error) and price <= (item.buy_in + item.buy_in * self.margin_of_error) :

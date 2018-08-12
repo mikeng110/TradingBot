@@ -143,7 +143,7 @@ class MainController(object):
     def load_currencies(self):
         self.model.base_currency = "BTC"
         self.model.target_currency = "ETH"
-        self.exchange.load_data_to_model()
+        #self.exchange.load_data_to_model("Binance")
 
         self.model.target_currency_data = self.exchange.get_all_asset_names()
         self.model.update_func("base_currency_options")

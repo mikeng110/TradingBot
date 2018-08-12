@@ -1,6 +1,3 @@
-from binance.client import Client
-from binance.exceptions import *
-from Model.account_model import *
 from Model.account_model import *
 from Database.Account.account import *
 import ccxt
@@ -10,44 +7,18 @@ class Exchange:
 
     def __init__(self, model):
         self.clients = {}
-        self.client = None
-        self.acountless_client = Client("","")
         self.connection_active = False
         self.model = model
         self.account_balance_db = None
 
-    def connect(self, api_key, api_signature):
-        if self.connection_active:
-            return None
+    def fetch_price_info(self, exchange, symbol):
+        self.load_exchange(exchange)
+        return self.clients[exchange].fetchTicker(symbol)
 
-        self.client = Client(api_key, api_signature)
-
-        try:
-            self.client.get_account()
-            self.connection_active = True
-
-        except BinanceAPIException as e:
-            print("Wrong Api Key, or wrong Api Signature")
-            self.connection_active = False
-
-    def load_data_to_model(self):
-        if self.connection_active:
-            self.model.account_info = self.client.get_account()
-            self.model.ticker_stats = self.client.get_all_tickers()
-        else:
-            self.model.ticker_stats = self.acountless_client.get_all_tickers()
-
-    def get_price(self, symbol):  # remove later
-        result = None
-
-        if self.model.ticker_stats is None:  # exit
-            return result
-
-        for ts in self.model.ticker_stats:
-            if ts['symbol'] == symbol:
-                result = ts['price']
-                break
-        return result
+    def get_price(self, exchange, symbol):
+        if exchange in self.model.price_info:
+            if symbol in self.model.price_info[exchange]:
+                return self.model.price_info[exchange][symbol]['bid']
 
     def get_all_asset_names(self):
         return ["EOS", "ETH", "XLM", "ADA"]
@@ -68,7 +39,7 @@ class Exchange:
             self.model.paper_account_balance.balances[currency].available_balance += amount
             balance = self.model.paper_account_balance.balances[currency].available_balance
 
-            balance_item = BalanceItem({'coin': currency, 'available_balance': balance, 'locked_balance':0, 'btc_value':0})
+            balance_item = BalanceItem({'coin': currency, 'available_balance': balance, 'locked_balance': 0, 'btc_value': 0})
             self.model.data_writer_handler.update_balance(balance_item)
 
     def get_paper_balance(self, currency):
@@ -96,6 +67,7 @@ class Exchange:
 
     def get_all_asset_info(self, exchange):
         self.load_exchange(exchange)
+        print("if you see this you are fucked")
         return self.clients[exchange].load_markets()
 
     def prepare_binance_asset_for_db(self): #horrible name, chnage it and chnage implementation
@@ -119,6 +91,10 @@ class Exchange:
     def load_exchange(self, exchange):
         if exchange in self.clients and self.clients[exchange] is not None:
             return
+
         key = "Binance"
         if exchange == key:
-            self.clients[key] = ccxt.binance()
+            self.clients[key] = ccxt.binance({
+                'enableRateLimit': True,
+            })
+            print("Added Binance")

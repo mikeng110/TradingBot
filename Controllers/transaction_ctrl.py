@@ -89,7 +89,7 @@ class TransactionCtrl:
         file.close()
 
     def paper_sell(self, item):
-        price = self.exchange.get_price(item.target_currency + item.base_currency)
+        price = 0 #self.exchange.get_price(item.target_currency + item.base_currency)
         item.sold_at = float(price)
         self.exchange.add_to_paper_balance(item.base_currency, item.quantity * item.sold_at)
         self.model.close_transaction(item)

@@ -34,7 +34,7 @@ class Model(object):
         self.target_currency_data = []
         self.currency_data = {}
 
-        self.ticker_stats = []
+        self.price_info = {}
         self.account_info = []
         self.transactions = []
 
