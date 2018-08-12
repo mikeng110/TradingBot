@@ -1,10 +1,16 @@
-import sqlite3
+from Database.database_manager import *
+from Utils_Library.utils import *
+
 
 class DatabaseUpdate:
-    def __init__(self):
-        self.connection = sqlite3.connect('Database/Exchange.db', check_same_thread=False)
-        self.c = self.connection.cursor()
+    def __init__(self, db):
+        self.db = db
+        self.utils = Utils()
 
+        with DatabaseManager(db) as self.db_manager:
+            self.create_table()
+
+    def create_table(self):
         sql = """
                 CREATE TABLE IF NOT EXISTS
                     Database_Update
@@ -13,32 +19,26 @@ class DatabaseUpdate:
                         updated INTEGER
                     )
                     """
-
-        self.c.execute(sql)
-        self.connection.commit()
+        self.db_manager.query(sql)
 
     def exchange_exist(self, exchange):
-        self.c.execute("SELECT * FROM Database_Update WHERE exchange=?", (exchange,))
-        data = self.c.fetchall()
+        data = self.db_manager.query("SELECT * FROM Database_Update WHERE exchange=?", (exchange,))
         if data.__len__() == 0:
             return False
         return True
 
     def updated(self, exchange): #rewrite
         if self.exchange_exist(exchange):
+            data = self.db_manager.query("SELECT updated FROM Database_Update WHERE exchange=?", (exchange,))
+            flag = bool(data[0][0])
+            return flag
 
-            self.c.execute("SELECT updated FROM Database_Update WHERE exchange=?", (exchange,))
-            data = self.c.fetchall()
-            return bool(data[0])
-
-        return
-
+        return False
 
     def set_updated(self, exchange, updated):
         updated = self.bool_to_int(updated)
         sql = ""
         if self.exchange_exist(exchange):
-
             sql = """
                     UPDATE 
                         Database_Update 
@@ -49,13 +49,9 @@ class DatabaseUpdate:
                         exchange=?
                        """
         else:
-            #self.c.execute("",
-            sql ="""INSERT INTO Database_Update (exchange, updated) VALUES (?, ?)"""
+            sql ="""INSERT INTO Database_Update (updated, exchange) VALUES (?, ?)"""
 
-        self.c.execute(sql, (exchange, updated))
-
-        self.connection.commit()
-
+        self.db_manager.query(sql, (updated, exchange))
 
     def bool_to_int(self, b):  # move to special library
         if b:

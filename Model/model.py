@@ -1,8 +1,4 @@
 from Database.Exchange.tradeable_assets import *
-from Database.Account.transactions import *
-from Database.Exchange.asset_info import *
-from Database.Account.orders import *
-from Database.Account.funds_history import *
 from Database.Account.account import *
 
 from Model.database_handler import *
@@ -12,13 +8,8 @@ from Utils_Library.utils import *
 class Model(object):
     def __init__(self):
 
-        self.ta = TradeableAsset()
-        self.transaction_table = Transactions()
-        self.asset_info = AssetInfoDB()
-        self.orders = Orders()
         self.utils = Utils()
-        self.funds_history = FundsHistoryDB()
-        self.account_balance_db = AccountBalance()
+        #self.account_balance_db = AccountBalance()
 
         self.data_writer_handler = None
 
@@ -33,6 +24,9 @@ class Model(object):
 
         self.paper_trade_status = False
 
+        # --- Databases ----
+        self.db_tradingbot = None
+        self.db_exchange = None
 
         # --- Data ----
         self.current_asset_info = None
@@ -73,7 +67,14 @@ class Model(object):
 
 
     def init_data(self): #move to controller
-        self.currency_data = self.ta.fetch('binance')
+
+        ta = TradeableAsset()
+        self.currency_data = ta.fetch('binance')
+        ta.close()
+
+        self.db_tradingbot = Database("TradingBot.db")
+        self.db_exchange = Database("Database/Exchange.db")
+
 
     def save_transactions(self):
         print("Update database")

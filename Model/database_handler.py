@@ -11,6 +11,9 @@ class DatabaseHandlerModel:
     def update_transaction(self, transaction):
         self.data_queue.put({'func': 'update_transaction', 'data': transaction})
 
+    def update_balance(self, balance_item):
+        self.data_queue.put({'func': 'update_balance', 'data': balance_item})
+
     def ping(self):
         print("Ping")
         self.data_queue.put({'func': "update_transaction", 'data': 0})

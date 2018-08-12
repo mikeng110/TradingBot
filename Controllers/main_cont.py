@@ -9,8 +9,12 @@ from Model.database_handler import *
 from Model.account_model import *
 from Bot.database_writer import *
 import time
-from multiprocessing import Process, Queue
-#import queue
+from Database.database_manager import *
+from Database.Exchange.asset_info import *
+from Database.Account.account import *
+
+import queue
+
 
 class MainController(object):
 
@@ -20,36 +24,33 @@ class MainController(object):
         self.fetcher_bot = None
         self.transaction_bot = None
         self.db_writer_bot = None
-        self.req_queue = Queue()
+        self.req_queue = queue.Queue()
         self.app = app
+        self.asset_info_db = None
+        self.account_balance_db = None
 
         if self.app is not None:
             self.model.graphics_mode = True
         else:
             self.model.graphics_mode = False
         self.tc = TransactionCtrl(model, self.exchange)
-       # print("Success")
 
     def change_login_api_key(self, value):
         self.model.login_api_key = value
         self.model.update_func("login_api_key")
-       # print("Updated login_api_key " + str(value))
 
     def change_login_api_sign(self, value):
         self.model.login_api_sign = value
         self.model.update_func("login_api_sign")
-       # print("Updated login_login_api_sign " + str(value))
 
     def change_strategy_target(self, value):
 
         self.model.strategy_target = value / self.model.strategy_slider_weight
         self.model.update_func("strategy_target")
-      #  print("Updated strategy_target " + str(self.model.strategy_target))
 
     def change_strategy_stop_limit(self, value):
         self.model.strategy_stop_limit = value / self.model.strategy_slider_weight
         self.model.update_func("strategy_stop_limit")
-     #   print("Updated strategy_stop_limit " + str(self.model.strategy_target))
 
     def change_strategy_sliders_weight(self, value):
         self.model.strategy_slider_weight = value
@@ -62,61 +63,50 @@ class MainController(object):
     def change_transaction_amount(self, value):
         self.model.transaction_amount = value
         self.model.update_func("transaction_amount")
-     #   print("transaction_amount " + str(value))
 
     def change_transaction_buy_in(self, value):
         self.model.transaction_buy_in = value
         self.model.update_func("transaction_buy_in")
-     #   print("Updated transaction buy in " + str(value))
 
     def change_transaction_target(self, value):
         self.model.transaction_target = value
         self.model.update_func("transaction_target")
-     #   print("Updated transaction target " + str(value))
 
     def change_transaction_stop_limit(self, value):
         self.model.transaction_stop_limit = value
         self.model.update_func("transaction_stop_limit")
-     #   print("Updated transaction_stop_limit " + str(value))
 
     def change_base_currency(self, value):
         self.model.base_currency = value
         self.model.target_currency_data = self.model.currency_data[value]
 
         if self.model.base_currency != '' and self.model.target_currency != '':  # rewrite so this is not needed
-            d_data = self.model.asset_info.fetch_item("Binance", self.model.base_currency, self.model.target_currency)
+            d_data = self.asset_info_db.fetch_item("Binance", self.model.base_currency, self.model.target_currency)
             self.model.current_asset_info = AssetInfo("Binance", d_data)
             time.sleep(0.5)
 
         self.model.update_func("target_currency_options")
 
-
-     #   print("Updated base currency: " + str(value))
-
     def change_target_currency(self, value):
         self.model.target_currency = value
 
         if self.model.base_currency != '' and self.model.target_currency != '': #rewrite so this is not needed
-            d_data = self.model.asset_info.fetch_item("Binance", self.model.base_currency, self.model.target_currency)
+            d_data = self.asset_info_db.fetch_item("Binance", self.model.base_currency, self.model.target_currency)
             self.model.current_asset_info = AssetInfo("Binance", d_data)
-            time.sleep(0.5)
 
-     #   print("Updated target currency: " + str(value))
+            time.sleep(0.5)
 
     def change_account_balance(self, value):
         self.model.account_balance = value
         self.model.update_func("account_balance")
-    #    print("account_balance " + str(value))
 
     def import_transactions(self):
         io = IoTransactions(self.model.transactions)
         t_list = io.import_file("Exported.txt")
-        #self.tc.load_transactions(t_list)
 
     def export_transactions(self):
         io = IoTransactions(self.model.transactions)
         io.export_file("Exported.txt")
-
 
     def paper_login(self):
         self.model.base_currency = "BTC"
@@ -135,9 +125,30 @@ class MainController(object):
         else:
             self.model.login_msg = "Login Fail"
 
+    def load_paper_balance(self):
+        balance_item = BalanceItem({'coin': 'BTC', 'available_balance': 50, 'locked_balance':0, 'btc_value':0})
+        self.model.data_writer_handler.update_balance(balance_item)
+        balance_item = BalanceItem({'coin': 'BNB', 'available_balance': 80, 'locked_balance': 0, 'btc_value': 0})
+        self.model.data_writer_handler.update_balance(balance_item)
+        balance_item = BalanceItem({'coin': 'ETH', 'available_balance': 120, 'locked_balance': 0, 'btc_value': 0})
+        self.model.data_writer_handler.update_balance(balance_item)
+        balance_item = BalanceItem({'coin': 'USDT', 'available_balance': 200, 'locked_balance': 0, 'btc_value': 0})
+        self.model.data_writer_handler.update_balance(balance_item)
+
     def login_procedure(self):
         self.model.logged_in = True
         self.model.init_data()
+
+        #
+        self.account_balance_db = AccountBalance(self.model.db_tradingbot)
+
+        balance = self.account_balance_db.get_all_balances()
+        self.model.data_writer_handler = DatabaseHandlerModel(self.req_queue)
+
+        #self.load_paper_balance()
+
+        self.model.paper_account_balance = Balance(balance)
+        #
         self.update_data("Binance")
         self.tc.load_transactions()
         self.load_currencies()
@@ -152,35 +163,28 @@ class MainController(object):
         self.model.update_func("base_currency_options")
         self.model.update_func("target_currency_options")
 
-        #print(self.model.asset_info.fetch_item("Binance", "BTC", "ETH"))
-        print("")
-
-    def update_data(self, exchange):#temp palcement
-
-        #balance = Balance(self.data_handler.get_all_balances())
-        #self.model.paper_account_balance = balance
-        #self.data_handler.close()
-
-        self.model.data_writer_handler = DatabaseHandlerModel(self.req_queue)
-
-        dupdate = DatabaseUpdate()
-        if dupdate.updated(exchange):
+    def update_data(self, exchange):
+        database_update_db = DatabaseUpdate(self.model.db_exchange)
+        self.asset_info_db = AssetInfoDB(self.model.db_exchange)
+        if database_update_db.updated("Binance"):
             print("Already updated")
             return
+
+        self.asset_info_db.clear("Binance")
+
         d = self.exchange.prepare_binance_asset_for_db()
         for i, e in enumerate(d):
-            ai = AssetInfo(exchange, e)
-            self.model.asset_info.insert(ai)
+            ai = AssetInfo("Binance", e)
+            self.asset_info_db.insert(ai)
             print(i)
 
-
-        dupdate.set_updated(exchange="Binance", updated=True)
+        database_update_db.set_updated(exchange="Binance", updated=True)
 
     def init_bots(self):
-
         self.fetcher_bot = FetcherBot(self.model, self.exchange)
         self.transaction_bot = TransactionBot(self.model, self.exchange)
-        self.db_writer_bot = DataWriterBot(self.req_queue)
+        self.db_writer_bot = DataWriterBot(self.model, self.req_queue)
+
         self.fetcher_bot.start()
         self.transaction_bot.start()
         self.db_writer_bot.start()
@@ -190,10 +194,6 @@ class MainController(object):
 
     def on_exit(self):
         self.stop_bots()
-        self.model.transaction_table.close()
-        self.model.ta.close()
-       # self.model.account_balance_db.close()
-       # self.model.transaction_table.close()
 
     def stop_bots(self):
         self.fetcher_bot.stop()
@@ -207,7 +207,7 @@ class MainController(object):
         self.model.transaction_target = self.model.transaction_buy_in * (1 + target_procentage)
         self.model.transaction_stop_limit =self.model.transaction_buy_in * (1 - stop_limit_procentage)
 
-        d_data = self.model.asset_info.fetch_item("Binance", self.model.base_currency, self.model.target_currency)
+        d_data = self.asset_info_db.fetch_item("Binance", self.model.base_currency, self.model.target_currency)
         asset_info = AssetInfo("Binance", d_data)
 
         precision = asset_info.precision_price
@@ -220,14 +220,13 @@ class MainController(object):
 
         print("Strategy applied")
 
-
     def execute_order(self): #change name to transaction, dont work debug
-        #self.model.data_writer_handler.ping()
         item = TransactionItem(self.model.transaction_amount, self.model.transaction_buy_in, self.model.transaction_target, self.model.transaction_stop_limit, self.model.base_currency, self.model.target_currency)
         item.active = False
         item.closed = False
 
         item.asset_info = self.model.current_asset_info
+
         if self.tc.legal_transaction(item):
             print("Legal Transaction")
             self.tc.make_pending_transaction(item)
@@ -235,7 +234,7 @@ class MainController(object):
             print("Not Legal transaction")
 
 
-        print("Item added")
+#        print("Item added")
 
 
 

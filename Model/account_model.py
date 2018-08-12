@@ -16,8 +16,12 @@ class BalanceItem:
 
 
 class Balance:
-    def __init__(self, data):
+
+    def __init__(self, data=None):
+        print("Wtf")
         self.balances = {}
+        if data is None:
+            data = [{'coin': 'BTC', 'available_balance':99, 'locked_balance':0, 'btc_value':0}]
         self.load_data(data)
 
     def load_data(self, data):

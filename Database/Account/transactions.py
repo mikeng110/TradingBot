@@ -1,14 +1,17 @@
-from Utils_Library.database_util import *
+from Database.database_manager import *
 from Utils_Library.utils import *
+from Utils_Library.database_util import *
 
 
-class Transactions: #rewrite to fit my transaction items, pending, active and closed.
-    def __init__(self):
-        self.connection = sqlite3.connect('TradingBot.db', check_same_thread=False)
-        self.c = self.connection.cursor()
-        self.create_table()
-        self.database_util = DatabaseUtil("Transactions", self.connection, self.c)
+class Transactions:
+    def __init__(self, db):
+        self.db = db
         self.utils = Utils()
+
+        with DatabaseManager(db) as self.db_manager:
+            self.create_table()
+            (conn, c) = self.db_manager.connection()
+            self.database_util = DatabaseUtil("Asset_Info", conn, c)
 
     def create_table(self):
         sql = """
@@ -30,25 +33,23 @@ class Transactions: #rewrite to fit my transaction items, pending, active and cl
                 quantity REAL
             )
             """
-        self.c.execute(sql)
+        print("Create transaction Table")
+        self.db_manager.query(sql)
 
-    def close(self):
-        self.c.close()
-        self.connection.close()
-        print("Closed Transaction TradingBot.db")
+    def transaction_exist(self, transaction):
+        for row in self.db_manager.query("SELECT uid FROM Transactions"):
+            if row[0] == transaction.uid:
+                return True
+        else:
+            return False
 
-    def destroy(self):
-        print("Destroy all")
-        self.c.execute("DROP TABLE IF EXISTS Transactions")
-        self.connection.commit()
-
-    def insert_transaction(self, transaction):
-        if self.database_util.item_exist("uid", transaction.uid):
+    def insert(self, transaction):
+        if self.transaction_exist(transaction):
             return
 
         paper_trade = self.utils.bool_to_int(transaction.paper_trade)
         sql = """
-        INSERT 
+        INSERT
             INTO 
                 Transactions 
                 (
@@ -83,37 +84,62 @@ class Transactions: #rewrite to fit my transaction items, pending, active and cl
                     ?
                 )
                 """
-        self.c.execute(sql, (transaction.uid, transaction.date_time_active, transaction.date_time_closed, paper_trade, transaction.status, transaction.buy_in, transaction.target,
+        self.db_manager.query(sql, (transaction.uid, transaction.date_time_active, transaction.date_time_closed, paper_trade, transaction.status, transaction.buy_in, transaction.target,
                              transaction.stop_limit, transaction.base_currency, transaction.target_currency, transaction.bought_at,
                              transaction.sold_at, transaction.quantity))
 
-        self.connection.commit()
-
-    def update_transaction(self, transaction):
+    def update(self, transaction):
+        self.insert(transaction)
         paper_trade = self.utils.bool_to_int(transaction.paper_trade)
-        if self.database_util.item_exist("uid", transaction.uid):
-            sql = """
-                UPDATE 
-                    Transactions 
-                SET 
-                    paper_trade=?,
-                    status=?,
-                    buy_in=?,
-                    target=?,
-                    stop_limit=?,
-                    base_currency=?,
-                    target_currency=?,
-                    bought_at=?,
-                    sold_at=?,
-                    quantity=?
-                WHERE 
-                    uid=?
-                """
-            self.c.execute(sql, (paper_trade, transaction.status, transaction.buy_in, transaction.target,
-                                 transaction.stop_limit, transaction.base_currency, transaction.target_currency, transaction.bought_at,
-                                 transaction.sold_at, transaction.quantity, transaction.uid))
 
-            self.connection.commit()
+        sql = """
+            UPDATE 
+                Transactions 
+            SET 
+                paper_trade=?,
+                status=?,
+                buy_in=?,
+                target=?,
+                stop_limit=?,
+                base_currency=?,
+                target_currency=?,
+                bought_at=?,
+                sold_at=?,
+                quantity=?
+            WHERE 
+                uid=?
+            """
+
+        self.db_manager.query(sql, (paper_trade, transaction.status, transaction.buy_in, transaction.target,
+                             transaction.stop_limit, transaction.base_currency, transaction.target_currency, transaction.bought_at,
+                             transaction.sold_at, transaction.quantity, transaction.uid))
 
     def get_all_transactions(self, status):
-        return self.database_util.get_all("status", status)
+        return self.get_all("status", status)
+
+    def get_all(self, identifier_name, identifier_value):
+        ret_data = []
+        trans = "Transactions"
+
+        sql = """
+        SELECT * FROM """ + trans + """ 
+            WHERE """ + identifier_name + """=?"""
+
+        data = self.db_manager.query(sql, (identifier_value,))
+
+        for e in data:
+            ret_data.append(self.database_util.data_row_to_dict(e, self.get_column_names()))
+
+        return ret_data
+
+    def get_column_names(self):
+        data = []
+
+        sql = """SELECT * FROM Transactions"""
+
+        d = self.db_manager.execute(sql)
+
+        for e in d.description:
+            data.append(e[0])
+
+        return data

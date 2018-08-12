@@ -3,7 +3,7 @@ import sqlite3
 
 class TradeableAsset:
     def __init__(self):
-        self.connection = sqlite3.connect('TradingBot.db')
+        self.connection = sqlite3.connect('TradingBot.db', check_same_thread=False, timeout=5)
         self.c = self.connection.cursor()
 
         self.c.execute('CREATE TABLE IF NOT EXISTS Assets(exchange TEXT, base_currency TEXT, target_currencies TEXT)')
@@ -11,6 +11,7 @@ class TradeableAsset:
         self.init_binance()
 
     def close(self):
+        self.connection.commit()
         self.c.close()
         self.connection.close()
         print("Closed Assets TradingBot.db")

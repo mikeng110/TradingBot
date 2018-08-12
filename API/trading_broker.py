@@ -4,7 +4,6 @@ from Model.account_model import *
 import ccxt
 
 
-
 class Exchange:
 
     def __init__(self, model):
@@ -58,25 +57,19 @@ class Exchange:
 
     def add_to_paper_balance(self, currency, amount):
         if not self.connection_active:
-           # balance = self.model.paper_account_balance.balances[currency].available_balance
-           # balance = self.model.paper_account_balance
-          #  balance += amount
+            self.model.paper_account_balance.balances[currency].available_balance += amount
+            balance = self.model.paper_account_balance.balances[currency].available_balance
 
-            locked = 0
-
-            self.model.paper_account_balance += amount
-
-            #self.model.account_balance_db.update(currency, balance, locked, 0)
-            #d = self.model.account_balance_db.get_all_balances()
-            #self.model.paper_account_balance = Balance(d)
+            balance_item = BalanceItem({'coin': currency, 'available_balance': balance, 'locked_balance':0, 'btc_value':0})
+            self.model.data_writer_handler.update_balance(balance_item)
 
     def get_paper_balance(self, currency, amount):
-        return self.model.paper_account_balance  #self.model.paper_account_balance.balances[currency].available_balance
+        return self.model.paper_account_balance.balances[currency].available_balance
 
     def get_balance(self, currency):
         result = None
         if self.model.paper_trade_status:
-            return 10#self.model.paper_account_balance.balances[currency].available_balance
+            return self.get_paper_balance(currency, 0)
         else:
             data = self.model.account_info
 

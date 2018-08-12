@@ -34,9 +34,10 @@ class DatabaseUtil:
             return False
         return True
 
-    def data_row_to_dict(self, data):
+    def data_row_to_dict(self, data, col_names=None):
         ret_data = {}
-        col_names = self.get_column_names()
+        if col_names is None:
+            col_names = self.get_column_names()
 
         if len(col_names) != len(data):
             return []
@@ -51,6 +52,7 @@ class DatabaseUtil:
         sql = """SELECT * FROM """ + self.table_name
 
         self.c.execute(sql)
+
         for e in self.c.description:
             data.append(e[0])
 

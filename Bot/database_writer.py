@@ -1,22 +1,29 @@
 import time
 import threading
-
+from Database.Account.account import *
 from Database.Account.transactions import *
 
 
 class DataWriterBot:
-    def __init__(self, req_queue):
+    def __init__(self, model, req_queue):
+        self.model = model
         self.req_queue = req_queue
         self.running = False
-        self.frequency = 1
+        self.frequency = 10
         self.thread = None
         self.lock = threading.Lock()
         self.data_to_process = None
 
-        self.transactions_db = Transactions()
+        self.transactions_db = None
+        self.account_balance_db = None
 
     def start(self):
+
         self.running = True
+
+        self.transactions_db = Transactions(self.model.db_tradingbot)
+        self.account_balance_db = AccountBalance(self.model.db_tradingbot)
+
         self.thread = threading.Thread(target=self.update)
         self.thread.start()
 
@@ -30,13 +37,13 @@ class DataWriterBot:
 
     def stop(self):
         self.running = False
+        print("Stop")
         self.req_queue.put(None) #require 2 cause the first get ignored, look into it.
         self.req_queue.put(None)
         time.sleep(0.1)
         self.execute_all()
         try:
             self.thread.join()
-            self.transactions_db.close()
             print("Writer Thread destroyed")
 
         except Exception as e:
@@ -46,8 +53,10 @@ class DataWriterBot:
         while self.running:
             self.lock.acquire()
             self.data_to_process = self.req_queue.get(block=True)
+
             if self.data_to_process is None:
                 return
+
             self.process_data(self.data_to_process)
             self.lock.release()
 
@@ -59,10 +68,22 @@ class DataWriterBot:
             print("No data to process")
             return
 
+        if data_to_process['func'] == "update_balance":
+            try:
+                balance_data = data_to_process['data']
+
+                self.account_balance_db.update(balance_data.coin, balance_data.available_balance, balance_data.locked_balance, balance_data.btc_value)
+
+            except sqlite3.OperationalError as e:
+                print(e)
+
+            return
+
         if data_to_process['func'] == "update_transaction":
             print("Process transaction")
             print("Writing tom db")
-            self.transactions_db.insert_transaction(data_to_process['data']) #temprorary solution to make sure data exist.
-            self.transactions_db.update_transaction(data_to_process['data'])
-            print("Finish writing to db")
-
+            try:
+                self.transactions_db.update(data_to_process['data'])
+                print("Finish writing to db")
+            except sqlite3.OperationalError as e:
+                print(e)

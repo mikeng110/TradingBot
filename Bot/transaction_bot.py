@@ -32,13 +32,10 @@ class TransactionBot:
     def update(self):
 
         while self.running:
-            self.lock.acquire()
             for item in self.model.transactions:
                 if item.closed:
                     continue
                 self.process_item(item)
-
-            self.lock.release()
 
             time.sleep(self.frequency)
 
