@@ -3,16 +3,16 @@ from Database.Account.account import *
 
 from Model.database_handler import *
 from Utils_Library.utils import *
+import queue
 
 
 class Model(object):
     def __init__(self):
 
         self.utils = Utils()
-        #self.account_balance_db = AccountBalance()
 
+        self.req_queue = None
         self.data_writer_handler = None
-
 
         self._update_funcs = []
         self._update_func_seperate = {}
@@ -62,9 +62,10 @@ class Model(object):
         self.transaction_target = 0
         self.transaction_stop_limit = 0
 
+#
+
     def close_transaction(self, transaction):
         transaction.closed = True
-
 
     def init_data(self): #move to controller
 
@@ -75,6 +76,8 @@ class Model(object):
         self.db_tradingbot = Database("TradingBot.db")
         self.db_exchange = Database("Database/Exchange.db")
 
+        self.req_queue = queue.Queue()
+        self.data_writer_handler = DatabaseHandlerModel(self.req_queue)
 
     def save_transactions(self):
         print("Update database")

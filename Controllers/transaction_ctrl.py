@@ -109,7 +109,7 @@ class TransactionCtrl:
 
     def calc_quantity(self, price, item):
         amount = item.amount / 100.0
-        balance = float(self.exchange.get_paper_balance(item.base_currency, amount))
+        balance = float(self.exchange.get_paper_balance(item.base_currency))
         q = (amount * balance) / price
 
         precision = item.asset_info.amount_min
@@ -162,7 +162,7 @@ class TransactionCtrl:
     def legal_transaction(self, transaction):
         price_precision = transaction.asset_info.precision_price
         price = round(transaction.buy_in, int(price_precision))
-        balance = float(self.exchange.get_paper_balance(transaction.base_currency, 0))
+        balance = float(self.exchange.get_paper_balance(transaction.base_currency))
 
         quantity = self.calc_quantity(price, transaction)
 

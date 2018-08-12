@@ -18,7 +18,6 @@ class BalanceItem:
 class Balance:
 
     def __init__(self, data=None):
-        print("Wtf")
         self.balances = {}
         if data is None:
             data = [{'coin': 'BTC', 'available_balance':99, 'locked_balance':0, 'btc_value':0}]
@@ -27,7 +26,5 @@ class Balance:
     def load_data(self, data):
         for item in data:
             self.balances[item['coin']] = BalanceItem(item)
-
-        print(self.balances)
 
 

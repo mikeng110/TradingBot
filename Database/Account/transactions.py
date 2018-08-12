@@ -11,7 +11,7 @@ class Transactions:
         with DatabaseManager(db) as self.db_manager:
             self.create_table()
             (conn, c) = self.db_manager.connection()
-            self.database_util = DatabaseUtil("Asset_Info", conn, c)
+            self.database_util = DatabaseUtil("Transactions", conn, c)
 
     def create_table(self):
         sql = """
@@ -33,7 +33,6 @@ class Transactions:
                 quantity REAL
             )
             """
-        print("Create transaction Table")
         self.db_manager.query(sql)
 
     def transaction_exist(self, transaction):

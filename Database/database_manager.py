@@ -32,7 +32,7 @@ class DatabaseManager:
         conn.commit()
 
         return ret_val
-        
+
 
 class Database:
     def __init__(self, path, timeout=5.0):
@@ -62,7 +62,6 @@ class Database:
             c.close()
             conn.close()
             del self._connections[thread_id]
-            print("Removed connection")
 
     def _connection(self):
         thread_id = threading.current_thread().ident
@@ -71,7 +70,6 @@ class Database:
         else:
             conn = self._create_connection()
             self._connections[thread_id] = conn
-            print("Created connection")
             return self._connections[thread_id]
 
     def _create_connection(self):

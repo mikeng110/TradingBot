@@ -5,9 +5,9 @@ from Database.Account.transactions import *
 
 
 class DataWriterBot:
-    def __init__(self, model, req_queue):
+    def __init__(self, model):
         self.model = model
-        self.req_queue = req_queue
+        self.req_queue = None
         self.running = False
         self.frequency = 10
         self.thread = None
@@ -20,6 +20,7 @@ class DataWriterBot:
     def start(self):
 
         self.running = True
+        self.req_queue = self.model.req_queue
 
         self.transactions_db = Transactions(self.model.db_tradingbot)
         self.account_balance_db = AccountBalance(self.model.db_tradingbot)
@@ -31,20 +32,18 @@ class DataWriterBot:
         time.sleep(.5)
         item = self.req_queue.get()
         while (item is not None):
-            print("Execute All")
             self.process_data(item)
             item = self.req_queue.get()
 
     def stop(self):
         self.running = False
-        print("Stop")
         self.req_queue.put(None) #require 2 cause the first get ignored, look into it.
         self.req_queue.put(None)
         time.sleep(0.1)
         self.execute_all()
         try:
             self.thread.join()
-            print("Writer Thread destroyed")
+            print("Thread destroyed")
 
         except Exception as e:
             return None
@@ -64,8 +63,7 @@ class DataWriterBot:
 
     def process_data(self, data_to_process):
 
-        if data_to_process is None or data_to_process == "STOP":
-            print("No data to process")
+        if data_to_process is None:
             return
 
         if data_to_process['func'] == "update_balance":
@@ -80,10 +78,8 @@ class DataWriterBot:
             return
 
         if data_to_process['func'] == "update_transaction":
-            print("Process transaction")
-            print("Writing tom db")
             try:
                 self.transactions_db.update(data_to_process['data'])
-                print("Finish writing to db")
+
             except sqlite3.OperationalError as e:
                 print(e)

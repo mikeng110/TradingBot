@@ -14,7 +14,6 @@ class TradeableAsset:
         self.connection.commit()
         self.c.close()
         self.connection.close()
-        print("Closed Assets TradingBot.db")
 
     def insert_asset(self, exchange, base_currency, target_currencies):
         self.c.execute('Select * FROM Assets WHERE exchange=? AND base_currency=?', (exchange,base_currency,))

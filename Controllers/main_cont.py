@@ -9,11 +9,9 @@ from Model.database_handler import *
 from Model.account_model import *
 from Bot.database_writer import *
 import time
-from Database.database_manager import *
-from Database.Exchange.asset_info import *
-from Database.Account.account import *
 
-import queue
+from Database.Exchange.asset_info import *
+
 
 
 class MainController(object):
@@ -24,7 +22,6 @@ class MainController(object):
         self.fetcher_bot = None
         self.transaction_bot = None
         self.db_writer_bot = None
-        self.req_queue = queue.Queue()
         self.app = app
         self.asset_info_db = None
         self.account_balance_db = None
@@ -138,17 +135,6 @@ class MainController(object):
     def login_procedure(self):
         self.model.logged_in = True
         self.model.init_data()
-
-        #
-       # self.account_balance_db = AccountBalance(self.model.db_tradingbot)
-
-       # balance = self.account_balance_db.get_all_balances()
-        self.model.data_writer_handler = DatabaseHandlerModel(self.req_queue)
-
-        #self.load_paper_balance()
-
-        #self.model.paper_account_balance = Balance(balance)
-        #
         self.update_data("Binance")
         self.tc.load_transactions()
         self.load_currencies()
@@ -183,7 +169,7 @@ class MainController(object):
     def init_bots(self):
         self.fetcher_bot = FetcherBot(self.model, self.exchange)
         self.transaction_bot = TransactionBot(self.model, self.exchange)
-        self.db_writer_bot = DataWriterBot(self.model, self.req_queue)
+        self.db_writer_bot = DataWriterBot(self.model)
 
         self.fetcher_bot.start()
         self.transaction_bot.start()
@@ -232,9 +218,6 @@ class MainController(object):
             self.tc.make_pending_transaction(item)
         else:
             print("Not Legal transaction")
-
-
-#        print("Item added")
 
 
 
