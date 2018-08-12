@@ -42,7 +42,7 @@ class Model(object):
         self.target_currency = ""
 
         self.account_balance = 0
-        self.paper_account_balance = 10# None
+        self.paper_account_balance = None
         self.target_price = 0
 
         # --- Login Properties ---

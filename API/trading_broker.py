@@ -1,6 +1,8 @@
 from binance.client import Client
 from binance.exceptions import *
 from Model.account_model import *
+from Model.account_model import *
+from Database.Account.account import *
 import ccxt
 
 
@@ -12,6 +14,7 @@ class Exchange:
         self.acountless_client = Client("","")
         self.connection_active = False
         self.model = model
+        self.account_balance_db = None
 
     def connect(self, api_key, api_signature):
         if self.connection_active:
@@ -55,6 +58,11 @@ class Exchange:
 
         return balance
 
+    def _init_paper_account_balance(self):
+        self.account_balance_db = AccountBalance(self.model.db_tradingbot)
+        balance = self.account_balance_db.get_all_balances()
+        self.model.paper_account_balance = Balance(balance)
+
     def add_to_paper_balance(self, currency, amount):
         if not self.connection_active:
             self.model.paper_account_balance.balances[currency].available_balance += amount
@@ -63,13 +71,16 @@ class Exchange:
             balance_item = BalanceItem({'coin': currency, 'available_balance': balance, 'locked_balance':0, 'btc_value':0})
             self.model.data_writer_handler.update_balance(balance_item)
 
-    def get_paper_balance(self, currency, amount):
+    def get_paper_balance(self, currency):
+        if self.model.paper_account_balance is None:
+            self._init_paper_account_balance()
+
         return self.model.paper_account_balance.balances[currency].available_balance
 
     def get_balance(self, currency):
         result = None
         if self.model.paper_trade_status:
-            return self.get_paper_balance(currency, 0)
+            return self.get_paper_balance(currency)
         else:
             data = self.model.account_info
 
@@ -104,7 +115,6 @@ class Exchange:
             ret_data.append(entry_data)
 
         return ret_data
-
 
     def load_exchange(self, exchange):
         if exchange in self.clients and self.clients[exchange] is not None:

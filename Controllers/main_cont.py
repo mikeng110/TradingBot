@@ -140,14 +140,14 @@ class MainController(object):
         self.model.init_data()
 
         #
-        self.account_balance_db = AccountBalance(self.model.db_tradingbot)
+       # self.account_balance_db = AccountBalance(self.model.db_tradingbot)
 
-        balance = self.account_balance_db.get_all_balances()
+       # balance = self.account_balance_db.get_all_balances()
         self.model.data_writer_handler = DatabaseHandlerModel(self.req_queue)
 
         #self.load_paper_balance()
 
-        self.model.paper_account_balance = Balance(balance)
+        #self.model.paper_account_balance = Balance(balance)
         #
         self.update_data("Binance")
         self.tc.load_transactions()
