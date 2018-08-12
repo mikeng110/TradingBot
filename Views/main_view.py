@@ -297,7 +297,7 @@ class MainView(QMainWindow):
         self.main_ctrl.change_target_currency(self.target_currency)
 
     def on_execute_btn(self):
-        self.main_ctrl.execute_order()
+        self.main_ctrl.execute_transaction()
 
     def on_menu_transactions_import(self):
         self.main_ctrl.import_transactions()

@@ -206,7 +206,7 @@ class MainController(object):
 
         print("Strategy applied")
 
-    def execute_order(self): #change name to transaction, dont work debug
+    def execute_transaction(self):
         item = TransactionItem(self.model.transaction_amount, self.model.transaction_buy_in, self.model.transaction_target, self.model.transaction_stop_limit, self.model.base_currency, self.model.target_currency)
         item.active = False
         item.closed = False
