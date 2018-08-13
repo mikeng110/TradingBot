@@ -40,7 +40,7 @@ class ConsoleMain:
         account.insert_balance('BTC', '', 0, 0, 0, 0)
         account.update_balance('BTA', 5)
 
-        tradeable = TradeableAsset()
+        tradeable = TradableAsset()
 
 
 

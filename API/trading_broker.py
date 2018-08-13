@@ -15,6 +15,34 @@ class Exchange:
         self.load_exchange(exchange)
         return self.clients[exchange].fetchTicker(symbol)
 
+    def get_currency_pairs(self, exchange):
+        ret_data = {}
+        self.load_exchange(exchange)
+
+        #add logic to check if the data is already in the database and stuff.
+
+        data = self.clients[exchange].fetchTickers()
+        if data is None:
+            return
+
+        for key, value in data.items():
+            temp = key.split("/")
+            target = temp[0]
+            base = temp[1]
+
+            if base not in ret_data:
+                ret_data[base] = ""
+
+            ret_data[base] += target + ","
+
+        for key, value in ret_data.items(): #remove the last comma
+            ret_data[key] = value[:-1]
+
+        return ret_data
+
+
+
+
     def get_price(self, exchange, symbol):
         if exchange in self.model.price_info:
             if symbol in self.model.price_info[exchange]:
@@ -67,7 +95,6 @@ class Exchange:
 
     def get_all_asset_info(self, exchange):
         self.load_exchange(exchange)
-        print("if you see this you are fucked")
         return self.clients[exchange].load_markets()
 
     def prepare_binance_asset_for_db(self): #horrible name, chnage it and chnage implementation

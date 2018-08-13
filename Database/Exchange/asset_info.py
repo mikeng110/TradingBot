@@ -68,15 +68,27 @@ class AssetInfoDB:
                              asset_info.precision_base_currency, asset_info.precision_target_currency))
 
     def fetch_item(self, exchange, base_currency, target_currency):
-        data = self.db_manager.query("Select * From Asset_Info WHERE exchange=? AND base_currency=? AND target_currency=?", (exchange, base_currency, target_currency))
+
+        sql = """
+            SELECT 
+                *
+            FROM 
+                Asset_Info
+            WHERE
+                exchange=?
+            AND
+                base_currency=?
+            AND
+                target_currency=?
+        """
+
+
+        data = self.db_manager.query(sql, (exchange, base_currency, target_currency))
 
         return self.database_util.data_row_to_dict(data[0], self.get_column_names())
 
     def fetch(self, exchange):
-        data = {}
-        self.c.execute("Select * From Asset_Info WHERE exchange=?", (exchange,))
-        for row in self.c.fetchall():
-            pass
+        data = self.db_manager.query("Select * From Asset_Info WHERE exchange=?", (exchange,))
 
         return data
 

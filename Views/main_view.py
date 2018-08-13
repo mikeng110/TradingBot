@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from Views.gen.MainWindowGui import Ui_MainWindow
 from Views.portfolio_manager_view import *
+from Views.exchange_manager_view import *
 
 
 class MainView(QMainWindow):
@@ -160,6 +161,7 @@ class MainView(QMainWindow):
         self.model = model
         self.main_ctrl = main_ctrl
         self.pm_ui = PortfolioManagerView()
+        self.em_ui = ExchangeManagerView()
         self.build_ui()
         self.reg_func()
 
@@ -188,9 +190,9 @@ class MainView(QMainWindow):
 
     def connect_signals(self):
         # connect signal to method
-        self.ui.Api_Key_tbx.textChanged.connect(self.on_login_api_key)
-        self.ui.Api_Signature_tbx.textChanged.connect(self.on_login_api_sign)
-        self.ui.Login_Connect_btn.clicked.connect(self.on_login_btn)
+      #  self.ui.Api_Key_tbx.textChanged.connect(self.on_login_api_key)
+       # self.ui.Api_Signature_tbx.textChanged.connect(self.on_login_api_sign)
+      #  self.ui.Login_Connect_btn.clicked.connect(self.on_login_btn)
 
         self.ui.Paper_trade_chbx.stateChanged.connect(self.on_paper_trade)
 
@@ -215,6 +217,8 @@ class MainView(QMainWindow):
         self.ui.Menu_Transactions_Export.triggered.connect(self.on_menu_transactions_export)
 
         self.ui.Menu_Portfolio_View.triggered.connect(self.on_portfolio_manager_view)
+        self.ui.Menu_Exchange_View.triggered.connect(self.on_exchange_manager_view)
+
 
     def init_order_views(self):
         self.model.pending_order_model = QStandardItemModel()
@@ -231,8 +235,6 @@ class MainView(QMainWindow):
     def set_logged_in_mode(self, logged_in):
         self.ui.Strategy_gbx.setEnabled(logged_in)
         self.ui.Transaction_gbx.setEnabled(logged_in)
-        self.ui.Login_gbx.setEnabled(not logged_in)
-
 
     def on_login_btn(self):
         self.main_ctrl.login()
@@ -307,6 +309,9 @@ class MainView(QMainWindow):
 
     def on_portfolio_manager_view(self):
         self.pm_ui.exec_()
+
+    def on_exchange_manager_view(self):
+        self.em_ui.exec()
 
     #
 

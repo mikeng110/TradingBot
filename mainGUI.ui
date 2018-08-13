@@ -60,7 +60,7 @@
      <string>Pending Transactions</string>
     </property>
    </widget>
-   <widget class="QGroupBox" name="Login_gbx">
+   <widget class="QGroupBox" name="Exchanges_gbx">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -70,34 +70,8 @@
      </rect>
     </property>
     <property name="title">
-     <string>Login</string>
+     <string>Exchanges</string>
     </property>
-    <widget class="QLineEdit" name="Api_Key_tbx">
-     <property name="geometry">
-      <rect>
-       <x>90</x>
-       <y>30</y>
-       <width>351</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="echoMode">
-      <enum>QLineEdit::Password</enum>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="Api_Signature_tbx">
-     <property name="geometry">
-      <rect>
-       <x>90</x>
-       <y>70</y>
-       <width>351</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="echoMode">
-      <enum>QLineEdit::Password</enum>
-     </property>
-    </widget>
     <widget class="QLabel" name="Login_Status_Display_lbl">
      <property name="geometry">
       <rect>
@@ -124,30 +98,47 @@
       <string>Connect</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_2">
+    <widget class="QComboBox" name="Exchanges_cmbx">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>70</y>
-       <width>71</width>
-       <height>16</height>
+       <y>20</y>
+       <width>311</width>
+       <height>22</height>
       </rect>
      </property>
-     <property name="text">
-      <string>Api_Signature:</string>
-     </property>
+     <item>
+      <property name="text">
+       <string>Binance</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Unknown</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Something Else</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Coinbase</string>
+      </property>
+     </item>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QCheckBox" name="Paper_trade_chbx">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>51</width>
-       <height>16</height>
+       <x>290</x>
+       <y>110</y>
+       <width>81</width>
+       <height>17</height>
       </rect>
      </property>
      <property name="text">
-      <string>Api_Key:</string>
+      <string>Paper Trade</string>
      </property>
     </widget>
    </widget>
@@ -406,7 +397,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>180</y>
+      <y>170</y>
       <width>471</width>
       <height>141</height>
      </rect>
@@ -613,19 +604,6 @@
      </property>
     </widget>
    </widget>
-   <widget class="QCheckBox" name="Paper_trade_chbx">
-    <property name="geometry">
-     <rect>
-      <x>400</x>
-      <y>160</y>
-      <width>101</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Paper Trade</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
@@ -673,8 +651,15 @@
     </property>
     <addaction name="Menu_Portfolio_View"/>
    </widget>
+   <widget class="QMenu" name="menuExchanges">
+    <property name="title">
+     <string>Exchanges</string>
+    </property>
+    <addaction name="Menu_Exchange_View"/>
+   </widget>
    <addaction name="menuTransactions"/>
    <addaction name="menuPortfolio"/>
+   <addaction name="menuExchanges"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionImport">
@@ -705,6 +690,11 @@
   <action name="Menu_Portfolio_View">
    <property name="text">
     <string>View</string>
+   </property>
+  </action>
+  <action name="Menu_Exchange_View">
+   <property name="text">
+    <string>Exchange Manager</string>
    </property>
   </action>
  </widget>

@@ -68,16 +68,17 @@ class Model(object):
         transaction.closed = True
 
     def init_data(self): #move to controller
-
-        ta = TradeableAsset()
-        self.currency_data = ta.fetch('binance')
-        ta.close()
-
         self.db_tradingbot = Database("TradingBot.db")
         self.db_exchange = Database("Database/Exchange.db")
 
         self.req_queue = queue.Queue()
         self.data_writer_handler = DatabaseHandlerModel(self.req_queue)
+
+       # data = self.exchange.get_currency_pairs("Binance")
+
+        #tradable_asset.load(data, "Binance")
+        tradable_asset = TradableAsset(self.db_exchange)
+        self.currency_data = tradable_asset.fetch("Binance")
 
     def save_transactions(self):
         print("Update database")

@@ -11,6 +11,7 @@ from Bot.database_writer import *
 import time
 
 from Database.Exchange.asset_info import *
+from Database.Exchange.tradeable_assets import *
 
 
 
@@ -76,11 +77,11 @@ class MainController(object):
     def change_base_currency(self, value):
         self.model.base_currency = value
         self.model.target_currency_data = self.model.currency_data[value]
+        self.model.target_currency = self.model.target_currency_data[0]
 
         if self.model.base_currency != '' and self.model.target_currency != '':  # rewrite so this is not needed
             d_data = self.asset_info_db.fetch_item("Binance", self.model.base_currency, self.model.target_currency)
             self.model.current_asset_info = AssetInfo("Binance", d_data)
-            time.sleep(0.5)
 
         self.model.update_func("target_currency_options")
 
@@ -90,8 +91,6 @@ class MainController(object):
         if self.model.base_currency != '' and self.model.target_currency != '': #rewrite so this is not needed
             d_data = self.asset_info_db.fetch_item("Binance", self.model.base_currency, self.model.target_currency)
             self.model.current_asset_info = AssetInfo("Binance", d_data)
-
-            time.sleep(0.5)
 
     def change_account_balance(self, value):
         self.model.account_balance = value
@@ -135,6 +134,7 @@ class MainController(object):
     def login_procedure(self):
         self.model.logged_in = True
         self.model.init_data()
+
         self.update_data("Binance")
         self.tc.load_transactions()
         self.load_currencies()
