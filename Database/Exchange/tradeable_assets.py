@@ -35,7 +35,6 @@ class TradableAsset:
         for key, val in data.items():
             self.insert_asset(exchange, key, val)
 
-
     def fetch(self, exchange):
         ret_data = {}
         data = self.db_manager.query("Select * From Assets WHERE exchange=?", (exchange,))

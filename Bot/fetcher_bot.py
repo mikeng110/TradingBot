@@ -26,12 +26,12 @@ class FetcherBot:
         except Exception as e:
             return None
 
-    def update(self):
+    def update(self): #Next step, write so you can fetich price of multiple exchanges.
 
         while self.running:
             self.lock.acquire()
-            exchange = "Binance"
-            symbol = self.model.target_currency + "/" + self.model.base_currency
+            exchange = self.model.current_exchange
+            symbol = self.model.current_asset_info.symbol
 
             data = self.exchange.fetch_price_info(exchange, symbol)
 

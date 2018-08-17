@@ -53,6 +53,14 @@ class DatabaseUpdate:
 
         self.db_manager.query(sql, (updated, exchange))
 
+    def get_updated(self):
+        ret_data = []
+        data = self.db_manager.query("SELECT exchange FROM Database_Update WHERE updated=1")
+        for e in data:
+            ret_data.append(e[0])
+
+        return ret_data
+
     def bool_to_int(self, b):  # move to special library
         if b:
             return 1

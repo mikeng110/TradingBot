@@ -7,6 +7,16 @@ from Views.exchange_manager_view import *
 
 class MainView(QMainWindow):
 
+
+    @property
+    def exchange_data(self):
+        pass
+
+    @exchange_data.setter
+    def exchange_data(self, value):
+        self.ui.Exchanges_cmbx.clear()
+        self.ui.Exchanges_cmbx.addItems(value)
+
     # --- Login Properties ---
     @property
     def login_api_key(self):
@@ -161,12 +171,16 @@ class MainView(QMainWindow):
         self.model = model
         self.main_ctrl = main_ctrl
         self.pm_ui = PortfolioManagerView()
-        self.em_ui = ExchangeManagerView()
+        self.em_ui = ExchangeManagerView(model)
         self.build_ui()
         self.reg_func()
 
+        self.main_ctrl.load_exchange_data()
+
+
     def reg_func(self):
         # register func with model for future model update announcements
+        self.model.subscribe_func(self.update_exchanges_data, "exchanges_data")
         self.model.subscribe_func(self.update_login_api_key, "login_api_key")
         self.model.subscribe_func(self.update_login_api_sign, "login_api_sign")
         self.model.subscribe_func(self.update_strategy_target, "strategy_target")
@@ -192,7 +206,8 @@ class MainView(QMainWindow):
         # connect signal to method
       #  self.ui.Api_Key_tbx.textChanged.connect(self.on_login_api_key)
        # self.ui.Api_Signature_tbx.textChanged.connect(self.on_login_api_sign)
-      #  self.ui.Login_Connect_btn.clicked.connect(self.on_login_btn)
+
+        self.ui.Login_Connect_btn.clicked.connect(self.on_login_btn)
 
         self.ui.Paper_trade_chbx.stateChanged.connect(self.on_paper_trade)
 
@@ -237,9 +252,14 @@ class MainView(QMainWindow):
         self.ui.Transaction_gbx.setEnabled(logged_in)
 
     def on_login_btn(self):
-        self.main_ctrl.login()
-        self.login_msg = self.model.login_msg
-        self.logged_in = self.model.logged_in
+        self.ui.Paper_trade_chbx.setEnabled(True)
+        self.set_logged_in_mode(True)
+        self.main_ctrl.change_exchange(self.ui.Exchanges_cmbx.currentText())
+        self.main_ctrl.paper_login()
+
+        #self.main_ctrl.login()
+       # self.login_msg = self.model.login_msg
+       # self.logged_in = self.model.logged_in
 
     def on_login_api_key(self):
         self.main_ctrl.change_login_api_key(self.login_api_key)
@@ -278,7 +298,6 @@ class MainView(QMainWindow):
         stop_limit = str(self.model.transaction_stop_limit)
         self.ui.Transaction_Stop_Limit_tbx.setText(stop_limit)
 
-
     def on_transaction_amount(self):
         self.main_ctrl.change_transaction_amount(self.transaction_amount)
 
@@ -312,8 +331,11 @@ class MainView(QMainWindow):
 
     def on_exchange_manager_view(self):
         self.em_ui.exec()
+        self.main_ctrl.load_exchange_data()
 
     #
+    def update_exchanges_data(self):
+        self.exchange_data = self.model.exchanges_data
 
     def update_login_api_key(self):
         self.login_api_key = self.model.login_api_key

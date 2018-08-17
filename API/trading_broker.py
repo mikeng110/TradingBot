@@ -1,5 +1,8 @@
 from Model.account_model import *
 from Database.Account.account import *
+from API.Exchanges.binance_exchange import *
+from API.Exchanges.bitmex_exchange import *
+from API.Exchanges.coinbase_pro_exchange import *
 import ccxt
 
 
@@ -43,10 +46,13 @@ class Exchange:
 
 
 
-    def get_price(self, exchange, symbol):
+    def get_price(self, exchange, symbol): #change to get proper price. Current hack is to use closed in case bid is none.
         if exchange in self.model.price_info:
             if symbol in self.model.price_info[exchange]:
-                return self.model.price_info[exchange][symbol]['bid']
+                val = self.model.price_info[exchange][symbol]['bid']
+                if val is None:
+                    val = self.model.price_info[exchange][symbol]['close']
+                return val
 
     def get_all_asset_names(self):
         return ["EOS", "ETH", "XLM", "ADA"]
@@ -95,6 +101,7 @@ class Exchange:
 
     def get_all_asset_info(self, exchange):
         self.load_exchange(exchange)
+
         return self.clients[exchange].load_markets()
 
     def prepare_binance_asset_for_db(self): #horrible name, chnage it and chnage implementation
@@ -121,7 +128,23 @@ class Exchange:
 
         key = "Binance"
         if exchange == key:
-            self.clients[key] = ccxt.binance({
-                'enableRateLimit': True,
-            })
-            print("Added Binance")
+            self.clients[key] = BinanceExchange()
+            return
+
+        key = "Coinbase Pro"
+        if exchange == key:
+            self.clients[key] = CoinbaseProExchange()
+            return
+
+        key = "Bitfinex"
+        if exchange == key:
+            self.clients[key] = None
+            return
+
+        key = "BitMEX"
+        if exchange == key:
+            self.clients[key] = BitmexExchange()
+            return
+
+
+

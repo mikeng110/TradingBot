@@ -11,9 +11,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Exchange_Form(object):
     def setupUi(self, Exchange_Form):
         Exchange_Form.setObjectName("Exchange_Form")
-        Exchange_Form.resize(519, 512)
+        Exchange_Form.resize(514, 536)
         self.Login_gbx = QtWidgets.QGroupBox(Exchange_Form)
-        self.Login_gbx.setGeometry(QtCore.QRect(20, 340, 471, 141))
+        self.Login_gbx.setGeometry(QtCore.QRect(20, 380, 471, 141))
         self.Login_gbx.setObjectName("Login_gbx")
         self.Api_Key_tbx = QtWidgets.QLineEdit(self.Login_gbx)
         self.Api_Key_tbx.setGeometry(QtCore.QRect(90, 30, 351, 20))
@@ -41,10 +41,15 @@ class Ui_Exchange_Form(object):
         self.Exchange_lvw = QtWidgets.QListWidget(Exchange_Form)
         self.Exchange_lvw.setGeometry(QtCore.QRect(20, 10, 471, 321))
         self.Exchange_lvw.setObjectName("Exchange_lvw")
-        item = QtWidgets.QListWidgetItem()
-        self.Exchange_lvw.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.Exchange_lvw.addItem(item)
+        self.download_update_btn = QtWidgets.QPushButton(Exchange_Form)
+        self.download_update_btn.setGeometry(QtCore.QRect(410, 350, 75, 23))
+        self.download_update_btn.setObjectName("download_update_btn")
+        self.progressBar = QtWidgets.QProgressBar(Exchange_Form)
+        self.progressBar.setGeometry(QtCore.QRect(20, 350, 381, 21))
+        self.progressBar.setProperty("value", 0)
+        self.progressBar.setTextVisible(True)
+        self.progressBar.setInvertedAppearance(False)
+        self.progressBar.setObjectName("progressBar")
 
         self.retranslateUi(Exchange_Form)
         QtCore.QMetaObject.connectSlotsByName(Exchange_Form)
@@ -58,13 +63,7 @@ class Ui_Exchange_Form(object):
         self.label_2.setText(_translate("Exchange_Form", "Api_Signature:"))
         self.label.setText(_translate("Exchange_Form", "Api_Key:"))
         self.Paper_Trade_cbx.setText(_translate("Exchange_Form", "Paper Login"))
-        __sortingEnabled = self.Exchange_lvw.isSortingEnabled()
-        self.Exchange_lvw.setSortingEnabled(False)
-        item = self.Exchange_lvw.item(0)
-        item.setText(_translate("Exchange_Form", "Binance"))
-        item = self.Exchange_lvw.item(1)
-        item.setText(_translate("Exchange_Form", "Coinbase"))
-        self.Exchange_lvw.setSortingEnabled(__sortingEnabled)
+        self.download_update_btn.setText(_translate("Exchange_Form", "Dowload"))
 
 
 if __name__ == "__main__":

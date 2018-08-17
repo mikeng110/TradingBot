@@ -18,6 +18,7 @@ class AssetInfoDB:
                     Asset_Info
                     (
                         exchange TEXT,
+                        symbol TEXT,
                         base_currency TEXT,
                         target_currency TEXT,
                         amount_min REAL,
@@ -40,6 +41,7 @@ class AssetInfoDB:
             Asset_Info
             (
                 exchange,
+                symbol,
                 base_currency,
                 target_currency,
                 amount_min,
@@ -59,11 +61,12 @@ class AssetInfoDB:
                 ?,
                 ?,
                 ?,
+                ?,
                 ?
             )
             """
 
-        self.db_manager.query(sql, (asset_info.exchange, asset_info.base_currency, asset_info.target_currency, asset_info.amount_min,
+        self.db_manager.query(sql, (asset_info.exchange, asset_info.symbol, asset_info.base_currency, asset_info.target_currency, asset_info.amount_min,
                              asset_info.amount_max, asset_info.precision_price, asset_info.precision_amount,
                              asset_info.precision_base_currency, asset_info.precision_target_currency))
 

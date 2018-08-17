@@ -27,11 +27,18 @@ class MainController(object):
         self.asset_info_db = None
         self.account_balance_db = None
 
+        self.temp_exchange_holder = "" #change name
+
+        self.model.init_data()
+
         if self.app is not None:
             self.model.graphics_mode = True
         else:
             self.model.graphics_mode = False
         self.tc = TransactionCtrl(model, self.exchange)
+
+    def change_exchange(self, value):
+        self.model.current_exchange = value
 
     def change_login_api_key(self, value):
         self.model.login_api_key = value
@@ -80,8 +87,8 @@ class MainController(object):
         self.model.target_currency = self.model.target_currency_data[0]
 
         if self.model.base_currency != '' and self.model.target_currency != '':  # rewrite so this is not needed
-            d_data = self.asset_info_db.fetch_item("Binance", self.model.base_currency, self.model.target_currency)
-            self.model.current_asset_info = AssetInfo("Binance", d_data)
+            d_data = self.asset_info_db.fetch_item(self.model.current_exchange, self.model.base_currency, self.model.target_currency)
+            self.model.current_asset_info = AssetInfo(self.model.current_exchange, d_data)
 
         self.model.update_func("target_currency_options")
 
@@ -89,8 +96,8 @@ class MainController(object):
         self.model.target_currency = value
 
         if self.model.base_currency != '' and self.model.target_currency != '': #rewrite so this is not needed
-            d_data = self.asset_info_db.fetch_item("Binance", self.model.base_currency, self.model.target_currency)
-            self.model.current_asset_info = AssetInfo("Binance", d_data)
+            d_data = self.asset_info_db.fetch_item(self.model.current_exchange, self.model.base_currency, self.model.target_currency)
+            self.model.current_asset_info = AssetInfo(self.model.current_exchange, d_data)
 
     def change_account_balance(self, value):
         self.model.account_balance = value
@@ -105,8 +112,10 @@ class MainController(object):
         io.export_file("Exported.txt")
 
     def paper_login(self):
-        self.model.base_currency = "BTC"
-        self.model.target_currency = "ETH"
+       # self.model.base_currency = "BTC"
+       # self.model.target_currency = "ETH"
+        self.model.paper_trade_status = True
+        self.load_exchange_data()
         self.login_procedure()
 
     def login(self):
@@ -133,25 +142,40 @@ class MainController(object):
 
     def login_procedure(self):
         self.model.logged_in = True
-        self.model.init_data()
-
-        self.update_data("Binance")
+        self.asset_info_db = AssetInfoDB(self.model.db_exchange)
+       # self.update_data("Binance")
         self.tc.load_transactions()
         self.load_currencies()
+
         self.init_bots()
 
-    def load_currencies(self):
-        self.model.base_currency = "BTC"
-        self.model.target_currency = "ETH"
-        #self.exchange.load_data_to_model("Binance")
+    def load_exchange_data(self):
+        database_update_db = DatabaseUpdate(self.model.db_exchange)
+        self.model.exchanges_data = database_update_db.get_updated()
 
-        self.model.target_currency_data = self.exchange.get_all_asset_names()
+        if len(self.model.exchanges_data) > 0:
+            if self.model.current_exchange is None:
+                self.model.current_exchange = self.model.exchanges_data[0]
+
+            self.model.update_func("exchanges_data")
+
+    def load_currencies(self):
+      #  self.model.base_currency = "BTC"
+    #    self.model.target_currency = "ETH"
+        #self.exchange.load_data_to_model("Binance")
+        tradable_asset = TradableAsset(self.model.db_exchange)
+        self.model.currency_data = tradable_asset.fetch(self.model.current_exchange)
+
+        self.model.base_currency_data = self.get_base_currency_data(self.model.currency_data)  #self.exchange.get_all_asset_names()
+        first = next(iter(self.model.currency_data))
+        self.model.target_currency_data = self.model.currency_data[first]
         self.model.update_func("base_currency_options")
         self.model.update_func("target_currency_options")
 
     def update_data(self, exchange):
         database_update_db = DatabaseUpdate(self.model.db_exchange)
-        self.asset_info_db = AssetInfoDB(self.model.db_exchange)
+        print(database_update_db.get_updated())
+
         if database_update_db.updated("Binance"):
             print("Already updated")
             return
@@ -218,6 +242,15 @@ class MainController(object):
             self.tc.make_pending_transaction(item)
         else:
             print("Not Legal transaction")
+
+
+    def get_base_currency_data(self, data):
+        ret_data = []
+        for key, value in data.items():
+            ret_data.append(key)
+
+        return ret_data
+
 
 
 

@@ -1,6 +1,7 @@
 class AssetInfo:
     def __init__(self, exchange, dict_data):
         self.exchange = exchange
+        self.symbol = None
         self.base_currency = None
         self.target_currency = None
         self.amount_min = None
@@ -13,6 +14,7 @@ class AssetInfo:
         self.unpack_data(dict_data)
 
     def unpack_data(self, dict_data):
+        self.symbol = dict_data['symbol']
         self.base_currency = dict_data['base_currency']
         self.target_currency = dict_data['target_currency']
         self.amount_min = float(dict_data['amount_min'])

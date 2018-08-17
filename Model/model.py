@@ -11,6 +11,12 @@ class Model(object):
 
         self.utils = Utils()
 
+        # --- Exchanges ------------
+        self.exchanges_data = []
+
+        self.current_exchange = None
+        self.exchanges = {}
+
         self.req_queue = None
         self.data_writer_handler = None
 
