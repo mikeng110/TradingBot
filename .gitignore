@@ -62,3 +62,6 @@ build/Main/out00-PYZ.toc
 Database/Exchange.db
 TradingBot.db
 *.txt
+Database/Exchange.db
+*.db
+Output.txt
