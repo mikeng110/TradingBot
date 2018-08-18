@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'mainGUI.ui'
+# Form implementation generated from reading ui file 'mainGui.ui'
 #
 # Created by: PyQt5 UI code generator 5.6
 #
@@ -49,6 +49,7 @@ class Ui_MainWindow(object):
         self.label_4.setObjectName("label_4")
         self.Transaction_Symbol_cbx = QtWidgets.QComboBox(self.Transaction_gbx)
         self.Transaction_Symbol_cbx.setGeometry(QtCore.QRect(380, 100, 71, 22))
+        self.Transaction_Symbol_cbx.setEditable(False)
         self.Transaction_Symbol_cbx.setObjectName("Transaction_Symbol_cbx")
         self.Transaction_Execute_btn = QtWidgets.QPushButton(self.Transaction_gbx)
         self.Transaction_Execute_btn.setGeometry(QtCore.QRect(380, 140, 75, 23))
@@ -85,10 +86,6 @@ class Ui_MainWindow(object):
         self.Transaction_Stop_Limit_tbx = QtWidgets.QLineEdit(self.Transaction_gbx)
         self.Transaction_Stop_Limit_tbx.setGeometry(QtCore.QRect(90, 110, 131, 20))
         self.Transaction_Stop_Limit_tbx.setObjectName("Transaction_Stop_Limit_tbx")
-        self.Transaction_Currency_cbx = QtWidgets.QComboBox(self.Transaction_gbx)
-        self.Transaction_Currency_cbx.setGeometry(QtCore.QRect(380, 70, 71, 22))
-        self.Transaction_Currency_cbx.setEditable(False)
-        self.Transaction_Currency_cbx.setObjectName("Transaction_Currency_cbx")
         self.label_16 = QtWidgets.QLabel(self.Transaction_gbx)
         self.label_16.setGeometry(QtCore.QRect(310, 70, 51, 20))
         self.label_16.setObjectName("label_16")
@@ -98,6 +95,10 @@ class Ui_MainWindow(object):
         self.Transaction_Current_Price_Display_lbl = QtWidgets.QLabel(self.Transaction_gbx)
         self.Transaction_Current_Price_Display_lbl.setGeometry(QtCore.QRect(310, 40, 151, 20))
         self.Transaction_Current_Price_Display_lbl.setObjectName("Transaction_Current_Price_Display_lbl")
+        self.Transaction_Currency_cbx = QtWidgets.QComboBox(self.Transaction_gbx)
+        self.Transaction_Currency_cbx.setGeometry(QtCore.QRect(380, 70, 71, 22))
+        self.Transaction_Currency_cbx.setEditable(False)
+        self.Transaction_Currency_cbx.setObjectName("Transaction_Currency_cbx")
         self.Clear_Pending_Orders_btn = QtWidgets.QCommandLinkButton(self.centralwidget)
         self.Clear_Pending_Orders_btn.setGeometry(QtCore.QRect(620, 490, 191, 41))
         self.Clear_Pending_Orders_btn.setObjectName("Clear_Pending_Orders_btn")

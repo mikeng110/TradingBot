@@ -1,12 +1,14 @@
 import ccxt
-
+from Utils_Library.utils import *
 class BinanceExchange:
     def __init__(self):
         self.connection = None
+        self.utils = None
         self.init()
 
 
     def init(self):
+        self.utils = Utils()
         self.connection = ccxt.binance({
                 'enableRateLimit': True,
             })
@@ -21,16 +23,5 @@ class BinanceExchange:
             if value["active"] == False:
                 continue
 
-            temp = {}
-            temp["symbol"] = value["symbol"]
-            temp["base_currency"] = value["quote"]
-            temp["target_currency"] = value["base"]
-            temp["amount_min"] = value["limits"]["amount"]["min"]
-            temp["amount_max"] = value["limits"]["amount"]["max"]
-            temp["precision_price"] = value["precision"]["price"]
-            temp["precision_amount"] = value["precision"]["amount"]
-            temp["precision_base_currency"] = value["precision"]["quote"]
-            temp["precision_target_currency"] = value["precision"]["base"]
-
-            ret_data[key] = temp
+            ret_data[key] = self.utils.parse_market_entry(value)
         return ret_data

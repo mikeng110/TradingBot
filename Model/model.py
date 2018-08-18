@@ -36,8 +36,10 @@ class Model(object):
 
         # --- Data ----
         self.current_asset_info = None
-        self.base_currency_data = ["BTC", "BNB", "ETH", "USDT"]
+        self.base_currency_data = []
         self.target_currency_data = []
+        self.new_base_currency_data = []
+        self.new_target_currency_data = []
         self.currency_data = {}
 
         self.price_info = {}
@@ -80,11 +82,8 @@ class Model(object):
         self.req_queue = queue.Queue()
         self.data_writer_handler = DatabaseHandlerModel(self.req_queue)
 
-       # data = self.exchange.get_currency_pairs("Binance")
-
-        #tradable_asset.load(data, "Binance")
-        tradable_asset = TradableAsset(self.db_exchange)
-        self.currency_data = tradable_asset.fetch("Binance")
+       # tradable_asset = TradableAsset(self.db_exchange)
+        #self.currency_data = tradable_asset.fetch("Binance")
 
     def save_transactions(self):
         print("Update database")

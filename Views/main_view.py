@@ -146,24 +146,36 @@ class MainView(QMainWindow):
     def target_price(self, value):
         self.ui.Transaction_Current_Price_Display_lbl.setText("Asset Price: " + str(value) + " " + self.model.base_currency)
 
-    @property
-    def base_currency_data(self):
-        pass
+   # @property
+    #def base_currency_data(self):
+     #   pass
 
-    @base_currency_data.setter
-    def base_currency_data(self, value):
-        self.ui.Transaction_Currency_cbx.clear()
-        self.ui.Transaction_Currency_cbx.addItems(value)
+  #  @base_currency_data.setter
+   # def base_currency_data(self, value):
 
-    @property
-    def target_currency_data(self):
-        pass
+    #    self.ui.Transaction_Currency_cbx.clear()
 
-    @target_currency_data.setter
-    def target_currency_data(self, value):
-        self.ui.Transaction_Symbol_cbx.clear()
-        self.ui.Transaction_Symbol_cbx.addItems(value)
+#        self.ui.Transaction_Currency_cbx.addItems(value)
 
+
+ #       self.ui.Transaction_Currency_cbx.clear()
+
+
+#        self.ui.Transaction_Currency_cbx.addItems(value)
+
+
+
+
+  #  @property
+   # def target_currency_data(self):
+    #    pass
+
+    #@target_currency_data.setter
+    #ef target_currency_data(self, value):
+     #   self.ui.Transaction_Symbol_cbx.clear()
+      #  self.ui.Transaction_Symbol_cbx.addItems(value)
+       # self.ui.Transaction_Symbol_cbx.clear()
+        #self.ui.Transaction_Symbol_cbx.addItems(value)
 
     def __init__(self, model, main_ctrl):
         super(MainView, self).__init__()
@@ -252,14 +264,9 @@ class MainView(QMainWindow):
         self.ui.Transaction_gbx.setEnabled(logged_in)
 
     def on_login_btn(self):
-        self.ui.Paper_trade_chbx.setEnabled(True)
+        self.model.paper_trade_status = True
         self.set_logged_in_mode(True)
-        self.main_ctrl.change_exchange(self.ui.Exchanges_cmbx.currentText())
-        self.main_ctrl.paper_login()
-
-        #self.main_ctrl.login()
-       # self.login_msg = self.model.login_msg
-       # self.logged_in = self.model.logged_in
+        self.main_ctrl.connect_to_exchange(self.ui.Exchanges_cmbx.currentText())
 
     def on_login_api_key(self):
         self.main_ctrl.change_login_api_key(self.login_api_key)
@@ -368,7 +375,9 @@ class MainView(QMainWindow):
         self.target_price = self.model.target_price
 
     def update_base_currency_options(self):
-        self.base_currency_data = self.model.base_currency_data
+        #self.ui.Transaction_Currency_cbx.clear()
+        self.ui.Transaction_Currency_cbx.addItems(self.model.base_currency_data)
 
     def update_target_currency_options(self):
-        self.target_currency_data = self.model.target_currency_data
+        self.ui.Transaction_Symbol_cbx.clear()
+        self.ui.Transaction_Symbol_cbx.addItems(self.model.target_currency_data)
