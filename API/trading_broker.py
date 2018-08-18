@@ -3,7 +3,6 @@ from Database.Account.account import *
 from API.Exchanges.binance_exchange import *
 from API.Exchanges.bitmex_exchange import *
 from API.Exchanges.coinbase_pro_exchange import *
-import ccxt
 
 
 class Exchange:
@@ -18,15 +17,10 @@ class Exchange:
         self.load_exchange(exchange)
         return self.clients[exchange].fetchTicker(symbol)
 
-    def get_currency_pairs(self, exchange):
+    def get_currency_pairs(self, exchange, data=None):
         ret_data = {}
-        self.load_exchange(exchange)
-
-        #add logic to check if the data is already in the database and stuff.
-
-        data = self.clients[exchange].fetchTickers()
         if data is None:
-            return
+            data = self.get_all_asset_info(exchange)
 
         for key, value in data.items():
             temp = key.split("/")
@@ -38,13 +32,10 @@ class Exchange:
 
             ret_data[base] += target + ","
 
-        for key, value in ret_data.items(): #remove the last comma
+        for key, value in ret_data.items():  # remove the last comma
             ret_data[key] = value[:-1]
 
         return ret_data
-
-
-
 
     def get_price(self, exchange, symbol): #change to get proper price. Current hack is to use closed in case bid is none.
         if exchange in self.model.price_info:
@@ -53,9 +44,6 @@ class Exchange:
                 if val is None:
                     val = self.model.price_info[exchange][symbol]['close']
                 return val
-
-    def get_all_asset_names(self):
-        return ["EOS", "ETH", "XLM", "ADA"]
 
     def calc_paper_balance(self, currency, amount):
         balance = self.model.paper_account_balance.balances[currency].available_balance
@@ -101,22 +89,25 @@ class Exchange:
 
     def get_all_asset_info(self, exchange):
         self.load_exchange(exchange)
-
         return self.clients[exchange].load_markets()
 
-    def prepare_binance_asset_for_db(self): #horrible name, chnage it and chnage implementation
-        data = self.get_all_asset_info("Binance")
+    def parse_asset_info(self, exchange, data=None):
+        if data is None:
+            data = self.get_all_asset_info(exchange)
+
         ret_data = []
+
         for key, value in data.items():
             entry_data = {}
-            entry_data["base_currency"] = value["quote"]
-            entry_data["target_currency"] = value['base']
-            entry_data["amount_min"] = value['limits']['amount']['min']
-            entry_data["amount_max"] = value['limits']['amount']['max']
-            entry_data["precision_price"] = value['precision']['price']
-            entry_data["precision_amount"] = value['precision']['amount']
-            entry_data["precision_base_currency"] = value['precision']['quote']
-            entry_data["precision_target_currency"] = value['precision']['base']
+            entry_data["symbol"] = value["symbol"]
+            entry_data["base_currency"] = value["base_currency"]
+            entry_data["target_currency"] = value["target_currency"]
+            entry_data["amount_min"] = value["amount_min"]
+            entry_data["amount_max"] = value["amount_max"]
+            entry_data["precision_price"] = value["precision_price"]
+            entry_data["precision_amount"] = value["precision_amount"]
+            entry_data["precision_base_currency"] = value["precision_base_currency"]
+            entry_data["precision_target_currency"] = value["precision_target_currency"]
 
             ret_data.append(entry_data)
 
