@@ -146,37 +146,6 @@ class MainView(QMainWindow):
     def target_price(self, value):
         self.ui.Transaction_Current_Price_Display_lbl.setText("Asset Price: " + str(value) + " " + self.model.base_currency)
 
-   # @property
-    #def base_currency_data(self):
-     #   pass
-
-  #  @base_currency_data.setter
-   # def base_currency_data(self, value):
-
-    #    self.ui.Transaction_Currency_cbx.clear()
-
-#        self.ui.Transaction_Currency_cbx.addItems(value)
-
-
- #       self.ui.Transaction_Currency_cbx.clear()
-
-
-#        self.ui.Transaction_Currency_cbx.addItems(value)
-
-
-
-
-  #  @property
-   # def target_currency_data(self):
-    #    pass
-
-    #@target_currency_data.setter
-    #ef target_currency_data(self, value):
-     #   self.ui.Transaction_Symbol_cbx.clear()
-      #  self.ui.Transaction_Symbol_cbx.addItems(value)
-       # self.ui.Transaction_Symbol_cbx.clear()
-        #self.ui.Transaction_Symbol_cbx.addItems(value)
-
     def __init__(self, model, main_ctrl):
         super(MainView, self).__init__()
         self.ui = None
@@ -236,8 +205,9 @@ class MainView(QMainWindow):
         self.ui.Transaction_Target_tbx.textChanged.connect(self.on_transaction_target)
         self.ui.Transaction_Stop_Limit_tbx.textChanged.connect(self.on_transaction_stop_limit)
 
-        self.ui.Transaction_Currency_cbx.currentIndexChanged.connect(self.on_base_currency)
-        self.ui.Transaction_Symbol_cbx.currentIndexChanged.connect(self.on_target_currency)
+        self.ui.currency_combo.currentIndexChanged['QString'].connect(self.on_base_currency)
+        self.ui.Transaction_Symbol_cbx.currentIndexChanged['QString'].connect(self.on_target_currency)
+
         self.ui.Transaction_Execute_btn.clicked.connect(self.on_execute_btn)
 
         self.ui.Menu_Transactions_Import.triggered.connect(self.on_menu_transactions_import)
@@ -318,11 +288,11 @@ class MainView(QMainWindow):
     def on_transaction_stop_limit(self):
         self.main_ctrl.change_transaction_stop_limit(self.transaction_stop_limit)
 
-    def on_base_currency(self):
-        self.main_ctrl.change_base_currency(self.base_currency)
+    def on_base_currency(self, value):
+        self.main_ctrl.change_base_currency(value)
 
-    def on_target_currency(self):
-        self.main_ctrl.change_target_currency(self.target_currency)
+    def on_target_currency(self, value):
+        self.main_ctrl.change_target_currency(value)
 
     def on_execute_btn(self):
         self.main_ctrl.execute_transaction()
@@ -375,8 +345,8 @@ class MainView(QMainWindow):
         self.target_price = self.model.target_price
 
     def update_base_currency_options(self):
-        #self.ui.Transaction_Currency_cbx.clear()
-        self.ui.Transaction_Currency_cbx.addItems(self.model.base_currency_data)
+        self.ui.currency_combo.clear()
+        self.ui.currency_combo.addItems(self.model.base_currency_data)
 
     def update_target_currency_options(self):
         self.ui.Transaction_Symbol_cbx.clear()

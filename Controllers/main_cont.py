@@ -35,6 +35,7 @@ class MainController(object):
             self.model.graphics_mode = False
         self.tc = TransactionCtrl(model, self.exchange)
 
+
     def change_exchange(self, value):
         self.model.current_exchange = value
         self.load_exchange_data()
@@ -80,23 +81,34 @@ class MainController(object):
         self.model.transaction_stop_limit = value
         self.model.update_func("transaction_stop_limit")
 
+    def temp(self, value):
+        print(value)
+
     def change_base_currency(self, value):
+        if value == "":
+            return
         self.model.base_currency = value
+
         self.model.target_currency_data = self.model.currency_data[value]
         self.model.target_currency = self.model.target_currency_data[0]
 
-        if self.model.base_currency != '' and self.model.target_currency != '':  # rewrite so this is not needed
-            d_data = self.asset_info_db.fetch_item(self.model.current_exchange, self.model.base_currency, self.model.target_currency)
-            self.model.current_asset_info = AssetInfo(self.model.current_exchange, d_data)
+        if self.model.base_currency != "" and self.model.target_currency != "":
+            self.set_current_asset_info()
 
         self.model.update_func("target_currency_options")
 
     def change_target_currency(self, value):
+        if value == "":
+            return
         self.model.target_currency = value
+        if self.model.base_currency != "" and self.model.target_currency != "":
+            self.set_current_asset_info()
 
-        if self.model.base_currency != '' and self.model.target_currency != '': #rewrite so this is not needed
-            d_data = self.asset_info_db.fetch_item(self.model.current_exchange, self.model.base_currency, self.model.target_currency)
-            self.model.current_asset_info = AssetInfo(self.model.current_exchange, d_data)
+    def set_current_asset_info(self):
+        if self.asset_info_db is None:
+            self.asset_info_db = AssetInfoDB(self.model.db_exchange)
+        d_data = self.asset_info_db.fetch_item(self.model.current_exchange, self.model.base_currency, self.model.target_currency)
+        self.model.current_asset_info = AssetInfo(self.model.current_exchange, d_data)
 
     def change_account_balance(self, value):
         self.model.account_balance = value
@@ -127,7 +139,6 @@ class MainController(object):
             self.model.login_msg = "Login Fail"
 
     def connect_to_exchange(self, exchange):
-
         self.change_exchange(exchange)
 
         if not self.model.logged_in:
@@ -149,15 +160,12 @@ class MainController(object):
 
     def login_procedure(self):
         self.model.logged_in = True
-        self.asset_info_db = AssetInfoDB(self.model.db_exchange)
         self.tc.load_transactions()
         self.load_currencies()
 
         self.init_bots()
 
     def load_exchange_data(self):
-
-
         database_update_db = DatabaseUpdate(self.model.db_exchange)
         self.model.exchanges_data = database_update_db.get_updated()
 
@@ -222,7 +230,7 @@ class MainController(object):
         item.active = False
         item.closed = False
 
-        item.asset_info = self.model.current_asset_info
+        item.asset_info = self.set_current_asset_info()
 
         if self.tc.legal_transaction(item):
             print("Legal Transaction")

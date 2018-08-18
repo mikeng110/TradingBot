@@ -336,17 +336,14 @@
       <string>Asset Price:</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="Transaction_Currency_cbx">
+    <widget class="QComboBox" name="currency_combo">
      <property name="geometry">
       <rect>
        <x>380</x>
        <y>70</y>
-       <width>71</width>
+       <width>69</width>
        <height>22</height>
       </rect>
-     </property>
-     <property name="editable">
-      <bool>false</bool>
      </property>
     </widget>
    </widget>
